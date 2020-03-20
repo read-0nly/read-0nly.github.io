@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<link rel="stylesheet" type="text/css" href="SlimeArena.css">
+	<style>
+	* {
+		padding:0px;
+	}
+	body{
+		background-color:black;
+	}
+	#gameDiv{
+		margin-left:auto;
+		margin-right:auto;
+		width:1200px;
+	}
+	#gameTable{
+		width:1200px;
+		height:600px;
+	}7
+	#leftTable, #rightTable{
+		width:100%;
+		height:100%;
+		text-align:center
+	}
+	#gameTableRight{
+		vertical-align:top;
+		height:100%;
+	}
+	#leftTableHeader,#leftTableFooter,#rightTableHeader,#rightTableFooter{
+		height:50px;
+	}
+	#gameTableLeft, #gameTableRight{
+		vertical-align:center;
+		text-align:center;
+		background-color:#202020;
+		border: 1px solid black;
+		border-collapse: separate;
+		border-spacing: 15px;
+	}
+	#rightTableMenu{	
+		width:100%;
+	}
+	#rightTableMenu td{
+		text-align:center;
+		background-color:cyan;
+		border: 1px solid black;
+	}
+	#rightTableMenu td:hover{
+		text-align:center;
+		background-color:red;
+		border: 1px solid black;
+	}
+	#rightTableMenuBody{
+		text-align:center;
+	}
+	#rightTableBody{		
+		vertical-align:top;
+	}
+	#Menu td{
+	}
+	#Menu tr{
+		border:1px solid black;
+		padding:0px;
+	}
+	#Menu{
+		border-collapse: collapse;
+		margin-top:0px;
+		margin-bottom:0px;
+		display:block;
+	}
+	.MenuHead h3{
+		padding:0px;
+		margin:0px;
+	}
+	.Menu1{
+		background-color:#083a40;
+		color:#209080;
+	}
+	.Menu2{
+		background-color:#106060;
+		color:#40b0a0;
+	}
+	.Menu3{
+		background-color:#209080;	
+		color:#70e0d0;
+	}
+	.MenuBody{
+		visibility:collapse;
+	}
+	.MenuHead td{
+		max-height:10px;
+		padding:0px 10px;
+	}
+	.MenuBody td{
+		display:block;
+		padding:0px 20px;
+		vertical-align:top;
+		min-height:525px;
+		max-height:525px;
+		overflow:auto;
+	}
+	#actorInfo td{
+		width:100px;
+	}
+	body{
+		overflow:hidden;
+	}
+	</style>
+</head>
+<body onload="initGame(); " onResize = "document.getElementById('gameDiv').width = window.innerWidth; document.getElementById('gameDiv').height = window.innerHeight;">
+	<div id="gameDiv">
+	 <table id="gameTable">
+	  <tr>
+	   <td id="gameTableLeft" width="70%">
+		<table id="leftTable">
+		 <tr><td id="leftTableHeader">Header</td></tr>
+		 <tr>
+		  <td id="leftTableBody">
+		   <canvas id="myCanvas" style="border:1px solid #d3d3d3; max-width:80%;max-height:80%; background-color:black;">
+		    Your browser does not support the HTML5 canvas tag.
+		   </canvas>
+		  </td>
+		 </tr>
+		 <tr><td id="leftTableFooter">Footer</td></tr>
+		</table>
+	   </td>
+	   <td id="gameTableRight" width="30%">	
+		  <table id="Menu">
+			<tr class="MenuHead Menu1" id="MenuHead1" onClick="openCard('MenuBody1')">
+				<td><h3>Actor Info</h3></td>
+			</tr>
+			<tr class="MenuBody Menu1" id="MenuBody1">
+				<td><p id="actorInfo"></p></td>
+			</tr>
+			<tr class="MenuHead Menu2" id="MenuHead2" onClick="openCard('MenuBody2')">
+				<td>
+					<h3>Debug Info</h3>
+				</td>
+			</tr>
+			<tr class="MenuBody Menu2" id="MenuBody2">
+				<td><p id="debugInfo"></p></td>
+			</tr>
+			<tr class="MenuHead Menu3" id="MenuHead3" onClick="openCard('MenuBody3')">
+				<td>
+					<h3>TileMap Info</h3>
+				</td>
+			</tr>
+			<tr class="MenuBody Menu3" id="MenuBody3">
+				<td>
+					<p id="tileMapInfo">
+						Image to use:<br>
+						<img id="tileset" src=".\SlimeArena.png" alt="TileMap" >
+					</p>
+				</td>
+			</tr>
+		</table>
+       </td>
+	  </tr>
+	 </table>
+	</div>
+	
+	
+	<script src="./Engine.js"></script>
+	<script src="./EngineConfig.js"></script>
+	<script src="./SlimeArena.js"></script>
+</body>
+</html>

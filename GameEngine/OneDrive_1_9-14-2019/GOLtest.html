@@ -1,0 +1,37 @@
+<html>
+	<head>
+
+	</head>
+	<body onLoad="initEngines()">
+		<canvas id="myCanvas" style="border:1px solid #d3d3d3; max-width:80%;max-height:80%; background-color:black;" width="1000" height="1000">
+			Your browser does not support the HTML5 canvas tag.
+		</canvas>
+		
+			<h2>Within a species</h2>
+			<h3>For a space that is 'populated':</h3>
+			<ul>
+				<li>Each cell with one or no neighbors dies, as if by solitude.</li>
+				<li>Each cell with four or more neighbors dies, as if by overpopulation.</li>
+				<li>Each cell with two or three neighbors survives.</li>
+			</ul>
+			<h3>For a space that is 'empty' or 'unpopulated'</h3>
+			<ul>
+				<li>Each cell with three neighbors becomes populated.</li>
+			</ul>
+			<h2>Species rules</h2>
+			<ul>
+				<li>8 beats 4</li>
+				<li>4 beats 2</li>
+				<li>2 beats 1</li>
+				<li>1 beats 8</li>
+			</ul>
+		<p id="tileMapInfo">
+			Image to use:<br>
+			<img id="tileset" src=".\smallTiles16x16.png" alt="The Scream" >
+		</p>
+
+	<script src="./Engine.js"></script>
+	<script src="./EngineConfig.js"></script>
+	</body>
+</html>
+

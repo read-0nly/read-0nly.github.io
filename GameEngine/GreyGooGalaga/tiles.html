@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<body onload="initEngine()">
+
+	<center>
+		<canvas id="myCanvas" width="900" height="800" style="border:1px solid #d3d3d3;">
+			Your browser does not support the HTML5 canvas tag.
+		</canvas>
+	</center>
+	
+	<span style="visibility:default">
+		<h1>
+			Debug Info
+		</h1>
+		<p id="debug">
+			debugOutput
+		</p>
+		<p>
+			Image to use:
+		</p>
+		<img id="tileset" src=".\tiles.png" alt="The Scream" >
+	</span>
+	
+	<script src="./config.js"></script>
+	<script src="./mapEngine.js"></script>
+	<script src="./actorEngine.js"></script>
+	
+</body>
+</html>
