@@ -115,7 +115,7 @@ function explorerLoop(){
             delLoop
         }
         elseif($Expcmd -like "set"){
-
+            setLoop
         }
         elseif($Expcmd -like "quit"){
             $Continue = $false
@@ -124,6 +124,35 @@ function explorerLoop(){
 }
 
 function setLoop(){
+    $Continue = $true
+    While ($Continue){
+        try{
+            cls
+            write-host
+            enumerateLocation
+            write-host
+            $PathParts = ($global:Path).split("\")[1..( ($global:Path).split("\").count-1)]
+
+            if( (fetchPathParent $PathParts $global:CurrentContainer)[$PathParts[-1]].gettype().name -eq "Hashtable"){
+                (fetchPath $PathParts $global:CurrentContainer)["@"] = (read-host "Enter the new value")
+            }
+            else{
+                (fetchPathParent $PathParts $global:CurrentContainer)[$PathParts[-1]] = (read-host "Enter the new value:")
+            }
+            
+            cls
+            write-host "Value Set!" -ForegroundColor green
+            write-host
+            enumerateLocation
+            write-host
+            $Continue = $false
+            saveFile
+        }
+        catch{
+            write-error "This failed for some reason"
+            $Continue = (-not((read-host "Enter 'quit' to go back to explore mode, or anything else to continue") -eq "quit"))
+        }
+    }
     
 }
 
