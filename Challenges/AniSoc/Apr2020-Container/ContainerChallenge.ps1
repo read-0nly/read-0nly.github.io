@@ -149,6 +149,7 @@ function delLoop(){
                 }
                 if((read-host "Enter 'delete' to proceed with deleting entry") -eq "delete"){
                     (fetchPathParent $PathParts $global:CurrentContainer).remove($PathPArts[-1])
+                    saveFile
                 }
             }
             else{
