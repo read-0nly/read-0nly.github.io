@@ -12,7 +12,7 @@ Make everything a container
 
 ## Overview
 
-This script takes a file, and creates an "Alternate data stream" on that file, then gives you tools with which to store information in that stream through its interface. This takes advantage of a feature of the Microsoft NTFS file system - the file table identifies the streams associated with a file. The file content or data as we understand it regularly is in the $DATA stream. 
+This script takes a file, and creates an ["Alternate data stream"](https://www.irongeek.com/i.php?page=security/altds) on that file, then gives you tools with which to store information in that stream through its interface. This takes advantage of a feature of the Microsoft NTFS file system - the file table identifies the streams associated with a file. The file content or data as we understand it regularly is in the $DATA stream. 
 
 Alternate streams can be attached to this file location though - for instance, this is used to identify files that were downloaded from untrusted locations so windows can warn you when you try to open them. These alternate streams are also part of the file, but they exist outside of the file's $DATA - the file's $DATA is what gets access, for instance, if you open a file in a program, or upload it. This makes Alternate Data Streams a sort of volatile, file-specific container. The data exists in the file, but if the file is opened or manipulated through regular means, the data's invisible, and if the file is moved through the internet, the data is lost in the process. It makes for data that can only be reasonably accessed, manipulated, and transferred locally.
 
