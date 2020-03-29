@@ -26,11 +26,22 @@ I'm publishing this page now because technically, this is "feature complete" - i
 
 [The Code](https://github.com/read-0nly/read-0nly.github.io/blob/master/Challenges/AniSoc/Apr2020-Container/ContainerChallenge.ps1)
 
+*This is not ready to use in any way. When it starts being ready to use I'll delete this message*
+
+*Similarly, there isn't a single comment at the moment so it's illegible. That's my next step. I will delete this when that changes*
+
+**Do not point this at anything that matters. I offer no guarantees of anything, you use this at your own risk, etc. Don't run scripts if you don't understand what they do**
+
 ## Changelog
 ### 3/29/2020
 - Releasing first functional copy, with hardcoded paths and all. All the base function works
-- Wishlist
+- Todo
+  - Comment out what the script does
   - Using **Add** and **Del** lets you overwrite keys but you lose the substructure. Finish **Set**
+  - Cleanup/refactor
+  - Interface polish
+  
+- Wishlist
   - Add mediatypes - text, images, video, audio, scripts
   - Text Formatting Syntax (color, bold, blink)
   - GUI
