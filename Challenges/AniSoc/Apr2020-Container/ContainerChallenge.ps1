@@ -241,5 +241,5 @@ function PSObj2Hashtable(){
 
 
 
-loadFile "C:\Temp\ContainerChallenge.ps1.test"
+loadFile (read-host "Enter the path to the container file")
 explorerLoop
