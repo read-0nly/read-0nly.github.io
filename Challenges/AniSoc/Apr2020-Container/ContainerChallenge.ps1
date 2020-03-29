@@ -1,9 +1,9 @@
-
+#Set up global vars
 $global:CurrentContainer = @{}
 $global:CurrentContainerFilePath = ""
 $global:Path = "\"
 
-
+#Load Container from file
 function loadFile(){
 param(
         [string]$FilePath = (Read-host "Enter path to Container")
@@ -11,10 +11,13 @@ param(
     $global:CurrentContainer = (PSObj2Hashtable ((get-content $FilePath -Stream Container)| convertfrom-json))
     $global:CurrentContainerFilePath = $FilePath
 }
+
+#Save Container to file
 function saveFile(){
     $global:CurrentContainer | convertto-json | Set-content ($global:CurrentContainerFilePath) -stream "Container"
 }
 
+#Fetch child container from container
 function fetchPath(){
     param(
         [string[]]$PathParts,
@@ -33,6 +36,8 @@ function fetchPath(){
         fetchPath $PathPartsNew $CurrentDepth[$PathParts[0]]
     }
 }
+
+#Fetch child container's parent container from container - if the path is \path\test\final, this would return the object at \path\test
 function fetchPathParent(){
     param(
         [string[]]$PathParts,
@@ -52,6 +57,7 @@ function fetchPathParent(){
     }
 }
 
+#Fetches the object at the current path and displays it
 function enumerateLocation(){
         write-host ("Current ContainerLevel: "+$global:Path) -foregroundcolor Magenta
         $PathParts = ($global:Path+"\@").split("\")[1..( ($global:Path+"\@").split("\").count-1)]
@@ -69,6 +75,7 @@ function enumerateLocation(){
         (fetchPath $PathParts $global:CurrentContainer)
 }
 
+#Main loop - from where one enters commands to explroe and modify the structure
 function explorerLoop(){
     $Continue = $true
         cls
@@ -123,6 +130,7 @@ function explorerLoop(){
     }
 }
 
+#Set loop - the loop where the user sets the value of the current path
 function setLoop(){
     $Continue = $true
     While ($Continue){
@@ -156,6 +164,7 @@ function setLoop(){
     
 }
 
+#Delete loop - the loop where the user deletes a path
 function delLoop(){
     $Continue = $true
     While ($Continue){
@@ -194,6 +203,7 @@ function delLoop(){
     }
 }
 
+#Add loop - adds a value pair at the current location
 function addLoop(){
     $Continue = $true
     While ($Continue){
@@ -223,6 +233,7 @@ function addLoop(){
     }
 }
 
+#Helper function - turns the imported PSCustomObject to a Hashtable
 function PSObj2Hashtable(){
     param($PSObj)
     $PSObj2Hashtable = @{}
@@ -240,6 +251,6 @@ function PSObj2Hashtable(){
 }
 
 
-
+#This triggers execution
 loadFile (read-host "Enter the path to the container file")
 explorerLoop
