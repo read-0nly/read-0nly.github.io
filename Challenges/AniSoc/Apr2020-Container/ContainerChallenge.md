@@ -33,6 +33,11 @@ I'm publishing this page now because technically, this is "feature complete" - i
 **Do not point this at anything that matters. I offer no guarantees of anything, you use this at your own risk, etc. Don't run scripts if you don't understand what they do**
 
 ## Changelog
+### 3.29.2020 - pt 2
+- Fixed
+  - Using **Add** and **Del** lets you overwrite keys but you lose the substructure. Finish **Set**
+- Additions
+  - Script now prompts for target file.
 ### 3/29/2020
 - Releasing first functional copy, with hardcoded paths and all. All the base function works
 - Todo
