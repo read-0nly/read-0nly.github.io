@@ -34,11 +34,14 @@ I'm publishing this page now because technically, this is "feature complete" - i
 
 ## Changelog
 ### 3.29.2020 - pt 2
+
 - Fixed
   - Finished **Set** implementation
+  
 - Additions
   - Script now prompts for target file.
--Todo
+  
+- Todo
   - Comment out what the script does
   - Cleanup/refactor
   - Interface polish
