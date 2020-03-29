@@ -35,9 +35,22 @@ I'm publishing this page now because technically, this is "feature complete" - i
 ## Changelog
 ### 3.29.2020 - pt 2
 - Fixed
-  - Using **Add** and **Del** lets you overwrite keys but you lose the substructure. Finish **Set**
+  - Finished **Set** implementation
 - Additions
   - Script now prompts for target file.
+-Todo
+  - Comment out what the script does
+  - Cleanup/refactor
+  - Interface polish
+    - Create help functions
+    - Document use with examples
+  
+- Wishlist
+  - Add mediatypes - text, images, video, audio, scripts
+  - Text Formatting Syntax (color, bold, blink)
+  - GUI
+
+
 ### 3/29/2020
 - Releasing first functional copy, with hardcoded paths and all. All the base function works
 - Todo
