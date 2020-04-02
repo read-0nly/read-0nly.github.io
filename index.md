@@ -2,6 +2,9 @@
 
 ### [Guides](./Guides)
 - [DataBending](./Guides/Databending/Databending)
+  - *Break pictures in cool ways using Audacity/Irfanview*
+- [Streaming on Discord](Guides/Streaming/StreamingOnDiscord.md)
+  - *Really this is a guide for if you're still not win 10 and the discord streaming feature doesn't capture audio and it'd be more accurate to say this is "how to redirect the audio of an app/tab to my microphone"*
 
 ### Fun
 - [Slime Arena](/GameEngine/SlimeArenaCurrent/SlimeArena.html) 
