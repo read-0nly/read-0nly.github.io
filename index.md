@@ -1,10 +1,9 @@
 ## Hello.
 <style>
-  body{background-color:#4e4e68;color:#ddc2ef}
-  a{color:#fcd3ff}
+  body{background-color:#2b2642;color:#9a8fad}
+  a{color:#ef812d}
   a:hover{color:#d3cac0}
-  a:visited{color:#9ba568}
-
+  a:visited{color:#dd5004}
 </style>
 ### [Guides](./Guides)
 - [DataBending](./Guides/Databending/Databending)
