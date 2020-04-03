@@ -1,5 +1,11 @@
 ## Hello.
-<style>body{background-color:#220055}</style>
+<style>
+  body{background-color:#4e4e68;color:#ddc2ef}
+  a{color:#fcd3ff}
+  a:hover{color:#d3cac0}
+  a:visited{color:#9ba568}
+
+</style>
 ### [Guides](./Guides)
 - [DataBending](./Guides/Databending/Databending)
   - *Break pictures in cool ways using Audacity/Irfanview*
