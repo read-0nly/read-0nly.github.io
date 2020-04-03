@@ -2,7 +2,6 @@
 <style>
   body{background-color:#2b2642;color:#eeeeee}
   a:link{color:#2cbc99}
-  a:visited{color:#326771}
   a:hover{color:#42d9c8}
   h1,
   h2,
