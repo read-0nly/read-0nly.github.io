@@ -2,8 +2,8 @@
 <style>
   body{background-color:#2b2642;color:#9a8fad}
   a:link{color:#ef812d}
-  a:hover{color:#d3cac0}
   a:visited{color:#dd5004}
+  a:hover{color:#d3cac0}
 </style>
 ### [Guides](./Guides)
 - [DataBending](./Guides/Databending/Databending)
