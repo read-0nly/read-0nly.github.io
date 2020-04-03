@@ -1,22 +1,16 @@
 ## Hello.
 <style>
-  $color1: rgba(43, 38, 66, 1);
-  $color2: rgba(147, 22, 33, 1);
-  $color3: rgba(44, 140, 153, 1);
-  $color4: rgba(50, 103, 113, 1);
-  $color5: rgba(66, 217, 200, 1);
-  $colortext: rgba(225, 225, 225, 1);
-  body{background-color:$color1;color:$colortext}
-  a:link{color:$color3}
-  a:visited{color:$color4}
-  a:hover{color:$color5}
+  body{background-color:#2b2642;color:#eeeeee}
+  a:link{color:#2cbc99}
+  a:visited{color:#326771}
+  a:hover{color:#42d9c8}
   h1,
   h2,
   h3,
   h4,
   h5,
   h6 {
-    color:$color2
+    color:#931621
   }
 </style>
 ### [Guides](./Guides)
