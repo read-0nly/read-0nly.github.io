@@ -1,8 +1,8 @@
 ## Hello.
 <style>
   body{background-color:#071E22;color:#F4C095}
-  a{color:#D72638}
-  a:hover{color:#679289}
+  a{color:#679289}
+  a:hover{color:#D72638}
   h1,
   h2,
   h3,
