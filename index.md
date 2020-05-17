@@ -1,7 +1,7 @@
 ## Hello.
 <style>
   body{background-color:#071E22;color:#F4C095}
-  a{color:#1D7874}
+  a{color:#D72638}
   a:hover{color:#679289}
   h1,
   h2,
@@ -9,7 +9,7 @@
   h4,
   h5,
   h6 {
-    color:#D72638
+    color:#1D7874
   }
 </style>
 ### [Guides](./Guides)
@@ -34,6 +34,6 @@
 - [COBOLRepo](https://github.com/read-0nly/COBOLRepo) : Small cobol demos thrown together as I'm learning
 
 
-Also I make msuic sometimes: https://nullzer0.bandcamp.com
+[Also I make music sometimes](https://nullzer0.bandcamp.com)
 
-And I glitch pictures: https://www.instagram.com/0bsol33t/
+[And I glitch pictures](https://www.instagram.com/0bsol33t/)
