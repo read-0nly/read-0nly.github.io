@@ -1,15 +1,15 @@
 ## Hello.
 <style>
-  body{background-color:#2b2642;color:#eeeeee}
-  a{color:#2cbc99}
-  a:hover{color:#42d9c8}
+  body{background-color:#071E22;color:#F4C095}
+  a{color:#1D7874}
+  a:hover{color:#679289}
   h1,
   h2,
   h3,
   h4,
   h5,
   h6 {
-    color:#931621
+    color:#D72638
   }
 </style>
 ### [Guides](./Guides)
