@@ -32,3 +32,8 @@
 - [VRFM](https://github.com/read-0nly/VRFM) : 3d file manager built in unity **[indefinitely on the backburner]**
 - [ImageSorter](https://github.com/read-0nly/ImageSorter) : shows images in a folder, with buttons bound to the subfolders, to make it easier to look through images and file them away
 - [COBOLRepo](https://github.com/read-0nly/COBOLRepo) : Small cobol demos thrown together as I'm learning
+
+
+Also I make msuic sometimes: https://nullzer0.bandcamp.com
+
+And I glitch pictures: https://www.instagram.com/0bsol33t/
