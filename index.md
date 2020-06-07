@@ -28,6 +28,7 @@
 
 ### Repos
 - [PSRepo](https://github.com/read-0nly/PSRepo) : Powershell scripts of various uses
+- [PSRepo page](./PSRepo) : WIP page to list scripts of interest
 - [FreeChat](https://github.com/read-0nly/FreeChat/blob/master/README.md) : P2P(...2p) messenger app that uses UDP hole punching to get around the need for a server. Everyone just links up to eachother directly and messages eachother directly. 
 - [VRFM](https://github.com/read-0nly/VRFM) : 3d file manager built in unity **[indefinitely on the backburner]**
 - [ImageSorter](https://github.com/read-0nly/ImageSorter) : shows images in a folder, with buttons bound to the subfolders, to make it easier to look through images and file them away
