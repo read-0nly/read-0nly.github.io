@@ -12,6 +12,7 @@
     color:#D72638
   }
 </style>
+<script>alert("hi")</script>
 ### [Guides](./Guides)
 - [DataBending](./Guides/Databending/Databending)
   - *Break pictures in cool ways using Audacity/Irfanview*
