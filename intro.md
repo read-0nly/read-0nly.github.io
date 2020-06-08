@@ -12,7 +12,6 @@
     color:#D72638
   }
 </style>
-<script>alert("hi")</script>
 ### [Guides](./Guides)
 - [DataBending](./Guides/Databending/Databending)
   - *Break pictures in cool ways using Audacity/Irfanview*
@@ -39,7 +38,3 @@
 [Also I make music sometimes](https://nullzer0.bandcamp.com)
 
 [And I glitch pictures](https://www.instagram.com/0bsol33t/)
-
-<iframe src="./psrep"></iframe>
-
-yo.
