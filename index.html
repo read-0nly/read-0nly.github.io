@@ -1,50 +1,53 @@
-<link rel="stylesheet" type="text/css" href="style.css">
+<head>
+  <link rel="stylesheet" type="text/css" href="style.css">
+</head>
 <body onload="submenu = document.getElementById('submenu');">
   <div id="menu">
-<table>
-  
-  <!-- Guides Menu -->
-  <tr>
-    <td onClick="document.getElementById('guidesMenu').style.display = 
-                 (document.getElementById('guidesMenu').style.display!='table-row'?'table-row':'none')">Guides</td></tr>
-  <tr class="subMenu" id="guidesMenu"><td>
     <table>
-      <tr><td onClick="submenu.src = '../Guides/Databending/Databending'">Databending</td></tr>
-      <tr><td onClick="submenu.src =  '../Guides/Streaming/StreamingOnDiscord'">Streaming on Discord</td></tr>
+
+      <!-- Guides Menu -->
+      <tr>
+        <td onClick="document.getElementById('guidesMenu').style.display = 
+                     (document.getElementById('guidesMenu').style.display!='table-row'?'table-row':'none')">Guides</td></tr>
+      <tr class="subMenu" id="guidesMenu"><td>
+        <table>
+          <tr><td onClick="submenu.src = '../Guides/Databending/Databending'">Databending</td></tr>
+          <tr><td onClick="submenu.src =  '../Guides/Streaming/StreamingOnDiscord'">Streaming on Discord</td></tr>
+        </table>
+      </td></tr>
+
+      <!-- Fun Menu -->
+      <tr><td onClick="document.getElementById('funMenu').style.display = 
+                     (document.getElementById('funMenu').style.display!='table-row'?'table-row':'none')">Fun</td></tr>
+      <tr class="subMenu" id="funMenu"><td>
+        <table>
+          <tr><td onClick="submenu.src = '../GameEngine/SlimeArenaCurrent/SlimeArena.html'">Slime Arena</td></tr>
+        </table>
+      </td></tr>
+
+      <!-- Challenges Menu -->
+      <tr><td onClick="document.getElementById('challengesMenu').style.display = 
+                     (document.getElementById('challengesMenu').style.display!='table-row'?'table-row':'none')">Challenges</td></tr>
+      <tr class="subMenu" id="challengesMenu"><td>
+        <table>
+          <tr><td onClick="submenu.src = './Challenges/AniSoc/Apr2020-Container/ContainerChallenge'">Apr2020 - Containers</td></tr>
+        </table>
+      </td></tr>
+
+      <!-- Repos Menu -->
+      <tr><td onClick="document.getElementById('reposMenu').style.display = 
+                     (document.getElementById('reposMenu').style.display!='table-row'?'table-row':'none')">Repos</td></tr>
+      <tr class="subMenu" id="reposMenu"><td> 
+        <table>
+          <tr><td onClick="window.location.href = 'https://github.com/read-0nly/PSRepo'">PSRepo</td></tr>
+          <tr><td onClick="submenu.src = './PSRepo'">PSRepo page</td></tr>
+          <tr><td onClick="window.location.href = 'https://github.com/read-0nly/FreeChat'">FreeChat</td></tr>
+          <tr><td onClick="window.location.href = 'https://github.com/read-0nly/VRFM'">VRFM</td></tr>
+          <tr><td onClick="window.location.href = 'https://github.com/read-0nly/ImageSorter'">ImageSorter</td></tr>
+          <tr><td onClick="window.location.href = 'https://github.com/read-0nly/COBOLRepo'">COBOLRepo</td></tr>
+        </table>
+      </td></tr>
     </table>
-  </td></tr>
-  
-  <!-- Fun Menu -->
-  <tr><td onClick="document.getElementById('funMenu').style.display = 
-                 (document.getElementById('funMenu').style.display!='table-row'?'table-row':'none')">Fun</td></tr>
-  <tr class="subMenu" id="funMenu"><td>
-    <table>
-      <tr><td onClick="submenu.src = '../GameEngine/SlimeArenaCurrent/SlimeArena.html'">Slime Arena</td></tr>
-    </table>
-  </td></tr>
-  
-  <!-- Challenges Menu -->
-  <tr><td onClick="document.getElementById('challengesMenu').style.display = 
-                 (document.getElementById('challengesMenu').style.display!='table-row'?'table-row':'none')">Challenges</td></tr>
-  <tr class="subMenu" id="challengesMenu"><td>
-    <table>
-      <tr><td onClick="submenu.src = './Challenges/AniSoc/Apr2020-Container/ContainerChallenge'">Apr2020 - Containers</td></tr>
-    </table>
-  </td></tr>
-  
-  <!-- Repos Menu -->
-  <tr><td onClick="document.getElementById('reposMenu').style.display = 
-                 (document.getElementById('reposMenu').style.display!='table-row'?'table-row':'none')">Repos</td></tr>
-  <tr class="subMenu" id="reposMenu"><td> 
-    <table>
-      <tr><td onClick="window.location.href = 'https://github.com/read-0nly/PSRepo'">PSRepo</td></tr>
-      <tr><td onClick="submenu.src = './PSRepo'">PSRepo page</td></tr>
-      <tr><td onClick="window.location.href = 'https://github.com/read-0nly/FreeChat'">FreeChat</td></tr>
-      <tr><td onClick="window.location.href = 'https://github.com/read-0nly/VRFM'">VRFM</td></tr>
-      <tr><td onClick="window.location.href = 'https://github.com/read-0nly/ImageSorter'">ImageSorter</td></tr>
-      <tr><td onClick="window.location.href = 'https://github.com/read-0nly/COBOLRepo'">COBOLRepo</td></tr>
-    </table>
-  </td></tr>
-  </table>
   </div>
-<iframe src="./intro" id="submenu"></iframe>
+  <iframe src="./intro" id="submenu"></iframe>
+</body>
