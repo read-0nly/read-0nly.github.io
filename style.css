@@ -23,7 +23,7 @@ table {
   padding:0px;
 }
 .subMenu{
- visibility:hidden; 
+ display:none;
 }
 #menu {
   float:left;
