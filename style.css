@@ -21,7 +21,9 @@ table {
 .subMenu{
  display:none;
  background-color:#D72638;
-  color:#071E22;
+}
+.subMenu td{
+  color:#071E22; 
 }
 .subMenu td:hover{
   background-color:#D72638;
