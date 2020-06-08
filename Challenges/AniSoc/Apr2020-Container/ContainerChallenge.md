@@ -66,3 +66,6 @@ I'm publishing this page now because technically, this is "feature complete" - i
   - Add mediatypes - text, images, video, audio, scripts
   - Text Formatting Syntax (color, bold, blink)
   - GUI
+
+
+<link rel="stylesheet" type="text/css" href="style.css">
