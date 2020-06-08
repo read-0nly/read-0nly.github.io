@@ -1,6 +1,6 @@
 <style>
   body{background-color:#071E22;color:#EAEAEA}
-  a{color:#CBC5EA}
+  a{color:#CBC5EA;font-family:calibri;}
   a:hover{color:#73628A}
   h1,
   h2,
@@ -21,12 +21,12 @@
   }
 </style>
 <body onload="submenu = document.getElementById('submenu');">
-<div style="float:left">
-  <a onClick="submenu.src = './Guides'">Guides</a><br>
-  <a onClick="submenu.src = './Guides'">Guides</a><br>
-  <a onClick="submenu.src = './Guides'">Guides</a><br>
-  <a onClick="submenu.src = './Guides'">Guides</a><br>
-  <a onClick="submenu.src = './Guides'">Guides</a><br>
-  <a onClick="submenu.src = './Guides'">Guides</a><br>
-  </div>
+<table style="float:left;width:200px;">
+  <tr><td><a onClick="submenu.src = './Guides'">Guides</a></td></tr>
+  <tr><td><a onClick="submenu.src = './Guides'">Guides</a></td></tr>
+  <tr><td><a onClick="submenu.src = './Guides'">Guides</a></td></tr>
+  <tr><td><a onClick="submenu.src = './Guides'">Guides</a></td></tr>
+  <tr><td><a onClick="submenu.src = './Guides'">Guides</a></td></tr>
+  <tr><td><a onClick="submenu.src = './Guides'">Guides</a></td></tr>
+  </table>
 <iframe src="./menu" id="submenu" style="width: calc(100% - 200px);height:100%;float:right;margin:0px;padding:0px;"></iframe>
