@@ -13,10 +13,6 @@ td{
   margin-left:1px;
   margin-top:1px;
 }
-td:hover{
-  background-color:#CBC5EA;
-  color:#73628A;
-}
 table {
   text-align:center;
   margin:0px;
@@ -24,6 +20,14 @@ table {
 }
 .subMenu{
  display:none;
+}
+.subMenu td:hover{
+  background-color:#CBC5EA;
+  color:#EAEAEA;
+}
+td:hover{
+  background-color:#D72638;
+  color:#73628A;
 }
 #menu {
   float:left;
