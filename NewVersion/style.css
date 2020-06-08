@@ -1,9 +1,9 @@
 
-  body{background-color:#071E22;color:#EAEAEA}
+  body{background-color:#071E22;color:#EAEAEA;margin:0px;padding:0px;vertical-align:middle;
   td{color:#CBC5EA;font-family:calibri;width:190px;margin:0px;margin-left:1px;margin-top:1px;}
   td:hover{background-color:#CBC5EA;color:#73628A;}
-table {float:left;text-align:center;margin:0px;padding:0px;}
-iframe {width: calc(100% - 200px);height:100%;float:right;margin:0px;padding:0px;}
+table {float:left;text-align:center;margin:0px;padding:0px;display:inline-block;}
+iframe {width: calc(100% - 200px);height:100%;float:right;margin:0px;padding:0px;display:inline-block;}
   h1,
   h2,
   h3,
