@@ -1,24 +1,49 @@
 
-body{background-color:#071E22;color:#EAEAEA;margin:0px;padding:0px;}
-  td{color:#CBC5EA;font-family:calibri;width:190px;margin:0px;margin-left:1px;margin-top:1px;}
-  td:hover{background-color:#CBC5EA;color:#73628A;}
-table {text-align:center;margin:0px;padding:0px;}
-#menu {float:left;height:100%;margin:0px;padding:0px;}
-iframe {width: calc(100% - 200px);height:100%;float:right;margin:0px;padding:0px;}
-  h1,
-  h2,
-  h3,
-  h4,
-  h5,
-  h6 {
-    color:#D72638
-  }
-  h1{
-  visibility: hidden;
-  height:0px;
-  margin:0px !important;
-  padding:0px !important;
-  font-size:0 !important;
-  top:0px;
-  line-height:0px !important;
-  }
+body{
+  background-color:#071E22;
+  color:#EAEAEA;
+  margin:0px;
+  padding:0px;
+}
+td{
+  color:#CBC5EA;
+  font-family:calibri;
+  width:190px;
+  margin:0px;
+  margin-left:1px;
+  margin-top:1px;
+}
+td:hover{
+  background-color:#CBC5EA;
+  color:#73628A;
+}
+table {
+  text-align:center;
+  margin:0px;
+  padding:0px;
+}
+.subMenu{
+ visibility:hidden; 
+}
+#menu {
+  float:left;
+  height:100%;
+  margin:0px;
+  padding:0px;
+}
+iframe {
+  width: calc(100% - 200px);
+  height:100%;
+  float:right;
+  margin:0px;
+  padding:0px;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  color:#D72638
+}
