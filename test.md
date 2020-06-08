@@ -4,7 +4,7 @@
 <div style="float:right">
   
 ```powershell
-get-item fuuuuuck
+get-item 
 
 ```
 
