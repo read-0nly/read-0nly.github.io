@@ -1,5 +1,21 @@
 <head>
   <link rel="stylesheet" type="text/css" href="style.css">
+  <script>
+    function loadCSS(){
+      var cssId = 'read0nlyCSS'; 
+      if (!document.getElementById(cssId))
+      {
+          var head  = submenu.document.getElementsByTagName('head')[0];
+          var link  = submenu.document.createElement('link');
+          link.id   = cssId;
+          link.rel  = 'stylesheet';
+          link.type = 'text/css';
+          link.href = 'style.css';
+          link.media = 'all';
+          head.appendChild(link);
+      }
+    }
+  </script>
 </head>
 <body onload="submenu = document.getElementById('submenu');">
   <div id="menu">
@@ -8,11 +24,11 @@
       <!-- Guides Menu -->
       <tr>
         <td onClick="document.getElementById('guidesMenu').style.display = 
-                     (document.getElementById('guidesMenu').style.display!='table-row'?'table-row':'none')">Guides</td></tr>
+                     (document.getElementById('guidesMenu').style.display!='table-row'?'table-row':'none');">Guides</td></tr>
       <tr class="subMenu" id="guidesMenu"><td>
         <table>
-          <tr><td onClick="submenu.src = '../Guides/Databending/Databending'">Databending</td></tr>
-          <tr><td onClick="submenu.src =  '../Guides/Streaming/StreamingOnDiscord'">Streaming on Discord</td></tr>
+          <tr><td onClick="submenu.src = '../Guides/Databending/Databending';loadCSS()">Databending</td></tr>
+          <tr><td onClick="submenu.src =  '../Guides/Streaming/StreamingOnDiscord';loadCSS()">Streaming on Discord</td></tr>
         </table>
       </td></tr>
 
@@ -30,7 +46,7 @@
                      (document.getElementById('challengesMenu').style.display!='table-row'?'table-row':'none')">Challenges</td></tr>
       <tr class="subMenu" id="challengesMenu"><td>
         <table>
-          <tr><td onClick="submenu.src = './Challenges/AniSoc/Apr2020-Container/ContainerChallenge'">Apr2020 - Containers</td></tr>
+          <tr><td onClick="submenu.src = './Challenges/AniSoc/Apr2020-Container/ContainerChallenge';loadCSS()">Apr2020 - Containers</td></tr>
         </table>
       </td></tr>
 
@@ -40,7 +56,7 @@
       <tr class="subMenu" id="reposMenu"><td> 
         <table>
           <tr><td onClick="window.location.href = 'https://github.com/read-0nly/PSRepo'">PSRepo</td></tr>
-          <tr><td onClick="submenu.src = './PSRepo'">PSRepo page</td></tr>
+          <tr><td onClick="submenu.src = './PSRepo';loadCSS()">PSRepo page</td></tr>
           <tr><td onClick="window.location.href = 'https://github.com/read-0nly/FreeChat'">FreeChat</td></tr>
           <tr><td onClick="window.location.href = 'https://github.com/read-0nly/VRFM'">VRFM</td></tr>
           <tr><td onClick="window.location.href = 'https://github.com/read-0nly/ImageSorter'">ImageSorter</td></tr>
