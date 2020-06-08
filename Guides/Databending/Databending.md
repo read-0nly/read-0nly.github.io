@@ -1,3 +1,5 @@
+<link rel="stylesheet" type="text/css" href="style.css">
+
 ## hwo 2 databend
 ### A guide to breaking pictures for fun and profit
 
@@ -143,5 +145,3 @@ Try interleaved. Pitch does a prismatic horizontal bleed. Speed skews the image.
 I might expand on this, but for now just trust me. Planar makes cool prismatic shit really easily. Interleaved looks like the kind of glitch VCRs have. 
 
 
-
-<link rel="stylesheet" type="text/css" href="style.css">
