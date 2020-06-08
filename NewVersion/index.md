@@ -12,7 +12,9 @@
     color:#D72638
   }
   h1{
-  visibility: hidden;}
+  visibility: hidden;
+  height:0px;
+  }
 </style>
 
 <script>
