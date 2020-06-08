@@ -27,3 +27,9 @@
 - Now go ahead and stream, make sure you're using the fake microphone as input, and that you don't mute yourself.
 
 #### *Pictures coming I'm just lazy*
+
+
+
+
+
+<link rel="stylesheet" type="text/css" href="style.css">
