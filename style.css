@@ -20,13 +20,14 @@ table {
 }
 .subMenu{
  display:none;
+ background-color:#071E22;
 }
 .subMenu td:hover{
-  background-color:#CBC5EA;
+  background-color:#D72638;
   color:#EAEAEA;
 }
 td:hover{
-  background-color:#D72638;
+  background-color:#CBC5EA;
   color:#73628A;
 }
 #menu {
