@@ -1,5 +1,7 @@
-# hwo 2 databend
+## hwo 2 databend
 ### A guide to breaking pictures for fun and profit
+
+
 
 ## You will need
 - [Irfanview](https://www.irfanview.com/) (Super-compatible image viewer)
@@ -139,3 +141,7 @@ Voila ! That's really all of it. Convert to RAW, import into audacity with some
 Try interleaved. Pitch does a prismatic horizontal bleed. Speed skews the image. Tempo does too, but in this great glitchy chunk way. Use SMALL values. 0.25% change type small. SMALL. Tiny. 
 
 I might expand on this, but for now just trust me. Planar makes cool prismatic shit really easily. Interleaved looks like the kind of glitch VCRs have. 
+
+
+
+<link rel="stylesheet" type="text/css" href="style.css">
