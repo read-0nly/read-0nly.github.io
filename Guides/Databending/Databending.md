@@ -1,4 +1,4 @@
-<link rel="stylesheet" type="text/css" href="style.css">
+<head><link rel="stylesheet" type="text/css" href="style.css"></head>
 
 ## hwo 2 databend
 ### A guide to breaking pictures for fun and profit
