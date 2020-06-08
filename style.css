@@ -6,7 +6,7 @@ body{
   padding:0px;
 }
 td{
-  color:#CBC5EA;
+  color:#D72638;
   font-family:calibri;
   width:190px;
   margin:0px;
@@ -20,18 +20,23 @@ table {
 }
 .subMenu{
  display:none;
- background-color:#D72638;
+ background-color:#071E22;
 }
 .subMenu td{
-  color:#071E22; 
+  background-color:#73628A;
+  color:#CBC5EA; 
 }
 .subMenu td:hover{
-  background-color:#D72638;
-  color:#EAEAEA;
+  background-color:#73628A;
+  color:#071E22;
 }
-td:hover{
+.subMenu table td:hover{
   background-color:#CBC5EA;
   color:#73628A;
+}
+td:hover{
+  background-color:#D72638;
+  color:#071E22;
 }
 #menu {
   float:left;
