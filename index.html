@@ -14,7 +14,18 @@
   </td></tr>
   <tr><td onClick="submenu.src = './Fun.html'">Fun</td></tr>
   <tr><td onClick="submenu.src = './Challenges.html'">Challenges</td></tr>
-  <tr><td onClick="submenu.src = './Repos.html'">Repos</td></tr>
+  <tr><td onClick="document.getElementById('reposMenu').style.display = 
+                 (document.getElementById('reposMenu').style.display!='table-row'?'table-row':'none')">Repos</td></tr>
+  <tr class="subMenu" id="reposMenu"> 
+    <table>
+      <tr><td onClick="submenu.src = 'https://github.com/read-0nly/PSRepo'">PSRepo</td></tr>
+      <tr><td onClick="submenu.src = './PSRepo'">PSRepo page</td></tr>
+      <tr><td onClick="submenu.src = 'https://github.com/read-0nly/FreeChat/blob/master/README.md'">FreeChat</td></tr>
+      <tr><td onClick="submenu.src = 'https://github.com/read-0nly/VRFM'">VRFM</td></tr>
+      <tr><td onClick="submenu.src = 'https://github.com/read-0nly/ImageSorter'">ImageSorter</td></tr>
+      <tr><td onClick="submenu.src = 'https://github.com/read-0nly/COBOLRepo'">COBOLRepo</td></tr>
+    </table>
+  </tr>
   </table>
   </div>
 <iframe src="./intro" id="submenu"></iframe>
