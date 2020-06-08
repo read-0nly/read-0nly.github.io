@@ -15,7 +15,8 @@
   visibility: hidden;
   height:0px;
   margin:0px !important;
-  padding:0px;
+  padding:0px !important;
+  font-size:0 !important;
   top:0px;
   line-height:0px !important;
   }
@@ -24,4 +25,4 @@
 <script>
 </script>
 
-<iframe src="../psrepo/index" style="width:100%;padding-top:-100px;"></iframe>
+<iframe src="./menu" style="width:100%;height:90%;padding-top:-100px;"></iframe>
