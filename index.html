@@ -5,8 +5,8 @@
       var cssId = 'read0nlyCSS'; 
       if (!document.getElementById(cssId))
       {
-          var head  = submenu.document.getElementsByTagName('head')[0];
-          var link  = submenu.document.createElement('link');
+          var head  = submenu.getElementsByTagName('head')[0];
+          var link  = submenu.createElement('link');
           link.id   = cssId;
           link.rel  = 'stylesheet';
           link.type = 'text/css';
