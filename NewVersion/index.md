@@ -14,10 +14,10 @@
   h1{
   visibility: hidden;
   height:0px;
-  margin:0px;
+  margin:0px !important;
   padding:0px;
   top:0px;
-  line-height:0px;
+  line-height:0px !important;
   }
 </style>
 
