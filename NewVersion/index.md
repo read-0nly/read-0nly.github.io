@@ -16,4 +16,4 @@
 <script>
 </script>
 
-<iframe src="../psrepo" style="width:100%"></iframe>
+<iframe src="../psrepo/index" style="width:100%;padding-top:-100px;"></iframe>
