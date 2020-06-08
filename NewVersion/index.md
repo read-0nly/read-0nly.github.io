@@ -11,6 +11,7 @@
   h6 {
     color:#D72638
   }
+  h1{display:hidden}
 </style>
 
 <script>
