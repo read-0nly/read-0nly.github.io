@@ -17,6 +17,7 @@
   margin:0px;
   padding:0px;
   top:0px;
+  line-height:0px;
   }
 </style>
 
