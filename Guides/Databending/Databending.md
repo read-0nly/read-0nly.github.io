@@ -1,4 +1,4 @@
-<style type="text/css">@import url("style.css")</style>
+<style type="text/css">@include url("style.css")</style>
 
 ## hwo 2 databend
 ### A guide to breaking pictures for fun and profit
