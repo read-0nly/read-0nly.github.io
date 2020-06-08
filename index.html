@@ -2,7 +2,10 @@
 <body onload="submenu = document.getElementById('submenu');">
   <div id="menu">
 <table>
-  <tr><td onClick="submenu.src = './Guides.html'">Guides</td></tr>
+  <tr>
+    <td onClick="document.getElementById('guidesMenu').style.display = 
+                 (document.getElementById('guidesMenu').style.display=='none'?'table-row':'none')">
+    Guides</td></tr>
   <tr class="subMenu" id="guidesMenu"><td>
     <table>
       <tr><td onClick="submenu.src = '../Guides/Databending/Databending'">Databending</td></tr>
