@@ -1,4 +1,6 @@
-
+h1{
+ display:none; 
+}
 body{
   background-color:#071E22;
   color:#EAEAEA;
