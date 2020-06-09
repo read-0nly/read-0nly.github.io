@@ -3,7 +3,7 @@
   <script>
     function loadCSS(){
       var cssId = 'read0nlyCSS'; 
-      if (!submenu.contentDocument.getElementById(cssId))
+      if (!submenu.contentDocument.getElementById(cssId) && submenu.contentDocument.URL.substr(submenu.contentDocument.URL.length-4)!="html")
       {
           var head  = submenu.contentDocument.getElementsByTagName("head")[0];
           var link  = document.createElement('link');
