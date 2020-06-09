@@ -18,6 +18,9 @@ table {
   margin:0px;
   padding:0px;
 }
+.highlight{
+ background-color: #D72638 !important;
+}
 .subMenu{
  display:none;
  background-color:#071E22;
