@@ -3,9 +3,9 @@
   <script>
     function loadCSS(){
       var cssId = 'read0nlyCSS'; 
-      if (!document.getElementById(cssId))
+      if (!submenu.contentDocument.getElementById(cssId))
       {
-          var head  = submenu.getElementsByTagName('head')[0];
+          var head  = submenu.contentDocument.getElementsByTagName("head")[0];
           var link  = document.createElement('link');
           link.id   = cssId;
           link.rel  = 'stylesheet';
