@@ -6,7 +6,7 @@
       if (!document.getElementById(cssId))
       {
           var head  = submenu.getElementsByTagName('head')[0];
-          var link  = submenu.createElement('link');
+          var link  = document.createElement('link');
           link.id   = cssId;
           link.rel  = 'stylesheet';
           link.type = 'text/css';
