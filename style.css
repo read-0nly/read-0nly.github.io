@@ -42,15 +42,15 @@ table {
  display:none;
  background-color:var(--ColorSubmenuBackground);
 }
-.subMenu td:hover{
+.subMenu table td:hover{
   background-color:var(--ColorSubmenuForeground);
   color:var(--ColorSubmenuItemBG);
 }
-.menu td{
+.menu table td{
   background-color:var(--ColorSubmenuItemBG);
   color:var(--ColorSubmenuForeground);
 }
-.menu td:hover{
+.menu table td:hover{
   background-color:var(--ColorSubmenuForeground);
   color:var(--ColorSubmenuItemBG);
 }
