@@ -2,13 +2,13 @@ h1{
  display:none; 
 }
 body{
-  background-color:#071E22;
-  color:#EAEAEA;
+  background-color:#4a4b44;
+  color:#d8d4ca;
   margin:0px;
   padding:0px;
 }
 td{
-  color:#D72638;
+  color:#d8d4ca;
   font-family:calibri;
   width:190px;
   margin:0px;
@@ -21,27 +21,36 @@ table {
   padding:0px;
 }
 .highlight{
- background-color: #73628A !important;
+ background-color: #32174d !important;
 }
 .subMenu{
  display:none;
- background-color:#071E22;
+ background-color:#4a4b44;
 }
 .subMenu td{
-  background-color:#73628A;
-  color:#CBC5EA; 
+  background-color:#4a4b44;
+  color:#e7e7e3; 
 }
 .subMenu td:hover{
-  background-color:#73628A;
-  color:#071E22;
+  background-color:#32174d;
+  color:#e7e7e3;
 }
 .subMenu table td:hover{
-  background-color:#CBC5EA;
-  color:#73628A;
+  background-color:#32174d;
+  color:#e7e7e3;
 }
 td:hover{
-  background-color:#D72638;
-  color:#071E22;
+  background-color:#32174d;
+  color:#e7e7e3;
+}
+a{
+ color:#32174d
+}
+a:hover{
+ color:#e7e7e3
+}
+a:visited{
+ color:#b8b4b6
 }
 #menu {
   float:left;
@@ -63,5 +72,5 @@ h3,
 h4,
 h5,
 h6 {
-  color:#D72638
+  color:#32174d
 }
