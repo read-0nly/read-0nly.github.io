@@ -1,14 +1,29 @@
+:root {
+  --ColorMainBackground: red;
+  --ColorMainForeground: green;
+  --ColorMainHeader: blue;
+  --ColorMenuBackground: brown;
+  --ColorMenuForeground: black;
+  --ColorMenuItemBG: yellow;
+  --ColorSubmenuBackground: orange;
+  --ColorSubmenuForeground: violet;
+  --ColorSubmenuItemBG: indigo;
+  --ColorHighlightBackground: blue;
+  --ColorLink: green;
+  --ColorLinkVisited: orange;
+  --ColorLinkHover: brown;
+}
 h1{
  display:none; 
 }
 body{
-  background-color:#4a4b44;
-  color:#d8d4ca;
+  background-color:var(--ColorMainBackground);
+  color:var(--ColorMainForeground);
   margin:0px;
   padding:0px;
 }
 td{
-  color:#d8d4ca;
+  color:var(--A);
   font-family:calibri;
   width:190px;
   margin:0px;
@@ -21,36 +36,32 @@ table {
   padding:0px;
 }
 .highlight{
- background-color: #32174d !important;
+ background-color:var(--ColorHighlightBackground) !important;
 }
 .subMenu{
  display:none;
- background-color:#4a4b44;
-}
-.subMenu td{
-  background-color:#4a4b44;
-  color:#e7e7e3; 
+ background-color:var(--ColorSubmenuBackground);
 }
 .subMenu td:hover{
-  background-color:#32174d;
-  color:#e7e7e3;
+  background-color:var(--ColorSubmenuForeground);
+  color:var(--ColorSubmenuItemBG);
 }
-.subMenu table td:hover{
-  background-color:#32174d;
-  color:#e7e7e3;
+.menu td{
+  background-color:var(--ColorSubmenuItemBG);
+  color:var(--ColorSubmenuForeground);
 }
-td:hover{
-  background-color:#32174d;
-  color:#e7e7e3;
+.menu td:hover{
+  background-color:var(--ColorSubmenuForeground);
+  color:var(--ColorSubmenuItemBG);
 }
 a{
- color:#32174d
+ color:var(--ColorLink);
 }
 a:hover{
- color:#e7e7e3
+ color:var(--ColorLinkHover);
 }
 a:visited{
- color:#b8b4b6
+ color:var(--ColorLinkVisited);
 }
 #menu {
   float:left;
@@ -72,5 +83,5 @@ h3,
 h4,
 h5,
 h6 {
-  color:#32174d
+  color:var(--ColorMainHeader);
 }
