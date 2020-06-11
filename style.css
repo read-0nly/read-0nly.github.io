@@ -46,14 +46,6 @@ table {
   background-color:var(--ColorSubmenuForeground);
   color:var(--ColorSubmenuItemBG);
 }
-.menu table td{
-  background-color:var(--ColorSubmenuItemBG);
-  color:var(--ColorSubmenuForeground);
-}
-.menu table td:hover{
-  background-color:var(--ColorSubmenuForeground);
-  color:var(--ColorSubmenuItemBG);
-}
 a{
  color:var(--ColorLink);
 }
@@ -68,6 +60,14 @@ a:visited{
   height:100%;
   margin:0px;
   padding:0px;
+}
+#menu table td{
+  background-color:var(--ColorSubmenuItemBG);
+  color:var(--ColorSubmenuForeground);
+}
+#menu table td:hover{
+  background-color:var(--ColorSubmenuForeground);
+  color:var(--ColorSubmenuItemBG);
 }
 iframe {
   width: calc(100% - 200px);
