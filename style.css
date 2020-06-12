@@ -62,12 +62,12 @@ a:visited{
   padding:0px;
 }
 #menu table td{
-  background-color:var(--ColorSubmenuItemBG);
-  color:var(--ColorSubmenuForeground);
+  background-color:var(--ColorMenuItemBG);
+  color:var(--ColorMenuForeground);
 }
 #menu table td:hover{
-  background-color:var(--ColorSubmenuForeground);
-  color:var(--ColorSubmenuItemBG);
+  background-color:var(--ColorMenuForeground);
+  color:var(--ColorMenuItemBG);
 }
 iframe {
   width: calc(100% - 200px);
