@@ -4,7 +4,7 @@
 ### [[Fun Scripts]](https://read-0nly.github.io/PSRepo/Fun)
 ### [[MDM-related Scripts]](https://read-0nly.github.io/PSRepo/MDMTools)
 
-## Fun Snippets
+## Snippets
 
 **Convert Base64 blob to UTF 8 (Stop using suspicious online decoders!)**
 
