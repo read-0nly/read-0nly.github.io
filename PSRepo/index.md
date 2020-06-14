@@ -9,18 +9,18 @@
 
 **Convert Base64 blob to UTF 8 (Stop using suspicious online decoders!)**
 
-```powershell
+```
 [System.Text.Encoding]::UTF8.getString([convert]::FromBase64String((read-host "Enter base64 blob")))
 ```
 
 **Fetch the enrolling user of an enrolled device without talking to AAD/Intune or being in that user's session**
-```powershell
+```
 (get-itemproperty "hklm:\SOFTWARE\Microsoft\Enrollments\*" | where-object {$_.upn -ne $null}).upn
 ```
 
 **Happy Friday**
 
-```powershell
+```
 $global:ascii = "╬░♥╔╗─╔╦═══╦═══╦═══╦╗──╔╗♥░─╬`n╬░♥║║─║║╔═╗║╔═╗║╔═╗║╚╗╔╝║♥░─╬`n╬░♥║╚═╝║║─║║╚═╝║╚═╝╠╗╚╝╔╝♥░─╬`n╬░♥║╔═╗║╚═╝║╔══╣╔══╝╚╗╔╝─♥░─╬`n╬░♥║║─║║╔═╗║║──║║────║║──♥░─╬`n╬░♥╚╝─╚╩╝─╚╩╝──╚╝────╚╝──♥░─╬`n╬░♥╔═══╗───╔═╗─╔═╗───────♥░─╬`n╬░♥║░══╬═╦═╬═╬═╝░╠═══╦═╦═╗░─╬`n╬░♥║░╔═╣░╔═╣░║╔╗░║╔╗░╠══░║░─╬`n╬░♥╚═╝░╚═╝░╚═╩═══╩═╩═╩═══╝░─╬"
 $red = [char]27 + "[91m"
 $yellow = [char]27 + "[93m"
@@ -55,7 +55,7 @@ while ($true){
 
 
 **VT100 Formatting Object**
-```powershell
+```
 $VT100 = [pscustomobject]@{
     "Fore" = @{
         "Black" = [char]27+"[30m" ;
@@ -110,7 +110,7 @@ $VT100 = [pscustomobject]@{
 }
 ```
 
-```powershell
+```
 #The color name on it's own is the "dark/nonbright/notbold" version of the color, the color name with a '+' is the bright color.
 #These can be combined. For instance: 
 $VT100.Fore["Red"]+$VT100.Style["Underline"]+"Hello "+$VT100.style["Negative"]+$VT100.Style["Bold"]+"Ghost"+$VT100.resetall
