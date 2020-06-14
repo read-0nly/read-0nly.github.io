@@ -1,17 +1,17 @@
 :root {
   --ColorMainBackground: #000000;
-  --ColorMainForeground: #aa3333;
+  --ColorMainForeground: #aa0000;
   --ColorMainHeader: #ff0000;
-  --ColorMenuBackground: #773333;
-  --ColorMenuForeground: #ff0000;
-  --ColorMenuItemBG: #773333;
-  --ColorSubmenuBackground: #773333;
-  --ColorSubmenuForeground: #ff0000;
-  --ColorSubmenuItemBG: #773333;
-  --ColorHighlightBackground: #330000;
-  --ColorLink: #ff0000;
-  --ColorLinkVisited: #ff0000;
-  --ColorLinkHover: #773333;
+  --ColorMenuBackground: #330077;
+  --ColorMenuForeground: #9900ff;
+  --ColorMenuItemBG: #330077;
+  --ColorSubmenuBackground: #9900ff;
+  --ColorSubmenuForeground: #330077;
+  --ColorSubmenuItemBG: #9900ff;
+  --ColorHighlightBackground: #330077;
+  --ColorLink: #6633bb;
+  --ColorLinkVisited: #6633bb;
+  --ColorLinkHover: #6600ff;
 }
 h1{
  display:none; 
@@ -38,22 +38,14 @@ table {
 .highlight{
  background-color:var(--ColorHighlightBackground) !important;
 }
-.subMenu{
- display:none;
- background-color:var(--ColorSubmenuBackground);
-}
-.subMenu table td:hover{
-  background-color:var(--ColorSubmenuForeground);
-  color:var(--ColorSubmenuItemBG);
-}
 a{
  color:var(--ColorLink);
 }
-a:hover{
- color:var(--ColorLinkHover);
-}
 a:visited{
  color:var(--ColorLinkVisited);
+}
+a:hover{
+ color:var(--ColorLinkHover);
 }
 #menu {
   float:left;
@@ -68,6 +60,19 @@ a:visited{
 #menu table td:hover{
   background-color:var(--ColorMenuForeground);
   color:var(--ColorMenuItemBG);
+}
+.subMenu{
+ display:none;
+ background-color:var(--ColorSubmenuBackground);
+ color:var(--ColorSubmenuForeground);
+}
+.subMenu td:hover{
+  background-color:var(--ColorSubmenuForeground) !important;
+  color:var(--ColorSubmenuItemBG) !important;
+}
+.subMenu td{
+  background-color:var(--ColorSubmenuBackground) !important;
+  color:var(--ColorSubmenuForeground) !important;
 }
 iframe {
   width: calc(100% - 200px);
