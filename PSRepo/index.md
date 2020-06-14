@@ -3,6 +3,7 @@
 ### [[Exchange Scripts]](https://read-0nly.github.io/PSRepo/EXO)
 ### [[Fun Scripts]](https://read-0nly.github.io/PSRepo/Fun)
 ### [[MDM-related Scripts]](https://read-0nly.github.io/PSRepo/MDMTools)
+### [[Utility scripts/Misc]](https://read-0nly.github.io/PSRepo/Utility)
 
 ## Snippets
 
