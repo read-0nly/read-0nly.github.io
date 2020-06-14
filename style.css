@@ -9,8 +9,8 @@
   --ColorSubmenuForeground: #330077;
   --ColorSubmenuItemBG: #9900ff;
   --ColorHighlightBackground: #330077;
-  --ColorLink: #6633bb;
-  --ColorLinkVisited: #6633bb;
+  --ColorLink: #ff0000;
+  --ColorLinkVisited: #ff0000;
   --ColorLinkHover: #6600ff;
 }
 h1{
