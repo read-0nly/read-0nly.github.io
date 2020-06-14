@@ -33,6 +33,32 @@ Returns the detection paths of all listed win32 apps - allows for quick and dirt
 
 Generates an overview of all failing compliance settings for all devices - basically a report of what needs to be corrected across the org. Uses a fork of the microsoft.graph.intune powershell module because the official one has a bug (detail in code comments)
 
+Example output:
+
+```
+Initialization Started
+  Module folder found!
+  Module download found!
+  Module loaded!
+Success - Executing
+  Getting Devices
+  Getting Policy states
+  Getting Setting states
+  Generating Report
+
+deviceName                     settingName          userPrincipalName              state
+----------                     -----------          -----------------              -----
+admin_Android_3/5/2020_5:53 PM RequireRemainContact admin@contoso.onmicrosoft.com nonCompliant
+admin_Android_3/5/2020_5:59 PM RequireRemainContact admin@contoso.onmicrosoft.com nonCompliant
+DESKTOP-QQ89JMA                OsMinimumVersion     admin@contoso.onmicrosoft.com nonCompliant
+DESKTOP-TIDP4LG                RequireRemainContact admin@contoso.cf              nonCompliant
+DESKTOP-TIDP4LG                RequireUserExistence bitlocker.test@contoso.cf     nonCompliant
+DESKTOP-AJ887VM                RequireRemainContact bitlocker.test@contoso.cf     nonCompliant
+
+
+Enter 'Y' to save:
+```
+
 [Prep PS Intune](https://github.com/read-0nly/PSRepo/blob/master/MDMTools/PrepPSIntune.ps1)
 
 Downloads AAD module with install-module and the Intune Sample Scripts straight from github then extracts them to $Env.UserProfile\IntuneSamples. Easy snippet to add to scripts that depend on them to make it easier to use the script on other devices.
