@@ -1,17 +1,17 @@
 :root {
-  --ColorMainBackground: #27474E;
-  --ColorMainForeground: #7D387D;
-  --ColorMainHeader: #C45BAA;
-  --ColorMenuBackground: #C45BAA;
-  --ColorMenuForeground: #7D387D;
-  --ColorMenuItemBG: #C45BAA;
-  --ColorSubmenuBackground: #CD8B76;
-  --ColorSubmenuForeground: #E1D89F;
-  --ColorSubmenuItemBG: #CD8B76;
-  --ColorHighlightBackground: #152529;
-  --ColorLink: #CD8B76;
-  --ColorLinkVisited: #CD8B76;
-  --ColorLinkHover: #E1D89F;
+  --ColorMainBackground: #000000;
+  --ColorMainForeground: #aa3333;
+  --ColorMainHeader: #ff0000;
+  --ColorMenuBackground: #773333;
+  --ColorMenuForeground: #ff0000;
+  --ColorMenuItemBG: #773333;
+  --ColorSubmenuBackground: #773333;
+  --ColorSubmenuForeground: #ff0000;
+  --ColorSubmenuItemBG: #773333;
+  --ColorHighlightBackground: #330000;
+  --ColorLink: #ff0000;
+  --ColorLinkVisited: #ff0000;
+  --ColorLinkHover: #773333;
 }
 h1{
  display:none; 
