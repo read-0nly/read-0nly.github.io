@@ -115,3 +115,34 @@ $VT100 = [pscustomobject]@{
 #These can be combined. For instance: 
 $VT100.Fore["Red"]+$VT100.Style["Underline"]+"Hello "+$VT100.style["Negative"]+$VT100.Style["Bold"]+"Ghost"+$VT100.resetall
 ```
+
+
+## Bootstrap script as task:
+```powershell
+# Script bootstrapper
+# Saves the script body to a file and creates a task to run it
+
+#Full contents of script in literal string
+$ScriptBody = @"
+write-host "This is a scheduled task"
+read-host "Press enter to continue"
+"@
+
+#Path to save the script
+$ScriptPath = "C:\Task.ps1"
+
+#Save script
+$ScriptBody | out-file $ScriptPath
+
+#Run task every day at noon
+$Time = New-ScheduledTaskTrigger -At 12:00 -daily
+
+#When task runs, execute powershell and run the script
+$PS = New-ScheduledTaskAction -Execute "PowerShell.exe" -argument "-file $ScriptPath"
+
+#Run as CURRENT USER / Any User
+$Principal = (New-ScheduledTaskPrincipal -GroupId "BUILTIN\Users")
+
+#Register task
+Register-ScheduledTask -TaskName "BootstrappedScript" -Trigger $Time -Principal $Principal -Action $PS`
+```
