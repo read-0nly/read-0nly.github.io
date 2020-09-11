@@ -12,6 +12,7 @@
   --ColorLink: #6633bb;
   --ColorLinkVisited: #6633bb;
   --ColorLinkHover: #6600ff;
+  --ColorHighlight: #ffffff;
 }
 h1{
  display:none; 
@@ -37,6 +38,7 @@ table {
 }
 .highlight{
  background-color:var(--ColorHighlightBackground) !important;
+ color: var(--ColorHighlight);
 }
 a{
  color:var(--ColorLink);
