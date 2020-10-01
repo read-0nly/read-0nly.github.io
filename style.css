@@ -92,3 +92,24 @@ h5,
 h6 {
   color:var(--ColorMainHeader);
 }
+
+.nt{color:#9d63ff !important;}
+.na,.no,.vc,.vg,.vi,.nv,.sr{color:#9d63ff !important;}
+.m,.mb,.mx,.mh,.il,.mi,.mo,mf{color:#9d63ff !important;}
+.gp,.nn{color:#9d63ff !important;}
+.ni{color:#9d63ff !important;}
+.go{color:#9d63ff !important;}
+.ss{color:#9d63ff !important;}
+.gh,.bp{color:#9d63ff !important;}
+.gd,.ge,.gi,.kc,.kd,.kn,.kp,.kr,.k,.kv,.ow,.o{color:#9d63ff!important;}
+.nb{color:#9d63ff !important;}
+.nd{color:#9d63ff!important;}
+.kt,.nc{color:#9d63ff!important;}
+.ne,.nf,.nl{color:#9d63ff!important;}
+.cp,.cs{color:#9d63ff!important;}
+.err{color:#9d63ff!important;}
+.gr,.gt{color:#9d63ff !important;}
+.gu{color:#9d63ff !important;}
+.w{color:#9d63ff !important;}
+.sb,.sc,.sd,.s2,.se,.sh,.si,.sx,.s1,.s{color:#9d63ff !important;}
+
