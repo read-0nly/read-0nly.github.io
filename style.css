@@ -69,13 +69,13 @@ a:hover{
  background-color:var(--ColorSubmenuBackground);
  color:var(--ColorSubmenuForeground);
 }
-.subMenu tr:hover{
+.subMenu table td:hover{
   background-color:var(--ColorSubmenuForeground) !important;
   color:var(--ColorSubmenuItemBG) !important;
 }
-.subMenu td{
-  background-color:var(--ColorSubmenuBackground) !important;
-  color:var(--ColorSubmenuForeground) !important;
+.subMenu table td{
+  background-color:var(--ColorSubmenuBackground);
+  color:var(--ColorSubmenuForeground);
 }
 iframe {
   width: calc(100% - 200px);
