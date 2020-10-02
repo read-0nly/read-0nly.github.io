@@ -70,6 +70,10 @@ a:hover{
  color:var(--ColorSubmenuForeground);
 }
 .subMenu table td:hover{
+  background-color:var(--ColorMainBackground);
+  color:var(--ColorSubmenuItemBG);
+}
+.subMenu table tr:hover{
   background-color:var(--ColorSubmenuForeground) !important;
   color:var(--ColorSubmenuItemBG) !important;
 }
