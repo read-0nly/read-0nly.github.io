@@ -98,9 +98,10 @@ h6 {
 .gd,.ge,.gi,.kc,.kd,.kn,.kp,.kr,.k,.kv,.ow,.o{color:#a5a!important;}
 .ne,.nf,.nl{color:#597!important;}
 .cp,.cs,.c,.cd{color:#489!important;}
+.na,.no,.vc,.vg,.vi,.nv,.sr{color:#cfc !important;}
 
 .gh,.bp{color:#9d63ff !important;}
-.na,.no,.vc,.vg,.vi,.nv,.sr{color:#9d63ff !important;}
+.na,.no,.vc,.vg,.vi,.nv,.sr{color:#cfc !important;}
 .m,.mb,.mx,.mh,.il,.mi,.mo,mf{color:#9d63ff !important;}
 .gp,.nn{color:#9d63ff !important;}
 .ni{color:#9d63ff !important;}
