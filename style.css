@@ -109,7 +109,7 @@ h6 {
 .nb{color:#9d63ff !important;}
 .nd{color:#9d63ff!important;}
 .kt,.nc{color:#9d63ff!important;}
-.err{color:#9d63ff!important;}
+.err{color:#9d63ff!important;background-color:#0000!important}
 .gr,.gt{color:#9d63ff !important;}
 .gu{color:#9d63ff !important;}
 .w{color:#9d63ff !important;}
