@@ -107,24 +107,24 @@ h6 {
   color:var(--ColorMainHeader);
 }
 
-.nt{color:#5fa !important;}
-.sb,.sc,.sd,.s2,.se,.sh,.si,.sx,.s1,.s{color:#a44 !important;}
-.gd,.ge,.gi,.kc,.kd,.kn,.kp,.kr,.k,.kv,.ow,.o{color:#a5a!important;}
-.ne,.nf,.nl{color:#597!important;}
-.cp,.cs,.c,.cd{color:#489!important;}
-.na,.no,.vc,.vg,.vi,.nv,.sr{color:#cfc !important;}
+.nt{color:#f00 !important;}
+.sb,.sc,.sd,.s2,.se,.sh,.si,.sx,.s1,.s{color:#0f0 !important;}
+.gd,.ge,.gi,.kc,.kd,.kn,.kp,.kr,.k,.kv,.ow,.o{color:#00f!important;}
+.ne,.nf,.nl{color:#ff0!important;}
+.cp,.cs,.c,.cd{color:#f0f!important;}
+.na,.no,.vc,.vg,.vi,.nv,.sr{color:#0ff !important;}
 
-.gh,.bp{color:#9d63ff !important;}
-.m,.mb,.mx,.mh,.il,.mi,.mo,mf{color:#9d63ff !important;}
-.gp,.nn{color:#9d63ff !important;}
-.ni{color:#9d63ff !important;}
-.go{color:#9d63ff !important;}
-.ss{color:#9d63ff !important;}
-.nb{color:#9d63ff !important;}
-.nd{color:#9d63ff!important;}
-.kt,.nc{color:#9d63ff!important;}
-.err{color:#9d63ff!important;background-color:#0000!important}
-.gr,.gt{color:#9d63ff !important;}
-.gu{color:#9d63ff !important;}
-.w{color:#9d63ff !important;}
+.gh,.bp{color:#fff !important;}
+.m,.mb,.mx,.mh,.il,.mi,.mo,mf{color:#fff !important;}
+.gp,.nn{color:#fff !important;}
+.ni{color:#fff !important;}
+.go{color:#fff !important;}
+.ss{color:#fff !important;}
+.nb{color:#fff !important;}
+.nd{color:#fff!important;}
+.kt,.nc{color:#fff!important;}
+.err{color:#fff!important;background-color:#0000!important}
+.gr,.gt{color:#fff !important;}
+.gu{color:#fff !important;}
+.w{color:#fff !important;}
 
