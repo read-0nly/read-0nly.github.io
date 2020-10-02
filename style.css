@@ -54,7 +54,7 @@ a:hover{
   height:100%;
   margin:0px;
   padding:0px;
-  background-color:var(--ColorMainBackground);
+  background-color:#0000;
 }
 #menu table td{
   background-color:var(--ColorMenuItemBG);
