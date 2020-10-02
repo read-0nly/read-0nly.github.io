@@ -13,6 +13,12 @@
 	--ColorLinkVisited: #5a4184;
 	--ColorLinkHover: #6600ff;
 	--ColorHighlight: #72bf85;
+	--PSVars:#9900ff;
+	--PSFuncs:#99ff99;
+	--PSComments:#229922;
+	--PSParam:#DD99FF;
+	--PSString:#FF0000;
+	--PSOperators:#99ff99;
 }
 h1{
  display:none; 
@@ -107,12 +113,13 @@ h6 {
   color:var(--ColorMainHeader);
 }
 
-.nt{color:#f00 !important;}
-.sb,.sc,.sd,.s2,.se,.sh,.si,.sx,.s1,.s{color:#0f0 !important;}
-.gd,.ge,.gi,.kc,.kd,.kn,.kp,.kr,.k,.kv,.ow,.o{color:#00f!important;}
-.ne,.nf,.nl{color:#ff0!important;}
-.cp,.cs,.c,.cd{color:#f0f!important;}
-.na,.no,.vc,.vg,.vi,.nv,.sr{color:#0ff !important;}
+.nt{color:var(--PSParam) !important;}
+.sb,.sc,.sd,.s2,.se,.sh,.si,.sx,.s1,.s{color:var(--PSString) !important;}
+.gd,.ge,.gi,.kc,.kd,.kn,.kp,.kr,.k,.kv,.ow,.o{color:var(--PSOperators) !important;}
+.ne,.nf,.nl{color:var(--PSFuncs) !important;}
+.cp,.cs,.c,.cd{color:var(--PSComments) !important;}
+.na,.no,.vc,.vg,.vi,.nv,.sr{color:var(--PSVars) !important;}
+.err{color:#f0f!important;background-color:#0000!important}
 
 .gh,.bp{color:#fff !important;}
 .m,.mb,.mx,.mh,.il,.mi,.mo,mf{color:#fff !important;}
@@ -123,7 +130,6 @@ h6 {
 .nb{color:#fff !important;}
 .nd{color:#fff!important;}
 .kt,.nc{color:#fff!important;}
-.err{color:#fff!important;background-color:#0000!important}
 .gr,.gt{color:#fff !important;}
 .gu{color:#fff !important;}
 .w{color:#fff !important;}
