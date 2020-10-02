@@ -62,13 +62,17 @@ a:hover{
   background-color:var(--ColorMainBackground) !important;
   color:var(--ColorSubmenuForeground) !important;
 }
+.subMenu td{
+  background-color:var(--ColorMainBackground) !important;
+  color:var(--ColorSubmenuForeground) !important;
+}
 .subMenu table tr:hover{
   background-color:var(--ColorSubmenuForeground) !important;
   color:var(--ColorSubmenuItemBG) !important;
 }
 .subMenu table td{
   background-color:var(--ColorMainBackground) !important;
-  color:var(--ColorSubmenuForeground) !important;
+  color:var(--ColorMenuForeground) !important;
 }
 #menu {
   float:left;
