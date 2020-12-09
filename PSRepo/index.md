@@ -146,3 +146,11 @@ $Principal = (New-ScheduledTaskPrincipal -GroupId "BUILTIN\Users")
 #Register task
 Register-ScheduledTask -TaskName "BootstrappedScript" -Trigger $Time -Principal $Principal -Action $PS`
 ```
+
+## Scan ACLs for user-writeable path
+```powershell
+$Folders = dir C:\programdata -Recurse -erroraction silentlycontinue
+$ACLs = $folders | get-acl -erroraction silentlycontinue
+$ACLS | where-object {$_.AccessToString -like "*BUILTIN\Users*FullControl*"} | select path, accesstostring
+
+```
