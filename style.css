@@ -95,7 +95,7 @@ a:hover{
   background-color:var(--ColorMenuForeground);
   color:var(--ColorMenuItemBG);
 }
-iframe {
+#submenu {
   width: calc(100% - 200px);
   height:100%;
   float:right;
