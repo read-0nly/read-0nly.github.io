@@ -12,10 +12,15 @@
 ```powershell
 [System.Text.Encoding]::UTF8.getString([convert]::FromBase64String((read-host "Enter base64 blob")))
 ```
+**Process-port map**
+
+```powershell
+[System.Text.Encoding]::UTF8.getString([convert]::FromBase64String((read-host "Enter base64 blob")))
+```
 
 **Fetch the enrolling user of an enrolled device without talking to AAD/Intune or being in that user's session**
 ```powershell
-(get-itemproperty "hklm:\SOFTWARE\Microsoft\Enrollments\*" | where-object {$_.upn -ne $null}).upn
+(Get-NetTCPConnection )|%{$_.ciminstanceproperties |where-object {$_.Name -eq "OwningProcess" -or $_.Name -eq "RemoteAddress" -or $_.Name -eq "RemotePort"} | % -begin {$str = @{}} -process {$str+=@{$_.Name=$_.Value}} -end {$str2 = (Get-WmiObject Win32_Process -Filter ("ProcessId = "+$str["OwningProcess"]) | Select-Object ProcessID, CommandLine);$str["cmd"]=$str2.commandline; echo ([pscustomobject]$str)}} |select *| Export-Csv (read-host "enter save path")
 ```
 
 **Happy Friday**
