@@ -7,7 +7,7 @@
 
 ## Snippets
 
-**Parse out queries from ODBC log **
+**Parse out queries from ODBC log**
 ```powershell
 (cat (read-host "path to ODBCtrace (full path)").trim('"'))|?{$_ -like "*`tWCHAR*;*"} |%{$_.split("]")[1].trim().trim('"')}|out-file (read-host "file name to save to (full path)").trim('"')
 ```
