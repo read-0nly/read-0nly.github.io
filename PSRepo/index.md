@@ -7,6 +7,21 @@
 
 ## Snippets
 
+**Custom workshop thumbnail**
+```powershell
+$old = (dir $env:TEMP -directory)
+$path = (read-host "Path to files for swap")
+while($true){
+  $new = (dir $env:TEMP -directory)
+  $compare = (compare-object $old $new)
+  if($compare -ne $null){
+    copy-Item "$path\*" $compare.inputobject.fullname -force
+    return
+  }
+  $old=$new
+}
+```
+
 **Parse out queries from ODBC log**
 ```powershell
 (cat (read-host "path to ODBCtrace (full path)").trim('"'))|?{$_ -like "*`tWCHAR*;*"} |%{$_.split("]")[1].trim().trim('"')}|out-file (read-host "file name to save to (full path)").trim('"')
