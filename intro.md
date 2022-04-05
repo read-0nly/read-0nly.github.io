@@ -1,6 +1,6 @@
 ## Hello.
 
-This is just a showcase of some of my personal projects. Use the menu on the left to explore them. 
+This is just a showcase of some of my personal projects. Use the menu on the left to explore them. If you're here for the rust server, link's at the bottom.
 
 If you'd like to explore the rest of my repos, <a href="https://github.com/read-0nly" target="_blank">click here!</a>
 
