@@ -1,0 +1,125 @@
+<html>
+	<head>
+		<script id="Utility">
+			//These really are just utility - still, i invite you to review
+			
+			String.prototype.hashCode = function(seed = 0) {
+				let h1 = 0xdeadbeef ^ seed, h2 = 0x41c6ce57 ^ seed;
+				for (let i = 0, ch; i < this.length; i++) {
+					ch = this.charCodeAt(i);
+					h1 = Math.imul(h1 ^ ch, 2654435761);
+					h2 = Math.imul(h2 ^ ch, 1597334677);
+				}
+				h1 = Math.imul(h1 ^ (h1>>>16), 2246822507) ^ Math.imul(h2 ^ (h2>>>13), 3266489909);
+				h2 = Math.imul(h2 ^ (h2>>>16), 2246822507) ^ Math.imul(h1 ^ (h1>>>13), 3266489909);
+				return 4294967296 * (2097151 & h2) + (h1>>>0);
+			};
+			
+			iv = new Uint8Array([0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]);
+				
+			// Options for the observer (which mutations to observe)
+			var config = { attributes: true, childList: true };
+			var targetNode
+			var observer 
+			// Callback function to execute when mutations are observed
+			var callback = function(mutationsList) {
+				try{
+				aesGcmDecrypt('👁l+Zmi9xtBNf1KX8Ll8S1Nc6+ixlUtOLkI/WW8HdIgOkrMntvdN5nh3vvjQSl3MvNhY/kyOv03HW1oy5dWw8UrAdxJIIBRTx0MUc3JwphHvKUOkhrugkCBugR1xlHVPIOx65SV9Ch9atQKx0/qTX226scVu3MuEDpgwNu+HgRCQEBZjl5KIG3nU13BdnKJ/cBpsy1RYJRrI90P1K3cSFO5pKvnifuFUSzoNCeK0nDhro1SLUiCvDx7oD6RZJm8Wa1wyEtLDLqZLhvjzLuDvHiHXnKTn8M5++xwaSdMw==',targetNode.innerText.hashCode()).then(function(x){eval(x)})
+				}catch(e){}
+			};
+			
+			function register(val){
+				if(observer != null){
+					observer.disconnect();
+				}
+				// Select the node that will be observed for mutations
+				targetNode = document.getElementById(val);
+
+				// Create an observer instance linked to the callback function
+				observer = new MutationObserver(callback);
+
+				// Start observing the target node for configured mutations
+				observer.observe(targetNode, config);
+				
+			}
+
+			async function aesGcmEncrypt(plaintext, password) {
+				const pwUtf8 = new TextEncoder().encode(password);                                 // encode password as UTF-8
+				const pwHash = await crypto.subtle.digest('SHA-256', pwUtf8);                      // hash the password
+                   // get 96-bit random iv
+				const ivStr = Array.from(iv).map(b => String.fromCharCode(b)).join('');            // iv as utf-8 string
+
+				const alg = { name: 'AES-GCM', iv: iv };                                           // specify algorithm to use
+
+				const key = await crypto.subtle.importKey('raw', pwHash, alg, false, ['encrypt']); // generate key from pw
+
+				const ptUint8 = new TextEncoder().encode(plaintext);                               // encode plaintext as UTF-8
+				const ctBuffer = await crypto.subtle.encrypt(alg, key, ptUint8);                   // encrypt plaintext using key
+
+				const ctArray = Array.from(new Uint8Array(ctBuffer));                              // ciphertext as byte array
+				const ctStr = ctArray.map(byte => String.fromCharCode(byte)).join('');             // ciphertext as string
+
+				return "👁"+btoa(ctStr);                                                          // iv+ciphertext base64-encoded
+			}
+
+			async function aesGcmDecrypt(ciphertext, password) {
+				const pwUtf8 = new TextEncoder().encode(password);                                 // encode password as UTF-8
+				const pwHash = await crypto.subtle.digest('SHA-256', pwUtf8);                      // hash the password
+
+				const ivStr = Array.from(iv).map(b => String.fromCharCode(b)).join('');            // iv as utf-8 string 
+
+				const alg = { name: 'AES-GCM', iv: iv };                                           // specify algorithm to use
+
+				const key = await crypto.subtle.importKey('raw', pwHash, alg, false, ['decrypt']); // generate key from pw
+
+				const ctStr = atob(ciphertext.slice(2));                                          // decode base64 ciphertext
+				const ctUint8 = new Uint8Array(Array.from(ctStr).map(ch => ch.charCodeAt(0)));     // ciphertext as Uint8Array
+
+				try {
+					const plainBuffer = await crypto.subtle.decrypt(alg, key, ctUint8);            // decrypt ciphertext using key
+					const plaintext = new TextDecoder().decode(plainBuffer);                       // plaintext from ArrayBuffer
+					return plaintext;                                                              // return the plaintext
+				} catch (e) {
+					document.getElementById("Narrator").innerText = "A sense of dread - you feel you should turn back"
+					return "";
+				}
+			}
+			
+		</script>	
+		<script id="Game">
+			//clear the first ward:
+			class ward {
+			  static clear(val) {
+				if(val=="👁"){
+					iv = new Uint8Array([146, 52, 199, 133, 32, 115, 212, 96, 165, 150, 168, 12])
+					document.getElementById("Narrator").innerText = "The first ward is clear, this you know."
+				}else{					
+					document.getElementById("Narrator").innerText = "You still feel observed"
+				}
+			  }
+			}
+			//Listens for changes to the barrier
+			document.addEventListener('DOMContentLoaded', (event) => {register("Barrier")});
+		</script>
+	</head>
+<body>
+	<div id="Narrator" style="text-align:center;font-family:monospace;font-size:12pt;font-style:italic;">
+	A nagging feeling - "If this is the second, where is the first?"
+	</div>
+	<div id="Barrier" style="text-align:center;font-family:monospace;font-size:16pt;">
+		<p>Clear the second ward</p>
+		<br>
+		<div id="Ward">
+			A&nbsp;B&nbsp;R&nbsp;A&nbsp;X&nbsp;A&nbsp;S<br>
+			B&nbsp;R&nbsp;A&nbsp;X&nbsp;A&nbsp;S<br>
+			R&nbsp;A&nbsp;X&nbsp;A&nbsp;S<br>
+			A&nbsp;X&nbsp;A&nbsp;S<br>
+			X&nbsp;A&nbsp;S<br>
+			A&nbsp;S<br>
+			S<br>
+		</div>
+	</div>	
+	<div id = "VOID">
+	</div>
+</body>
+</html>
