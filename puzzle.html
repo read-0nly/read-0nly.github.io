@@ -21,28 +21,7 @@
 			var config = { attributes: true, childList: true };
 			var targetNode
 			var observer 
-			// Callback function to execute when mutations are observed
-			var callback = function(mutationsList) {
-				console.log("Attempting to clear wards")
-				try{
-				aesGcmDecrypt(document.getElementById("Guardian").innerText,targetNode.innerText.hashCode()).then(function(x){eval(x)})
-				}catch(e){}
-			};
 			
-			function register(val){
-				if(observer != null){
-					observer.disconnect();
-				}
-				// Select the node that will be observed for mutations
-				targetNode = document.getElementById(val);
-
-				// Create an observer instance linked to the callback function
-				observer = new MutationObserver(callback);
-
-				// Start observing the target node for configured mutations
-				observer.observe(targetNode, config);
-				
-			}
 
 			async function aesGcmEncrypt(plaintext, password) {
 				const pwUtf8 = new TextEncoder().encode(password);                                 // encode password as UTF-8
@@ -87,21 +66,7 @@
 			}
 			
 		</script>	
-		<script id="Game">
-			//clear the first ward:
-			class ward {
-			  static clear(val) {
-				if(val=="👁"){
-					iv = new Uint8Array([146, 52, 199, 133, 32, 115, 212, 96, 165, 150, 168, 12])
-					document.getElementById("Narrator").innerText = "The first ward is clear, this you know."
-				}else{					
-					document.getElementById("Narrator").innerText = "You still feel observed"
-				}
-			  }
-			}
-			//Listens for changes to the barrier
-			document.addEventListener('DOMContentLoaded', (event) => {register("Barrier")});
-		</script>
+		
 		<style>
 			@font-face {
 			    font-family: 'Theban';
@@ -139,9 +104,206 @@
 	</head>
 <body>
 	<div id="Narrator" style="text-align:center;font-family:monospace;font-size:12pt;font-style:italic;">
-	A nagging feeling - "If this is the second, where is the first?"
+	
 	</div>
-	<div id="Barrier" style="text-align:center;font-family:monospace;font-size:16pt;">
+	<div id="Illusion" style="text-align:left;font-family:monospace;font-size:16pt;">
+	<script>
+	
+		/*
+		
+			
+			☉ Sun
+			☽︎ Moon
+			☿ Mercury
+			♀ Venus
+			♁ Earth
+			♂ Mars
+			♃ Jupiter
+			♄ Saturn
+			♅ Uranus
+			♆ Neptune
+			♇ Pluto
+			
+		*/
+		window.solarsymbols = ["☉","☽","☿","♀","♁","♂","♃","♄","♅","♆","♇"]
+	
+		function getSolar(){
+			return window.solarsymbols[Math.floor(Math.random() * window.solarsymbols.length)];
+		}
+		document.addEventListener('DOMContentLoaded', (event) => {
+				document.getElementById("Narrator").innerText = "Why is one sticking out like that?"
+			document.getElementById("solar1").innerText = getSolar()			
+			document.getElementById("solar1").addEventListener("mouseenter", function(event){
+				document.getElementById("solar1").innerText = getSolar();
+			})			
+			document.getElementById("solar2").innerText = getSolar()
+			document.getElementById("solar2").addEventListener("mouseenter", function(event){
+				document.getElementById("solar2").innerText = getSolar();
+			})
+			document.getElementById("solar3").innerText = getSolar()			
+			document.getElementById("solar3").addEventListener("mouseenter", function(event){
+				document.getElementById("solar3").innerText = getSolar();
+			})
+			document.getElementById("solar4").innerText = getSolar()			
+			document.getElementById("solar4").addEventListener("mouseenter", function(event){
+				document.getElementById("solar4").innerText = getSolar();
+			})
+			document.getElementById("solar5").innerText = getSolar()			
+			document.getElementById("solar5").addEventListener("mouseenter", function(event){
+				document.getElementById("solar5").innerText = getSolar();
+			})
+			document.getElementById("solar6").innerText = getSolar()			
+			document.getElementById("solar6").addEventListener("mouseenter", function(event){
+				document.getElementById("solar6").innerText = getSolar();
+			})
+			document.getElementById("solar7").innerText = getSolar()			
+			document.getElementById("solar7").addEventListener("mouseenter", function(event){
+				document.getElementById("solar7").innerText = getSolar();
+			})
+			document.getElementById("solar8").innerText = getSolar()			
+			document.getElementById("solar8").addEventListener("mouseenter", function(event){
+				document.getElementById("solar8").innerText = getSolar();
+			})
+			document.getElementById("solar9").innerText = getSolar()			
+			document.getElementById("solar9").addEventListener("mouseenter", function(event){
+				document.getElementById("solar9").innerText = getSolar();
+			})	
+			document.getElementById("solar11").innerText = getSolar()			
+			document.getElementById("solar11").addEventListener("mouseenter", function(event){
+				document.getElementById("solar11").innerText = getSolar();
+			})	
+			document.getElementById("solar10").innerText = getSolar()			
+			document.getElementById("solar10").addEventListener("mouseenter", function(event){
+				document.getElementById("solar10").innerText = getSolar();
+			})
+		});
+		function dispel(){
+			if(
+				document.getElementById("solar1").innerText == solarsymbols[0]&&
+				document.getElementById("solar2").innerText == solarsymbols[2]&&
+				document.getElementById("solar3").innerText == solarsymbols[3]&&
+				document.getElementById("solar4").innerText == solarsymbols[4]&&
+				document.getElementById("solar5").innerText == solarsymbols[5]&&
+				document.getElementById("solar6").innerText == solarsymbols[6]&&
+				document.getElementById("solar7").innerText == solarsymbols[7]&&
+				document.getElementById("solar8").innerText == solarsymbols[8]&&
+				document.getElementById("solar9").innerText == solarsymbols[9]&&
+				document.getElementById("solar10").innerText == solarsymbols[1]&&
+				document.getElementById("solar11").innerText == solarsymbols[10]
+			){
+				document.getElementById("Narrator").innerText = "There's something odd about this text."
+				document.getElementById("Illusion").style.display="none"
+				document.getElementById("MagickWord").style.display="block"
+				document.getElementById("cmd").style.display="block"
+			}
+		}
+	</script>
+	<style>
+	.solar{
+		display:inline-block;
+		min-width:30px;
+		max-width:30px;
+		align:center;
+	}
+	</style>
+	<span id="solar1" class="solar"></span>
+	<span id="solar2" class="solar"></span>
+	<span id="solar3" class="solar"></span>
+	<span id="solar4" class="solar"></span>
+	<span id="solar5" class="solar"></span>
+	<span id="solar6" class="solar"></span>
+	<span id="solar7" class="solar"></span>
+	<span id="solar8" class="solar"></span>
+	<span id="solar9" class="solar"></span>
+	<span id="solar11" class="solar"></span>
+	<br>
+	<span class="solar">&nbsp;</span>
+	<span class="solar">&nbsp;</span>
+	<span class="solar">&nbsp;</span>
+	<span id="solar10" class="solar"></span>
+	<br>
+	<button onclick="dispel()">Dispel</button>
+	
+	</div>
+	<div id="MagickWord" style="text-align:center;font-family:monospace;font-size:16pt;display:none">
+	
+		<script>
+		window.METATRONFLAG = false;
+		function speak(){
+			eval(document.getElementById("mouth").value);
+		}
+
+		function METATRON(){
+			
+			if(METATRONFLAG){
+				document.getElementById("Narrator").innerText = 'Somewhere, those wizards are rambling about "keys" and "above the backspace!", whatever that means'
+			}else{
+				document.getElementById("Narrator").innerText = 'Something tells you you should follow this advice'
+			}
+			document.getElementById("WordHint").innerHTML+=("<br><b>They say the wizards of old spoke the word of power, F12</b></br>");
+			window.METATRONFLAG = true;
+		}
+
+		function reveal(){
+			document.getElementById("MagickWord").style.display="none"
+			document.getElementById("Barrier").style.display="block"
+			document.getElementById("Narrator").innerText = 'A nagging feeling - "If this is the second, where is the first?"'
+
+		}
+		</script>
+		<span id="WordHint">
+		the Magick word, oncE TAken in To speak<br>
+		Read frOm the curreNt page, loud and clear<br>
+		followed by the functional sygil, ()<br>
+		<i>a closer <b>inspection</b> is suggested</i><br>
+		</span>
+		
+	</div>
+	<div id="cmd" style='display:none;text-align:center'>
+		<input type="text" id="mouth"/>
+		<button onclick="speak()">Speak</button>
+	</div>
+	<div id="Barrier" style="text-align:center;font-family:monospace;font-size:16pt;display:none">
+		<script id="Game">
+			function register(val){
+				if(observer != null){
+					observer.disconnect();
+				}
+				// Select the node that will be observed for mutations
+				targetNode = document.getElementById(val);
+
+				// Create an observer instance linked to the callback function
+				observer = new MutationObserver(callback);
+
+				// Start observing the target node for configured mutations
+				observer.observe(targetNode, config);
+				
+			}
+			// Callback function to execute when mutations are observed
+			var callback = function(mutationsList) {
+				clearWards();
+			};
+			function clearWards(){
+				console.log("Attempting to clear wards")
+				try{
+				aesGcmDecrypt(document.getElementById("Guardian").innerText,targetNode.innerText.hashCode()).then(function(x){eval(x)})
+				}catch(e){}			
+			}
+			//clear the first ward:
+			class ward {
+			  static clear(val) {
+				if(val=="👁"){
+					iv = new Uint8Array([146, 52, 199, 133, 32, 115, 212, 96, 165, 150, 168, 12])
+					document.getElementById("Narrator").innerText = "The first ward is clear, this you know."
+				}else{					
+					document.getElementById("Narrator").innerText = "You still feel observed"
+				}
+			  }
+			}
+			//Listens for changes to the barrier
+			document.addEventListener('DOMContentLoaded', (event) => {register("Barrier")});
+			//A nagging feeling - "If this is the second, where is the first?"
+		</script>
 		<p>Clear the second ward</p>
 		<br>
 		<div id="Ward">
