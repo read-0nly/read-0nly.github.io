@@ -196,7 +196,6 @@
 			){
 				document.getElementById("Narrator").innerText = 'The spellbound scroll reveals it\'s magical interface. \nA whisper in your mind - Familiar, but the voice is not yours\n"Inspect this document closely - the inner workings of it\'s magic will reveal itself."'
 				document.getElementById("Illusion").style.display="none"
-				document.getElementById("Barrier").style.display="block"
 				document.getElementById("cmd").style.display="block"
 			}
 		}
@@ -231,7 +230,9 @@
 	
 	<div id="cmd" style='display:none;text-align:center'>
 		<script>
-		function what(){alert("It's all javascript, silly!");document.getElementById("Narrator").innerText ="Something about this isn't right. Where's the first ward?"}
+		function what(){alert("It's all javascript, silly!");
+				document.getElementById("Narrator").innerText ="Something about this isn't right. Where's the first ward?";
+				document.getElementById("Barrier").style.display="block";}
 		</script>
 		<span style="font-family:Papyrus;color: gold;
 			text-shadow: 0 0 10px #000, 0 0 5px #000,0 0 10px #000, 
