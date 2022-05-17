@@ -230,11 +230,12 @@
 	</div>
 	
 	<div id="cmd" style='display:none;text-align:center'>
-		<input type="text" id="mouth"/>
+		<input type="text" id="mouth">alert('The spellbound scroll reveals it\'s magical interface. \nA whisper in your mind - Familiar, but the voice is not yours\n"Inspect this document closely - the inner workings of it\'s magic will reveal itself."\n\nIn the right margin, at the top, glows a strange sygil - F12')</input>
 		<button onclick="eval(document.getElementById('mouth').innerText)">Speak</button>
 	</div>
 	<div id="Barrier" style="text-align:center;font-family:monospace;font-size:16pt;display:none">
 		<script id="Game">
+			window.wardLoaded=false;
 			function register(val){
 				if(observer != null){
 					observer.disconnect();
@@ -251,7 +252,11 @@
 			}
 			// Callback function to execute when mutations are observed
 			var callback = function(mutationsList) {
-				clearWards();
+				if(window.wardLoaded){
+					clearWards();
+				}else{
+					window.wardLoaded=true;	
+				}
 			};
 			function clearWards(){
 				console.log("Attempting to clear wards")
