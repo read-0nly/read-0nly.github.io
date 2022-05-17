@@ -231,7 +231,7 @@
 	
 	<div id="cmd" style='display:none;text-align:center'>
 		<script>
-		function what(){alert("It's all javascript, silly!")}
+		function what(){alert("It's all javascript, silly!");document.getElementById("Narrator").innerText ="Something about this isn't right. Where's the first ward?"}
 		</script>
 		<span style="font-family:Papyrus;color: gold;
 			text-shadow: 0 0 10px #000, 0 0 5px #000,0 0 10px #000, 
@@ -247,7 +247,7 @@
 			     0 0 30px #7600e3, 0 0 40px #7600e3, 0 0 50px #e67300,
 			     0 0 30px #7600e3, 0 0 40px #7600e3, 0 0 50px #e67300, 
 			     0 0 30px #7600e3, 0 0 40px #7600e3, 0 0 50px #e67300,
-			     0 0 30px #7600e3, 0 0 40px #7600e3, 0 0 50px #e67300;">
+			     0 0 30px #7600e3, 0 0 40px #7600e3, 0 0 50px #e67300;" onclick="document.getElementById('Narrator').innerText ='Something about this isn\'t right. Where\'s the first ward?'"
 		    F12	
 	 	</span><br>
 		<input type="text" id="mouth" value="what()"></input>
