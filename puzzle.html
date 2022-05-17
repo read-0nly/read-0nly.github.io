@@ -194,7 +194,7 @@
 				document.getElementById("solar10").innerText == solarsymbols[1]&&
 				document.getElementById("solar11").innerText == solarsymbols[10]
 			){
-				document.getElementById("Narrator").innerText = "There's something odd about this text."
+				document.getElementById("Narrator").innerText = 'The spellbound scroll reveals it\'s magical interface. \nA whisper in your mind - Familiar, but the voice is not yours\n"Inspect this document closely - the inner workings of it\'s magic will reveal itself."'
 				document.getElementById("Illusion").style.display="none"
 				document.getElementById("Barrier").style.display="block"
 				document.getElementById("cmd").style.display="block"
@@ -230,10 +230,12 @@
 	</div>
 	
 	<div id="cmd" style='display:none;text-align:center'>
-		<input type="text" id="mouth">alert('The spellbound scroll reveals it\'s magical interface. \nA whisper in your mind - Familiar, but the voice is not yours\n"Inspect this document closely - the inner workings of it\'s magic will reveal itself."\n\nIn the right margin, at the top, glows a strange sygil - F12')</input>
+		<input type="text" id="mouth"></input>
 		<button onclick="eval(document.getElementById('mouth').innerText)">Speak</button>
+		<span style="font-family:Papyrus;color: black;text-shadow: 0 0 10px #fff, 0 0 20px #fff, 0 0 30px #7600e3, 0 0 40px #7600e3, 0 0 50px #e67300;"
 	</div>
 	<div id="Barrier" style="text-align:center;font-family:monospace;font-size:16pt;display:none">
+		
 		<script id="Game">
 			window.wardLoaded=false;
 			function register(val){
