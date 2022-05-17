@@ -230,7 +230,10 @@
 	</div>
 	
 	<div id="cmd" style='display:none;text-align:center'>
-		<input type="text" id="mouth"></input>
+		<script>
+		function what(){alert("It's all javascript, silly!")}
+		</script>
+		<input type="text" id="mouth" value="what()"></input>
 		<button onclick="eval(document.getElementById('mouth').innerText)">Speak</button>
 		<span style="font-family:Papyrus;color: black;text-shadow: 0 0 10px #fff, 0 0 20px #fff, 0 0 30px #7600e3, 0 0 40px #7600e3, 0 0 50px #e67300;"
 	</div>
