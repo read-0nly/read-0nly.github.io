@@ -60,7 +60,7 @@
 					const plaintext = new TextDecoder().decode(plainBuffer);                       // plaintext from ArrayBuffer
 					return plaintext;                                                              // return the plaintext
 				} catch (e) {
-					document.getElementById("Narrator").innerText = "A sense of dread - you feel you should turn back"
+					document.getElementById("Narrator").innerText = "A sense of dread grips you"
 					return "";
 				}
 			}
@@ -284,9 +284,16 @@
 			};
 			function clearWards(){
 				console.log("Attempting to clear wards")
+				if(document.getElementById("Ward")==null){
 				try{
-				aesGcmDecrypt(document.getElementById("Guardian").innerText,targetNode.innerText.hashCode()).then(function(x){eval(x)})
-				}catch(e){}			
+					aesGcmDecrypt(document.getElementById("Guardian").innerText,targetNode.innerText.hashCode()).then(function(x){eval(x)})
+				}catch(e){
+					document.getElementById("Narrator").innerText = "You get the overwhelming feeling you should turn back"
+				}			
+				}else{
+					document.getElementById("Narrator").innerText = "The second ward glows for a second, still active"					
+					document.getElementById("Ward").style.textShadow="0 0 10px #000, 0 0 5px #000,0 0 10px #000,0 0 5px #000,  0 0 10px #000, 0 0 5px #000,0 0 10px #000,   0 0 5px #000,  0 0 10px #000, 0 0 5px #000,0 0 10px #000,0 0 5px #000,0 0 30px #7600e3, 0 0 40px #7600e3, 0 0 50px #e67300,0 0 30px #7600e3, 0 0 40px #7600e3, 0 0 50px #e67300,0 0 30px #7600e3, 0 0 40px #7600e3, 0 0 50px #e67300,0 0 30px #7600e3, 0 0 40px #7600e3, 0 0 50px #e67300,0 0 30px #7600e3, 0 0 40px #7600e3, 0 0 50px #e67300,0 0 30px #7600e3, 0 0 40px #7600e3, 0 0 50px #e67300,0 0 30px #7600e3, 0 0 40px #7600e3, 0 0 50px #e67300,0 0 30px #7600e3, 0 0 40px #7600e3, 0 0 50px #e67300,0 0 30px #7600e3, 0 0 40px #7600e3, 0 0 50px #e67300,0 0 30px #7600e3, 0 0 40px #7600e3, 0 0 50px #e67300;"
+				}
 			}
 			//clear the first ward:
 			class ward {
