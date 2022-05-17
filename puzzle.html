@@ -127,7 +127,7 @@
 		*/
 		window.solarsymbols = ["☉","☽","☿","♀","♁","♂","♃","♄","♅","♆","♇"]
 		window.solarStep = Math.floor(Math.random() * 5)
-		function getSolar(){
+		function getSolarRandom(){
 			return window.solarsymbols[Math.floor(Math.random() * window.solarsymbols.length)];
 		}
 		function getSolar(val){
@@ -135,47 +135,47 @@
 		}
 		document.addEventListener('DOMContentLoaded', (event) => {
 				document.getElementById("Narrator").innerText = "Why is one sticking out like that?"
-			document.getElementById("solar1").innerText = getSolar(document.getElementById("solar1").innerText)			
+			document.getElementById("solar1").innerText = getSolarRandom()			
 			document.getElementById("solar1").addEventListener("mouseenter", function(event){
 				document.getElementById("solar1").innerText = getSolar(document.getElementById("solar1").innerText);
 			})			
-			document.getElementById("solar2").innerText = getSolar()
+			document.getElementById("solar2").innerText = getSolarRandom()
 			document.getElementById("solar2").addEventListener("mouseenter", function(event){
 				document.getElementById("solar2").innerText = getSolar(document.getElementById("solar2").innerText);
 			})
-			document.getElementById("solar3").innerText = getSolar()			
+			document.getElementById("solar3").innerText = getSolarRandom()			
 			document.getElementById("solar3").addEventListener("mouseenter", function(event){
 				document.getElementById("solar3").innerText = getSolar(document.getElementById("solar3").innerText );
 			})
-			document.getElementById("solar4").innerText = getSolar()			
+			document.getElementById("solar4").innerText = getSolarRandom()			
 			document.getElementById("solar4").addEventListener("mouseenter", function(event){
 				document.getElementById("solar4").innerText = getSolar(document.getElementById("solar4").innerText);
 			})
-			document.getElementById("solar5").innerText = getSolar()			
+			document.getElementById("solar5").innerText = getSolarRandom()			
 			document.getElementById("solar5").addEventListener("mouseenter", function(event){
 				document.getElementById("solar5").innerText = getSolar(document.getElementById("solar5").innerText);
 			})
-			document.getElementById("solar6").innerText = getSolar()			
+			document.getElementById("solar6").innerText = getSolarRandom()			
 			document.getElementById("solar6").addEventListener("mouseenter", function(event){
 				document.getElementById("solar6").innerText = getSolar(document.getElementById("solar6").innerText );
 			})
-			document.getElementById("solar7").innerText = getSolar()			
+			document.getElementById("solar7").innerText = getSolarRandom()			
 			document.getElementById("solar7").addEventListener("mouseenter", function(event){
 				document.getElementById("solar7").innerText = getSolar(document.getElementById("solar7").innerText);
 			})
-			document.getElementById("solar8").innerText = getSolar()			
+			document.getElementById("solar8").innerText = getSolarRandom()			
 			document.getElementById("solar8").addEventListener("mouseenter", function(event){
 				document.getElementById("solar8").innerText = getSolar(document.getElementById("solar8").innerText);
 			})
-			document.getElementById("solar9").innerText = getSolar()			
+			document.getElementById("solar9").innerText = getSolarRandom()			
 			document.getElementById("solar9").addEventListener("mouseenter", function(event){
 				document.getElementById("solar9").innerText = getSolar(document.getElementById("solar9").innerText);
 			})	
-			document.getElementById("solar11").innerText = getSolar()			
+			document.getElementById("solar11").innerText = getSolarRandom()			
 			document.getElementById("solar11").addEventListener("mouseenter", function(event){
 				document.getElementById("solar11").innerText = getSolar(document.getElementById("solar11").innerText);
 			})	
-			document.getElementById("solar10").innerText = getSolar()			
+			document.getElementById("solar10").innerText = getSolarRandom()			
 			document.getElementById("solar10").addEventListener("mouseenter", function(event){
 				document.getElementById("solar10").innerText = getSolar(document.getElementById("solar10").innerText);
 			})
