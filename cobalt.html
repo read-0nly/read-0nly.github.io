@@ -2,13 +2,18 @@
 <style>
 	body{
 	font-family:Inconsolata, monospace;
-	font-size:26px;
-	height:100%;max-height:100%;min-height:100%;
+	font-size:18px;
+	height:100vh;max-height:100vhmin-height:100vh;
 	overflow:hidden;
 	background-color: #1c1b22;
 	background-image: radial-gradient(rgba(0, 0, 0, 0.75), black 120%);
 	text-shadow: -2px 0 1px #0000C8,3px 0 1px #380000;
 	color:#49a;
+	}
+	#viewport{
+	display:inline;
+	margin-left:50px;margin-right:50px;margin-top:0px;margin-bottom:0px;padding:50px;
+	overflow-y:scroll;
 	}
 	#viewport::after {
 		content: "";
@@ -116,7 +121,7 @@ function doTask(){
 </script>
 </head>
 <body onclick="startupSequence()">
-<div style="width:100%%;height:100%;margin-left:auto;margin-right:auto;margin-top 0px;margin-bottom:0px;padding:50px;" id="viewport">
+<div style="" id="viewport">
 
 	<div style="DISPLAY:none" id="page1">
 		<p>COBALT INDUSTRIES - CASSIOPEIA PROTOCOL 9<br>
