@@ -14,10 +14,12 @@
 	}
 	#viewport{
 		position: absolute;
-	top: 0;
-	left: 0;
-	width: 100vw;
-	height: 100vh;
+	top: 50px;
+	left: 50px;
+	width: calc(100vw-100px);
+	height: calc(100vh-100px);
+	bottom:50px;
+	right:50px;
 	overflow:hidden;
 	overflow-y:scroll;
 	}
@@ -63,7 +65,7 @@ function startupSequence(){
 	currentrow = 0
 	page1 = document.getElementById('page1');
 	chainPages = false
-	if(getRandomInt(0,10)==0){
+	if(getRandomInt(0,5)==0){
 		tasks.push(Function("document.body.style.backgroundImage='radial-gradient(rgba(0, 50, 125, 0.75), black 120%)' ;return 50"));
 		tasks.push(Function("document.body.style.backgroundImage='radial-gradient(rgba(0, 25, 75, 0.75), black 120%)' ;return 0"));
 		tasks.push(Function("document.getElementById('page1').style.display='block';return 0"));
@@ -82,7 +84,7 @@ function startupSequence(){
 	
 	tasks.push(Function("document.getElementById('page1').style.display='none';document.body.style.backgroundImage='radial-gradient(rgba(0, 0, 0, 0.75), black 120%)' ;return 50"));
 		
-	if(getRandomInt(0,2)==0 || chainPages){
+	if(getRandomInt(0,1)==0 || chainPages){
 		tasks.push(Function("document.body.style.backgroundImage='radial-gradient(rgba(0, 50, 125, 0.75), black 120%)' ;return 50"));
 		tasks.push(Function("document.body.style.backgroundImage='radial-gradient(rgba(0, 25, 75, 0.75), black 120%)' ;return 0"));
 		tasks.push(Function("document.getElementById('page2').style.display='block';return 0"));
@@ -124,6 +126,32 @@ function doTask(){
 		currentTask = setTimeout(doTask,nextWait);
 	}
 }
+
+function hideAllPanels(){
+	for(i = 0; i < document.body.children[0].children.length;i++){
+		for(j=0;j<document.body.children[0].children[i].children.length;j++){
+			document.body.children[0].children[i].children[j].style.display='none';
+		}
+			document.body.children[0].children[i].style.display='none';
+	}
+}
+
+function showPanel(s){
+	hideAllPanels()
+
+	panel = document.getElementById(s);
+	
+	tasks.push(Function("document.body.style.backgroundImage='radial-gradient(rgba(0, 0, 0, 0.75), black 120%)' ;return 50"));	
+	tasks.push(Function("document.body.style.backgroundImage='radial-gradient(rgba(0, 50, 125, 0.75), black 120%)' ;return 50"));
+	tasks.push(Function("document.body.style.backgroundImage='radial-gradient(rgba(0, 25, 75, 0.75), black 120%)' ;return 0"));
+	tasks.push(Function("document.getElementById('"+s+"').style.display='block';return 0"));
+	
+	for(i=0;i < panel.children.length;i++){
+		tasks.push(Function("document.getElementById('"+s+"').children["+i+"].style.display='block';return 100"));
+		currentrow++;
+	} 
+	doTask()
+}
 </script>
 </head>
 <body onclick="startupSequence()">
@@ -158,21 +186,21 @@ function doTask(){
 	  
 		<p>IT IS A PLEASURE TO HAVE YOU JOIN THE COBALT INDUSTRIES FAMILY! WHILE ADAPTING TO LIFE ON THE ISLAND CAN BE DIFFICULT, REST ASSURED THAT ALL OF US AT COBALT HQ (AS WELL AS OUR FRIENDS AT THE AGENCY) ARE EVER GRATEFUL OF THE IMPORTANT WORK YOU WILL DO HERE.<br><br></p>
 		<p>PLEASE TAKE THE TIME YOU NEED TO REVIEW THE FOLLOWING INFORMATION<br><br></p>
-			<p class="menuLink" onclick="document.getElementById('page3').style.display='none';document.getElementById('foodpage').style.display='block';">
+			<p class="menuLink" onclick="showPanel('foodpage')">
 			FOOD AND DRINK</p>
-			<p class="menuLink" onclick="document.getElementById('page3').style.display='none';document.getElementById('ECOSYSTEM').style.display='block';">
+			<p class="menuLink" onclick="showPanel('ECOSYSTEM')">
 			THE LOCAL ECOSYSTEM</p>
-			<p class="menuLink" onclick="document.getElementById('page3').style.display='none';document.getElementById('NIGHTLIFE').style.display='block';">
+			<p class="menuLink" onclick="showPanel('NIGHTLIFE')">
 			THE NIGHTLIFE</p>
-			<p class="menuLink" onclick="document.getElementById('page3').style.display='none';document.getElementById('TRI').style.display='block';">
+			<p class="menuLink" onclick="showPanel('TRI')">
 			TRI: WHAT IT IS AND HOW TO RECOGNIZE IT</p>
-			<p class="menuLink" onclick="document.getElementById('page3').style.display='none';document.getElementById('CUTACFFI').style.display='block';">
+			<p class="menuLink" onclick="showPanel('CUTACFFI')">
 			A JOINT STATEMENT BY THE COBALT URBAN TRANSIT AUTHORITY AND THE COBALT FORESTRY AND FAUNA INITIATIVE</p>
-			<p class="menuLink" onclick="document.getElementById('page3').style.display='none';document.getElementById('SHOCKER').style.display='block';">
+			<p class="menuLink" onclick="showPanel('SHOCKER')">
 			A SHOCKING SURPRISE! TIPS AND TRICKS FOR WORKING WITH HIGH VOLTAGES</p>
-			<p class="menuLink" onclick="document.getElementById('page3').style.display='none';document.getElementById('ZONING').style.display='block';">
+			<p class="menuLink" onclick="showPanel('ZONING')">
 			ZONING RESTRICTIONS AND MUNICIPAL BYLAWS</p>
-			<p class="menuLink" onclick="document.getElementById('page3').style.display='none';document.getElementById('GOVERNANCE').style.display='block';">
+			<p class="menuLink" onclick="showPanel('GOVERNANCE')">
 			LOCAL GOVERNANCE AND CRIMINAL CODE</p>
 			<p class="menuLink"><br></p>
 			<p><a href="steam://78.108.218.16:28015" class="menuLink">&gt;[CLOCK IN]&lt;</a>&nbsp;&nbsp;&nbsp;<a href="https://read-0nly.github.io" class="menuLink">[CLOCK OUT]</a></p>
@@ -189,10 +217,9 @@ function doTask(){
 		<span>THE NANOCRYSTALLINE NATURE OF LOCALLY SOURCED SALT MAKES IT IMPOSSIBLE TO PACKAGE FOR SALE, BUT IT CAN BE TRADED IN PERSON<br></span>
 		<span>THE LOCAL FAUNA IS BOTH DELICIOUS AND DANGEROUS. CULLING THEIR POPULATION ALSO PLEASES THE SUBJECTS, FOR WHAT IT'S WORTH<br><br><br></span>
 		
-		<span onclick="document.getElementById('foodpage').style.display='none';document.getElementById('page3').style.display='block';" class="menuLink">BACK TO MENU<br></span>
+		<span onclick="showPanel('page3')" class="menuLink">BACK TO MENU<br></span>
 		<span class="menuLink"><br><br></span>
-		<span class="menuLink"><a href="steam://78.108.218.16:28015">&gt;[CLOCK IN]&lt;</a>&nbsp;&nbsp;&nbsp;<a href="https://read-0nly.github.io">[CLOCK OUT]</a><br></span>
-	</div>
+		<span class=""><a href="steam://78.108.218.16:28015" class="menuLink">&gt;[CLOCK IN]&lt;</a>&nbsp;&nbsp;&nbsp;<a href="https://read-0nly.github.io"  class="menuLink">[CLOCK OUT]</a><br></span>	</div>
 	
 	<div style="DISPLAY:none" id="ECOSYSTEM">
 		<span>COBALT INDUSTRIES - THE LOCAL ECOSYSTEM<br>
@@ -204,10 +231,10 @@ function doTask(){
 		<span><br></span>
 		<span>PLANT A TREE A DAY TO KEEP THE KINGTIDES AWAY<br></span>
 		<span>WE'LL SUCCEED IF WE ALL DO OUR PART<br><br><br></span>
-		<span onclick="document.getElementById('ECOSYSTEM').style.display='none';document.getElementById('page3').style.display='block';" class="menuLink">BACK TO MENU<br></span>
+		<span onclick="='block';" class="menuLink">BACK TO MENU<br></span>
 		
 		<span class="menuLink"><br><br></span>
-		<span class="menuLink"><a href="steam://78.108.218.16:28015">&gt;[CLOCK IN]&lt;</a>&nbsp;&nbsp;&nbsp;<a href="https://read-0nly.github.io">[CLOCK OUT]</a><br></span>
+		<span class=""><a href="steam://78.108.218.16:28015" class="menuLink">&gt;[CLOCK IN]&lt;</a>&nbsp;&nbsp;&nbsp;<a href="https://read-0nly.github.io"  class="menuLink">[CLOCK OUT]</a><br></span>
 	</div>
 	
 	<div style="DISPLAY:none" id="NIGHTLIFE">
@@ -218,10 +245,9 @@ function doTask(){
 		<span>WE RECOMMEND RETURNING TO BASE BEFORE SUNDOWN<br></span>
 		<span>IF THIS IS NOT POSSIBLE, SHELTER IN PLACE - IDEALLY, IN ONE OF THE ABANDONED BUILDINGS, TO GET OUT OF THE ELEMENTS AND PRESERVE YOUR STRENGTH<br><br><br></span>
 		
-		<span onclick="document.getElementById('NIGHTLIFE').style.display='none';document.getElementById('page3').style.display='block';" class="menuLink">BACK TO MENU<br></span>
+		<span onclick="='block';" class="menuLink">BACK TO MENU<br></span>
 		<span class="menuLink"><br><br></span>
-		<span class="menuLink"><a href="steam://78.108.218.16:28015">&gt;[CLOCK IN]&lt;</a>&nbsp;&nbsp;&nbsp;<a href="https://read-0nly.github.io">[CLOCK OUT]</a><br></span>
-	</div>
+		<span class=""><a href="steam://78.108.218.16:28015" class="menuLink">&gt;[CLOCK IN]&lt;</a>&nbsp;&nbsp;&nbsp;<a href="https://read-0nly.github.io"  class="menuLink">[CLOCK OUT]</a><br></span>	</div>
 	
 	<div style="DISPLAY:none" id="TRI">
 		<span>COBALT INDUSTRIES - TRI: WHAT IT IS AND HOW TO RECOGNIZE IT<br>
@@ -247,7 +273,7 @@ function doTask(){
 		<span>AS YOU SURELY READ IN YOUR CONTRACT, YOU HAVE BEEN GIVEN THE SAME FACTOR AS THE SUBJECTS, SO AS TO BEST EXECUTE YOUR DUTIES. AS SUCH, YOU TOO WILL RETURN TO THE ISLAND UPON DYING, THROUGH THE STRANGE LOCALIZED CURVATURE. THE JOURNEY IS NOT WITHOUT CONSEQUENCE.<br></span>
 		<span>THIS ALSO GRANTS YOU ACCESS TO THE 4D KLEINIAN FOLD - WHAT THE RESEARCH DEPARTMENT HAS COME TO CALL HAMMERSPACE. THE SUBJECTS JUST CALL IT A BACKPACK. THIS SPACE IS CONNECTED TO THE FACTOR AND SEEMS TO FOLLOW YOU THROUGH THE REGENERATION PROCESS.<br><br></span>
 		
-		<span onclick="document.getElementById('TRI').style.display='none';document.getElementById('page3').style.display='block';" class="menuLink">BACK TO MENU</span>
+		<span onclick="showPanel('page3')" class="menuLink">BACK TO MENU</span>
 		<br>
 		<span class="menuLink"><br></span>
 		<span class="menuLink"><a href="steam://78.108.218.16:28015">&gt;[CLOCK IN]&lt;</a>&nbsp;&nbsp;&nbsp;<a href="https://read-0nly.github.io">[CLOCK OUT]</a></span>
@@ -262,7 +288,7 @@ function doTask(){
 		<span>IT GOES WITHOUT SAYING THAT THIS IS A THREAT TO THE LIFE AND LIMB OF OUR PERSONNEL. AS SUCH, THE SUBWAYS WILL REMAIN CLOSED UNTIL FURTHER NOTICE, AND UNTIL THE CFFI HAS SUCCESSFULLY CULLED THE LOCAL FAUNA, TAKE CARE NOT TO BE CAUGHT UNGUARDED IN THE FORESTS<br><br></span>
 		
 		
-		<span onclick="document.getElementById('CUTACFFI').style.display='none';document.getElementById('page3').style.display='block';" class="menuLink">BACK TO MENU</span>
+		<span onclick="showPanel('page3')" class="menuLink">BACK TO MENU</span>
 		<br>
 		<span class="menuLink"><br></span>
 		<span class="menuLink"><a href="steam://78.108.218.16:28015">&gt;[CLOCK IN]&lt;</a>&nbsp;&nbsp;&nbsp;<a href="https://read-0nly.github.io">[CLOCK OUT]</a></span>
@@ -275,7 +301,7 @@ function doTask(){
 		<span>WHILE THE GRID IS LONG GONE, THE SUBJECTS HAVE MANAGED TO REVERSE ENGINEER AND SCAVENGE THEIR OWN POWER SOURCES, AND SOME SITES HAVE THEIR OWN ONSITE POWER BACKUP. WITH THE ONGOING SECURITY SITUATION, AND IN CONSIDERATION OF YOUR DUTIES, YOU HAVE BEEN PERMITTED TO SABOTAGE SUBJECT ELECTRONIC CAPACITY, AS WELL AS MANIPULATE THE ELECTRIC LAYOUT OF SITES OF FORENSIC INTEREST. TAKE CARE NOT TO MISWIRE THE CIRCUITS, IT COULD BE A COSTLY MISTAKE<br><br></span>
 		
 		
-		<span onclick="document.getElementById('SHOCKER').style.display='none';document.getElementById('page3').style.display='block';" class="menuLink">BACK TO MENU</span>
+		<span onclick="showPanel('page3')" class="menuLink">BACK TO MENU</span>
 		<br>
 		<span class="menuLink"><br></span>
 		<span class="menuLink"><a href="steam://78.108.218.16:28015">&gt;[CLOCK IN]&lt;</a>&nbsp;&nbsp;&nbsp;<a href="https://read-0nly.github.io">[CLOCK OUT]</a></span>
@@ -295,7 +321,7 @@ function doTask(){
 		
 		<span>USING SKULLS OF SUBJECTS WITH THE FACTOR, PERCHED ON A STICK, SEEMS TO CREATE A FOCAL POINT FOR THE STRANGE LOCALIZED CURVATURE, INCREASING THE ODDS OF REGENERATING THERE. THIS ALSO SERVES TO CLAIM POTENTIAL ZONES OF FORENSIC INTEREST<br><br></span>
 		
-		<span onclick="document.getElementById('ZONING').style.display='none';document.getElementById('page3').style.display='block';" class="menuLink">BACK TO MENU</span>
+		<span onclick="showPanel('page3')" class="menuLink">BACK TO MENU</span>
 		<br>
 		<span class="menuLink"><br></span>
 		<span class="menuLink"><a href="steam://78.108.218.16:28015">&gt;[CLOCK IN]&lt;</a>&nbsp;&nbsp;&nbsp;<a href="https://read-0nly.github.io">[CLOCK OUT]</a></span>
@@ -314,7 +340,7 @@ function doTask(){
 		
 		
 		
-		<span onclick="document.getElementById('GOVERNANCE').style.display='none';document.getElementById('page3').style.display='block';" class="menuLink">BACK TO MENU</span>
+		<span onclick="showPanel('page3')" class="menuLink">BACK TO MENU</span>
 		<br>
 		<span class="menuLink"><br></span>
 		<span class="menuLink"><a href="steam://78.108.218.16:28015">&gt;[CLOCK IN]&lt;</a>&nbsp;&nbsp;&nbsp;<a href="https://github.com/read-0nly/Rust-coop-survival">[CLOCK OUT]</a></span>
