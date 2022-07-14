@@ -2,8 +2,10 @@
 <style>
 	body{
 	font-family:Inconsolata, monospace;
-	font-size:18px;
-	height:100vh;max-height:100vhmin-height:100vh;
+	font-size:26px;
+	height:100vh;max-height:100vh;min-height:100vh;
+	width:100%;
+	padding:10px;
 	overflow:hidden;
 	background-color: #1c1b22;
 	background-image: radial-gradient(rgba(0, 0, 0, 0.75), black 120%);
@@ -11,11 +13,15 @@
 	color:#49a;
 	}
 	#viewport{
-	display:inline;
-	margin-left:50px;margin-right:50px;margin-top:0px;margin-bottom:0px;padding:50px;
+		position: absolute;
+	top: 0;
+	left: 0;
+	width: 100vw;
+	height: 100vh;
+	overflow:hidden;
 	overflow-y:scroll;
 	}
-	#viewport::after {
+	body::after {
 		content: "";
 		position: absolute;
 		top: 0;
@@ -122,33 +128,6 @@ function doTask(){
 </head>
 <body onclick="startupSequence()">
 <div style="" id="viewport">
-
-	<div style="DISPLAY:none" id="page1">
-		<p>COBALT INDUSTRIES - CASSIOPEIA PROTOCOL 9<br>
-		   -----------------------------------------</p>
-		<p>CONNECTING...</p>
-		<p>SATELLITE UPLINK FAILED</p>
-		<p>CONNECTING...</p>
-		<p>SATELLITE UPLINK FAILED</p>
-		<p>CONNECTING...</p>
-		<p>SATELLITE UPLINK FAILED</p>
-		<p><br>RETRY EXCEEDED - LAUNCHING SAFE MODE</p>
-	</div>
-	
-
-	
-
-	<div style="DISPLAY:none" id="page1">
-		<p>COBALT INDUSTRIES - CASSIOPEIA PROTOCOL 9<br>
-		   -----------------------------------------</p>
-		<p>CONNECTING...</p>
-		<p>SATELLITE UPLINK FAILED</p>
-		<p>CONNECTING...</p>
-		<p>SATELLITE UPLINK FAILED</p>
-		<p>CONNECTING...</p>
-		<p>SATELLITE UPLINK FAILED</p>
-		<p><br>RETRY EXCEEDED - LAUNCHING SAFE MODE</p>
-	</div>
 	<div style="DISPLAY:none" id="page1">
 		<p>COBALT INDUSTRIES - CASSIOPEIA PROTOCOL 9<br>
 		   -----------------------------------------</p>
