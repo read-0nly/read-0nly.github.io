@@ -1,0 +1,343 @@
+<html><head>
+<style>
+	body{
+	font-family:Inconsolata, monospace;
+	font-size:26px;
+	height:100%;max-height:100%;min-height:100%;
+	overflow:hidden;
+	background-color: #1c1b22;
+	background-image: radial-gradient(rgba(0, 0, 0, 0.75), black 120%);
+	text-shadow: -2px 0 1px #0000C8,3px 0 1px #380000;
+	color:#49a;
+	}
+	#viewport::after {
+		content: "";
+		position: absolute;
+		top: 0;
+		left: 0;
+		width: 100vw;
+		height: 100vh;
+		background-image: repeating-linear-gradient(
+			0deg,
+			rgba(0,0,0, 0.25) 1px,
+			rgba(0,0,0, 0.55) 2px,
+			rgba(0,0,0, 0.25) 3px,
+			transparent 4px,
+			transparent 5px,
+			transparent 6px
+		);
+		pointer-events: none 
+	}
+	p{
+		display:none;
+		margin:0px;
+	}
+	.menuLink{
+		color:#256 !important;
+		text-decoration:none
+	
+	}
+	.menuLink:hover{
+		color:#9df !important;
+		text-shadow: -3px 0 2px #0068ff,3px 0 1px #dd0000;
+		text-decoration:none
+	
+	}
+</style>
+<script>
+ tasks = [];
+ currentTask = null;
+function startupSequence(){
+	document.body.onclick=null;
+	currentrow = 0
+	page1 = document.getElementById('page1');
+	chainPages = false
+	if(getRandomInt(0,10)==0){
+		tasks.push(Function("document.body.style.backgroundImage='radial-gradient(rgba(0, 50, 125, 0.75), black 120%)' ;return 50"));
+		tasks.push(Function("document.body.style.backgroundImage='radial-gradient(rgba(0, 25, 75, 0.75), black 120%)' ;return 0"));
+		tasks.push(Function("document.getElementById('page1').style.display='block';return 0"));
+		while(currentrow < page1.children.length){
+			tasks.push(Function("document.getElementById('page1').children["+currentrow+"].style.display='block';return 100"));
+			currentrow++;
+			if(currentrow < page1.children.length){
+				tasks.push(Function("document.getElementById('page1').children["+currentrow+"].style.display='block';return 500"));
+				currentrow++;
+			}
+		} 
+		chainPages=true;
+	}
+	currentrow = 0
+	page2 = document.getElementById('page2');
+	
+	tasks.push(Function("document.getElementById('page1').style.display='none';document.body.style.backgroundImage='radial-gradient(rgba(0, 0, 0, 0.75), black 120%)' ;return 50"));
+		
+	if(getRandomInt(0,2)==0 || chainPages){
+		tasks.push(Function("document.body.style.backgroundImage='radial-gradient(rgba(0, 50, 125, 0.75), black 120%)' ;return 50"));
+		tasks.push(Function("document.body.style.backgroundImage='radial-gradient(rgba(0, 25, 75, 0.75), black 120%)' ;return 0"));
+		tasks.push(Function("document.getElementById('page2').style.display='block';return 0"));
+		tasks.push(Function("document.getElementById('page2').children["+currentrow+"].style.display='block';return 100"));
+		currentrow++;
+		while(currentrow < page2.children.length){
+			timeout = 200 + getRandomInt(-50,50);
+			if(currentrow==page2.children.length-1){timeout=500};
+			tasks.push(Function("document.getElementById('page2').children["+currentrow+"].style.display='block';return "+timeout));
+			currentrow++;
+		} 
+	}
+	currentrow = 0
+	page3 = document.getElementById('page3');
+	
+	tasks.push(Function("document.getElementById('page2').style.display='none';document.body.style.backgroundImage='radial-gradient(rgba(0, 0, 0, 0.75), black 120%)' ;return 50"));
+	
+	tasks.push(Function("document.body.style.backgroundImage='radial-gradient(rgba(0, 50, 125, 0.75), black 120%)' ;return 50"));
+	tasks.push(Function("document.body.style.backgroundImage='radial-gradient(rgba(0, 25, 75, 0.75), black 120%)' ;return 0"));
+	tasks.push(Function("document.getElementById('page3').style.display='block';return 0"));
+	while(currentrow < page3.children.length){
+		tasks.push(Function("document.getElementById('page3').children["+currentrow+"].style.display='block';return 100"));
+		currentrow++;
+	} 
+	
+	tasks.push(Function("console.log('Done Sequence');return 0"));
+	doTask();
+}
+function getRandomInt(min, max) {
+  min = Math.ceil(min);
+  max = Math.floor(max);
+  return Math.floor(Math.random() * (max - min)) + min;
+}
+function doTask(){
+	currentlen = tasks.length
+	nextWait = (tasks.shift())()
+	console.log(nextWait);
+	if(currentlen>1){
+		currentTask = setTimeout(doTask,nextWait);
+	}
+}
+</script>
+</head>
+<body onclick="startupSequence()">
+<div style="width:100%%;height:100%;margin-left:auto;margin-right:auto;margin-top 0px;margin-bottom:0px;padding:50px;" id="viewport">
+
+	<div style="DISPLAY:none" id="page1">
+		<p>COBALT INDUSTRIES - CASSIOPEIA PROTOCOL 9<br>
+		   -----------------------------------------</p>
+		<p>CONNECTING...</p>
+		<p>SATELLITE UPLINK FAILED</p>
+		<p>CONNECTING...</p>
+		<p>SATELLITE UPLINK FAILED</p>
+		<p>CONNECTING...</p>
+		<p>SATELLITE UPLINK FAILED</p>
+		<p><br>RETRY EXCEEDED - LAUNCHING SAFE MODE</p>
+	</div>
+	
+
+	
+
+	<div style="DISPLAY:none" id="page1">
+		<p>COBALT INDUSTRIES - CASSIOPEIA PROTOCOL 9<br>
+		   -----------------------------------------</p>
+		<p>CONNECTING...</p>
+		<p>SATELLITE UPLINK FAILED</p>
+		<p>CONNECTING...</p>
+		<p>SATELLITE UPLINK FAILED</p>
+		<p>CONNECTING...</p>
+		<p>SATELLITE UPLINK FAILED</p>
+		<p><br>RETRY EXCEEDED - LAUNCHING SAFE MODE</p>
+	</div>
+	<div style="DISPLAY:none" id="page1">
+		<p>COBALT INDUSTRIES - CASSIOPEIA PROTOCOL 9<br>
+		   -----------------------------------------</p>
+		<p>CONNECTING...</p>
+		<p>SATELLITE UPLINK FAILED</p>
+		<p>CONNECTING...</p>
+		<p>SATELLITE UPLINK FAILED</p>
+		<p>CONNECTING...</p>
+		<p>SATELLITE UPLINK FAILED</p>
+		<p><br>RETRY EXCEEDED - LAUNCHING SAFE MODE</p>
+	</div>
+
+	<div style="display: none;" id="page2">
+		<p>COBALT INDUSTRIES - MAINTENANCE MODE<br>
+		   -----------------------------------------</p>
+		<p>BOOTING /dev/cda2</p><span>&nbsp;</span>
+		<p>SETTING CLOCK (UTC): ďťżŘ§Ů�ŘĽŘšŮ�Ř§Ů�</p>
+		<p>STARTING UDО╩©ь╖SEGMENTATION FAULT</p>
+		<p>CORE DUMPED</p>
+		<p></p>
+		<p>MAINTENANCE PARTITION CORRUPTED. REBOOTING</p>
+	</div>
+	<div id="page3">
+		<p>COBALT INDUSTRIES - INFO KIOSK<br>
+		-----------------------------------------<br></p>
+
+		<p>WELCOME TO COBALT INDUSTRIES! <i>THE</i> INDUSTRY LEADER IN NUCLEAR POWER AND PROPULSION, SATELLITE IMAGING AND TELECOMMUNICATION, AND BIOMIMETIC ORGANOSYNTHESIS. BRINGING AMERICA INTO A BRIGHTER TOMORROW, TODAY!<br><br></p>
+	  
+		<p>IT IS A PLEASURE TO HAVE YOU JOIN THE COBALT INDUSTRIES FAMILY! WHILE ADAPTING TO LIFE ON THE ISLAND CAN BE DIFFICULT, REST ASSURED THAT ALL OF US AT COBALT HQ (AS WELL AS OUR FRIENDS AT THE AGENCY) ARE EVER GRATEFUL OF THE IMPORTANT WORK YOU WILL DO HERE.<br><br></p>
+		<p>PLEASE TAKE THE TIME YOU NEED TO REVIEW THE FOLLOWING INFORMATION<br><br></p>
+			<p class="menuLink" onclick="document.getElementById('page3').style.display='none';document.getElementById('foodpage').style.display='block';">
+			FOOD AND DRINK</p>
+			<p class="menuLink" onclick="document.getElementById('page3').style.display='none';document.getElementById('ECOSYSTEM').style.display='block';">
+			THE LOCAL ECOSYSTEM</p>
+			<p class="menuLink" onclick="document.getElementById('page3').style.display='none';document.getElementById('NIGHTLIFE').style.display='block';">
+			THE NIGHTLIFE</p>
+			<p class="menuLink" onclick="document.getElementById('page3').style.display='none';document.getElementById('TRI').style.display='block';">
+			TRI: WHAT IT IS AND HOW TO RECOGNIZE IT</p>
+			<p class="menuLink" onclick="document.getElementById('page3').style.display='none';document.getElementById('CUTACFFI').style.display='block';">
+			A JOINT STATEMENT BY THE COBALT URBAN TRANSIT AUTHORITY AND THE COBALT FORESTRY AND FAUNA INITIATIVE</p>
+			<p class="menuLink" onclick="document.getElementById('page3').style.display='none';document.getElementById('SHOCKER').style.display='block';">
+			A SHOCKING SURPRISE! TIPS AND TRICKS FOR WORKING WITH HIGH VOLTAGES</p>
+			<p class="menuLink" onclick="document.getElementById('page3').style.display='none';document.getElementById('ZONING').style.display='block';">
+			ZONING RESTRICTIONS AND MUNICIPAL BYLAWS</p>
+			<p class="menuLink" onclick="document.getElementById('page3').style.display='none';document.getElementById('GOVERNANCE').style.display='block';">
+			LOCAL GOVERNANCE AND CRIMINAL CODE</p>
+			<p class="menuLink"><br></p>
+			<p><a href="steam://78.108.218.16:28015" class="menuLink">&gt;[CLOCK IN]&lt;</a>&nbsp;&nbsp;&nbsp;<a href="https://read-0nly.github.io" class="menuLink">[CLOCK OUT]</a></p>
+	</div>
+	
+	<div style="DISPLAY:none" id="foodpage">
+		<span>COBALT INDUSTRIES - FOOD AND DRINK<br>
+		-----------------------------------------<br><br></span>
+		
+		<span>EXPERIMENTATION CONTINUES TO ERADICATE THE AGGRESSIVE NATIVE WILD YEAST - IN THE MEANTIME, USE SALT TO PROTECT RAW FOOD FROM ROT<br></span>
+		<span>IF SALT IS UNAVAILABLE, SPREAD THE FOOD TO PREVENT CROSSCONTAMINATION<br></span>
+		<span>THE SUBJECTS HAVE FOUND THAT THE ISLAND'S BERRIES PRESERVE WELL SALTED AND COOKED INTO A JAM<br></span>
+		<span>THE SUBJECTS' RECENT MUTINY HAS MADE FISHING A COMPLICATED ENDEAVOR. THE FISHERS TOLERATE US BUT IT'S CLEAR THEY'VE CHOSEN A SIDE<br></span>
+		<span>THE NANOCRYSTALLINE NATURE OF LOCALLY SOURCED SALT MAKES IT IMPOSSIBLE TO PACKAGE FOR SALE, BUT IT CAN BE TRADED IN PERSON<br></span>
+		<span>THE LOCAL FAUNA IS BOTH DELICIOUS AND DANGEROUS. CULLING THEIR POPULATION ALSO PLEASES THE SUBJECTS, FOR WHAT IT'S WORTH<br><br><br></span>
+		
+		<span onclick="document.getElementById('foodpage').style.display='none';document.getElementById('page3').style.display='block';" class="menuLink">BACK TO MENU<br></span>
+		<span class="menuLink"><br><br></span>
+		<span class="menuLink"><a href="steam://78.108.218.16:28015">&gt;[CLOCK IN]&lt;</a>&nbsp;&nbsp;&nbsp;<a href="https://read-0nly.github.io">[CLOCK OUT]</a><br></span>
+	</div>
+	
+	<div style="DISPLAY:none" id="ECOSYSTEM">
+		<span>COBALT INDUSTRIES - THE LOCAL ECOSYSTEM<br>
+		-----------------------------------------<br><br></span>
+		
+		<span>RECENT ADVANCES IN MICRO AND MACRO CLIMATE STUDIES HAVE CONFIRMED THAT ANTHROPOGENIC CLIMATE CHANGE IS ACCELERATING, AND THAT IT'S EFFECTS CAN BE BOTH INCREDIBLY LOCALIZED AND LOCALLY MITIGATED THROUGH BOTH A REDUCTION IN CARBON EMISSIONS AND ACTIVE ENGAGEMENT IN FORESTRY AND CARBON SEQUESTRATION<br></span>
+		<span><br></span>
+		<span>AS SUCH, WE ASK THAT YOU BE MINDFUL AND JUDICIOUS IN YOUR USE OF FUELS, BOTH FOSSIL AND OTHERWISE<br></span>
+		<span><br></span>
+		<span>PLANT A TREE A DAY TO KEEP THE KINGTIDES AWAY<br></span>
+		<span>WE'LL SUCCEED IF WE ALL DO OUR PART<br><br><br></span>
+		<span onclick="document.getElementById('ECOSYSTEM').style.display='none';document.getElementById('page3').style.display='block';" class="menuLink">BACK TO MENU<br></span>
+		
+		<span class="menuLink"><br><br></span>
+		<span class="menuLink"><a href="steam://78.108.218.16:28015">&gt;[CLOCK IN]&lt;</a>&nbsp;&nbsp;&nbsp;<a href="https://read-0nly.github.io">[CLOCK OUT]</a><br></span>
+	</div>
+	
+	<div style="DISPLAY:none" id="NIGHTLIFE">
+		<span>COBALT INDUSTRIES - THE NIGHTLIFE<br>
+		-----------------------------------------<br><br></span>
+		
+		<span>BETWEEN THE KINGTIDES AND THE ONGOING MUTINY, NIGHTS ARE BEST SPENT SHELTERED<br></span>
+		<span>WE RECOMMEND RETURNING TO BASE BEFORE SUNDOWN<br></span>
+		<span>IF THIS IS NOT POSSIBLE, SHELTER IN PLACE - IDEALLY, IN ONE OF THE ABANDONED BUILDINGS, TO GET OUT OF THE ELEMENTS AND PRESERVE YOUR STRENGTH<br><br><br></span>
+		
+		<span onclick="document.getElementById('NIGHTLIFE').style.display='none';document.getElementById('page3').style.display='block';" class="menuLink">BACK TO MENU<br></span>
+		<span class="menuLink"><br><br></span>
+		<span class="menuLink"><a href="steam://78.108.218.16:28015">&gt;[CLOCK IN]&lt;</a>&nbsp;&nbsp;&nbsp;<a href="https://read-0nly.github.io">[CLOCK OUT]</a><br></span>
+	</div>
+	
+	<div style="DISPLAY:none" id="TRI">
+		<span>COBALT INDUSTRIES - TRI: WHAT IT IS AND HOW TO RECOGNIZE IT<br>
+		   -----------------------------------------<br><br></span>
+		
+		<span>TRAUMATIC REGENERATION INJURY - IT'S NO LAUGHING MATTER<br><br></span>
+		
+		<span>KNOW THE SIGNS, SPOT THEM EARLY, AND BRING THEM TO YOUR ASSIGNED DEPARTMENT CHIEF MEDICAL OFFICER<br></span>
+		<span><br></span>
+		<span>MEMORY LOSS<br></span>
+		<span>SLURRED SPEECH, "SCREECHING"<br></span>
+		<span>LOSS OF MOTOR CONTROL, RESULTING IN A STUTTERED GAIT<br></span>
+		<span>LOSS OF APPETITE<br></span>
+		<span>LOSS OF THIRST<br></span>
+		<span>WEAK CONSTITUTION<br></span>
+		<span>LOSS OF PREVIOUSLY KNOWN SKILLS<br></span>
+		<span>LOST TIME, WAKING UP IN STRANGE PLACES<br></span>
+		<span><br></span>
+		<span>COMMON CAUSES INCLUDE:<br></span>
+		<span>DEATH<br></span>
+		<span>THE SUBSEQUENT REGENERATION<br></span>
+		<span><br></span>
+		<span>AS YOU SURELY READ IN YOUR CONTRACT, YOU HAVE BEEN GIVEN THE SAME FACTOR AS THE SUBJECTS, SO AS TO BEST EXECUTE YOUR DUTIES. AS SUCH, YOU TOO WILL RETURN TO THE ISLAND UPON DYING, THROUGH THE STRANGE LOCALIZED CURVATURE. THE JOURNEY IS NOT WITHOUT CONSEQUENCE.<br></span>
+		<span>THIS ALSO GRANTS YOU ACCESS TO THE 4D KLEINIAN FOLD - WHAT THE RESEARCH DEPARTMENT HAS COME TO CALL HAMMERSPACE. THE SUBJECTS JUST CALL IT A BACKPACK. THIS SPACE IS CONNECTED TO THE FACTOR AND SEEMS TO FOLLOW YOU THROUGH THE REGENERATION PROCESS.<br><br></span>
+		
+		<span onclick="document.getElementById('TRI').style.display='none';document.getElementById('page3').style.display='block';" class="menuLink">BACK TO MENU</span>
+		<br>
+		<span class="menuLink"><br></span>
+		<span class="menuLink"><a href="steam://78.108.218.16:28015">&gt;[CLOCK IN]&lt;</a>&nbsp;&nbsp;&nbsp;<a href="https://read-0nly.github.io">[CLOCK OUT]</a></span>
+	</div>
+	
+	<div style="DISPLAY:none" id="CUTACFFI">
+		<span>COBALT INDUSTRIES - A JOINT STATEMENT BY THE COBALT URBAN TRANSIT AUTHORITY AND THE COBALT FORESTRY AND FAUNA INITIATIVE<br>
+		   -----------------------------------------<br><br></span>
+		
+		<span>AS YOU MAY BE AWARE, THE CUTA REPORTED LAST YEAR THAT MULTIPLE CIVILIAN CONTRACTORS HAVE JOINED THE MUTINY, HEADING UNDERGROUND WHERE THE YEAST CAN'T SURVIVE. THE SUBWAY LINES HAVE BEEN INACTIVE SINCE, AND ATTEMPTS TO RECLAIM THE TUNNELS HAVE FAILED. LAST MONTH, THE CFFI BEGAN GETTING REPORTS OF STRANGE ANIMAL BEHAVIOR, INCLUDING CROSS-SPECIES COOPERATION AND SOME WITNESSES REPORTING SUBJECTS HAVE BEGUN DOMESTICATING THE LOCAL WILDLIFE <br><br></span>
+		<span>AFTER SOME WEEKS OF INVESTIGATION, IT BECAME CLEAR THAT THESE ARE IN FACT CONTRACTORS, WHO SEEM TO HAVE ALIGNED WITH THE LOCAL FAUNA, AND SOME OF WHOM SEEM TO HAVE ADAPTED TO THE YEAST. DOCUMENTED CONFLICT BETWEEN THE FAUNA AND THE SUBJECTS SEEMS TO BE ONGOING. TO CLARIFY - THE CONTRACTORS ARE ALIGNED WITH THE FAUNA, AND NEITHER ARE ALIGNED WITH THE SUBJECTS<br><br></span>
+		<span>IT GOES WITHOUT SAYING THAT THIS IS A THREAT TO THE LIFE AND LIMB OF OUR PERSONNEL. AS SUCH, THE SUBWAYS WILL REMAIN CLOSED UNTIL FURTHER NOTICE, AND UNTIL THE CFFI HAS SUCCESSFULLY CULLED THE LOCAL FAUNA, TAKE CARE NOT TO BE CAUGHT UNGUARDED IN THE FORESTS<br><br></span>
+		
+		
+		<span onclick="document.getElementById('CUTACFFI').style.display='none';document.getElementById('page3').style.display='block';" class="menuLink">BACK TO MENU</span>
+		<br>
+		<span class="menuLink"><br></span>
+		<span class="menuLink"><a href="steam://78.108.218.16:28015">&gt;[CLOCK IN]&lt;</a>&nbsp;&nbsp;&nbsp;<a href="https://read-0nly.github.io">[CLOCK OUT]</a></span>
+	</div>
+	
+	<div style="DISPLAY:none" id="SHOCKER">
+		<span>COBALT INDUSTRIES - A SHOCKING SURPRISE! TIPS AND TRICKS FOR WORKING WITH HIGH VOLTAGES<br>
+		   -----------------------------------------<br><br></span>
+		   
+		<span>WHILE THE GRID IS LONG GONE, THE SUBJECTS HAVE MANAGED TO REVERSE ENGINEER AND SCAVENGE THEIR OWN POWER SOURCES, AND SOME SITES HAVE THEIR OWN ONSITE POWER BACKUP. WITH THE ONGOING SECURITY SITUATION, AND IN CONSIDERATION OF YOUR DUTIES, YOU HAVE BEEN PERMITTED TO SABOTAGE SUBJECT ELECTRONIC CAPACITY, AS WELL AS MANIPULATE THE ELECTRIC LAYOUT OF SITES OF FORENSIC INTEREST. TAKE CARE NOT TO MISWIRE THE CIRCUITS, IT COULD BE A COSTLY MISTAKE<br><br></span>
+		
+		
+		<span onclick="document.getElementById('SHOCKER').style.display='none';document.getElementById('page3').style.display='block';" class="menuLink">BACK TO MENU</span>
+		<br>
+		<span class="menuLink"><br></span>
+		<span class="menuLink"><a href="steam://78.108.218.16:28015">&gt;[CLOCK IN]&lt;</a>&nbsp;&nbsp;&nbsp;<a href="https://read-0nly.github.io">[CLOCK OUT]</a></span>
+	</div>
+	
+	<div style="DISPLAY:none" id="ZONING">
+		<span>COBALT INDUSTRIES - ZONING RESTRICTIONS AND MUNICIPAL BYLAWS<br>
+		   -----------------------------------------<br><br></span>
+		   
+		<span>WHILE YOU CAN LIVE AMONG SITES OF FORENSIC INTEREST, YOU CANNOT BUILD PERMANENT INFRASTRUCTURE IN THEM. YOUR DUTIES REQUIRE YOU TO LIVE ON THE ISLAND, SO WE UNDERSTAND THAT THERE MAY BE A NEED TO DEPLOY TEMPORARY SHELTER OF SORTS AT THESE SITES<br><br></span>
+		
+		<span>PART OF YOUR DUTIES DURING YOUR CAREER HERE AT COBALT WILL BE THE DEFINITION AND MAPPING OUT OF ZONES OF FORENSIC INTEREST. USING LANTERNS, YOU CAN DEFINE THE ZONE CANDIDATE BEFORE CONFIRMING THE COMPLETION OF THE ZONE MAPPING.<br><br></span>
+		
+		<span>FIREWORKS ARE AN IMPORTANT MEANS OF COMMUNICATION ON THE ISLAND. RED MEANS COME HERE, BLUE MEANS LOCKDOWN, GREEN MEANS GO BACK TO YOUR POST. BOOMERS ARE A SIGNAL TO ALL OF THE AGENTS ON SITE, CANDLES SIGNAL TO ONLY SEND A PORTION, AND VOLCANOS COMMAND YOUR LOCAL SQUAD<br><br></span>
+		
+		<span>TO FORM A SQUAD, TAP AN AGENT WITH A LIT TORCH<br><br></span>
+		
+		<span>USING SKULLS OF SUBJECTS WITH THE FACTOR, PERCHED ON A STICK, SEEMS TO CREATE A FOCAL POINT FOR THE STRANGE LOCALIZED CURVATURE, INCREASING THE ODDS OF REGENERATING THERE. THIS ALSO SERVES TO CLAIM POTENTIAL ZONES OF FORENSIC INTEREST<br><br></span>
+		
+		<span onclick="document.getElementById('ZONING').style.display='none';document.getElementById('page3').style.display='block';" class="menuLink">BACK TO MENU</span>
+		<br>
+		<span class="menuLink"><br></span>
+		<span class="menuLink"><a href="steam://78.108.218.16:28015">&gt;[CLOCK IN]&lt;</a>&nbsp;&nbsp;&nbsp;<a href="https://read-0nly.github.io">[CLOCK OUT]</a></span>
+	</div>
+
+	<div style="DISPLAY:none" id="GOVERNANCE">
+		<span>COBALT INDUSTRIES - LOCAL GOVERNANCE AND CRIMINAL CODE<br>
+		   -----------------------------------------<br><br></span>
+		   
+		<span>PER COBALT CORPORATE RESOLUTION 27-1.B, MARTIAL LAW IS INSTITUTED ON THE ISLAND. YOUR ORDER IS TO KILL BOTH SUBJECTS AND CONTRACTORS ON SIGHT.<br><br></span>
+		<span>THE SUBJECTS SEEM TO HAVE ORGANIZED IN SOME SORT OF DECENTRALIZED COMMUNITY. THEY SHOW NO OBVIOUS SIGN OF HIERARCHY, APPARENTLY GOVERNING THROUGH CONSENSUS. THERE IS EVIDENCE OF ONGOING INDUSTRIAL DEVELOPMENT AND TECHNICAL SPECIALIZATION, AND THEIR TECHNOLOGICAL CAPACITY, AIDED BY THE REVERSE ENGINEERING OF SCAVENGED TECHNOLOGY, IS LEADING TO RAPID ADVANCEMENT<br><br></span>
+		<span>THE CONTRACTORS LIVE UNDERGROUND, SHELTERED FROM THE NATIVE YEAST - HAVING ALSO DEFECTED, AND LACKING THE FACTOR THAT GRANTS THE SUBJECTS IMMUNITY, THEY'RE PRETTY MUCH TRAPPED DOWN THERE. SOME OF THEM SEEM TO BE SURFACING, HAVING GAINED IMMUNITY THROUGH UNKNOWN MEANS, AND SEEM TO BE WORKING TO ORGANIZE THE LOCAL FAUNA<br><br></span>
+		
+		<span>THE FACT THAT THE LATTER IS EVEN POSSIBLE DEMANDS FURTHER STUDY. COULD IT BE BECAUSE OF THE REGENERATION PROCESS? WHILE A SYMPTOM IS MEMORY LOSS, NOT EVERYTHING IS LOST IN THE PROCESS. PERHAPS THROUGH CUMULATIVE REGENERATION THEIR COGNITIVE CAPABILITIES HAVE BEEN EXPANDED<br><br></span>
+		
+		
+		
+		
+		<span onclick="document.getElementById('GOVERNANCE').style.display='none';document.getElementById('page3').style.display='block';" class="menuLink">BACK TO MENU</span>
+		<br>
+		<span class="menuLink"><br></span>
+		<span class="menuLink"><a href="steam://78.108.218.16:28015">&gt;[CLOCK IN]&lt;</a>&nbsp;&nbsp;&nbsp;<a href="https://github.com/read-0nly/Rust-coop-survival">[CLOCK OUT]</a></span>
+	</div>
+	
+
+
+</div>
+<script></script>
+</body></html>
