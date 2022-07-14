@@ -10,4 +10,4 @@ Right now, because most pages are actually markdown, there's a few spots that gi
 
 [And I glitch pictures](https://www.instagram.com/0bsol33t/)
 
-<a href="steam://connect/rust.nullzer0.cf:28015">I also have a heavily modded rust server</a>
+<a href="https://read-0nly.github.io/cobalt.html">I also have a heavily modded rust server</a>
