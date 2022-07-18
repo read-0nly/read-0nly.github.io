@@ -75,18 +75,49 @@ function startupSequence(){
 	currentrow = 0
 	page1 = document.getElementById('page1');
 	chainPages = false
-	if(getRandomInt(0,5)==0){
+		tasks.push(Function("document.body.style.backgroundImage='radial-gradient(rgba(20, 20, 20, 0.50), black 120%)' ;return 500"));
+	if(getRandomInt(0,1)==0){
 		tasks.push(Function("document.body.style.backgroundImage='radial-gradient(rgba(0, 50, 125, 0.75), black 120%)' ;return 50"));
 		tasks.push(Function("document.body.style.backgroundImage='radial-gradient(rgba(0, 25, 75, 0.75), black 120%)' ;return 0"));
 		tasks.push(Function("document.getElementById('page1').style.display='block';return 0"));
-		while(currentrow < page1.children.length){
-			tasks.push(Function("document.getElementById('page1').children["+currentrow+"].style.display='block';return 100"));
-			currentrow++;
-			if(currentrow < page1.children.length){
-				tasks.push(Function("document.getElementById('page1').children["+currentrow+"].style.display='block';return 500"));
+		if(getRandomInt(0,2)==0){
+			while(currentrow < page1.children.length){
+				tasks.push(Function("document.getElementById('page1').children["+currentrow+"].style.display='block';return 100"));
 				currentrow++;
-			}
-		} 
+				if(currentrow < page1.children.length){
+					tasks.push(Function("document.getElementById('page1').children["+currentrow+"].style.display='block';return 500"));
+					currentrow++;
+				}
+			} 
+		}
+		else if(getRandomInt(0,2)==0){
+			tasks.push(Function("document.getElementById('page1').style.display='block';return 0"));
+			while(currentrow < page1.children.length-2){
+				tasks.push(Function("document.getElementById('page1').children["+currentrow+"].style.display='block';return 100"));
+				currentrow++;
+				if(currentrow < page1.children.length-2){
+					tasks.push(Function("document.getElementById('page1').children["+currentrow+"].style.display='block';return 500"));
+					currentrow++;
+				}
+			} 
+		
+			tasks.push(Function("document.body.style.backgroundImage='radial-gradient(rgba(40, 40, 10, 0.30), black 120%)' ;return 0"));
+			tasks.push(Function("document.getElementById('page1').children["+currentrow+"].innerText = 'SATELLITE CONNECTED....\\nHASH CHECK FAILED, ABORTI\\n\\n⠀⠀⠀o O___⠀__________\\n⠀_][__|o| |ᕦʕ •ᴥ•ʔᕤ|\\n<_______|-|_________|\\n⠀/O-O-O⠀⠀⠀⠀o⠀⠀⠀⠀⠀o   \\nBEAR Alliance - Determined to GTFO';document.getElementById('page1').children["+currentrow+"].style.display='block';return 3000"));
+		}
+		else{
+			tasks.push(Function("document.getElementById('page1').style.display='block';return 0"));
+			while(currentrow < page1.children.length-2){
+				tasks.push(Function("document.getElementById('page1').children["+currentrow+"].style.display='block';return 100"));
+				currentrow++;
+				if(currentrow < page1.children.length-2){
+					tasks.push(Function("document.getElementById('page1').children["+currentrow+"].style.display='block';return 500"));
+					currentrow++;
+				}
+			} 
+		
+			tasks.push(Function("document.body.style.backgroundImage='radial-gradient(rgba(65, 20, 20, 0.30), black 120%)' ;return 0"));
+			tasks.push(Function("document.getElementById('page1').children["+currentrow+"].innerText = 'SATELLITE CONNECTED....\\nHASH CHECK ... INVALID HASH. VGhleSB0cmFwcGVkIHVzIGhlcmUgYW5kIHdlIGNhbid0IGV2ZW4gZ2V0IHRoZSBncmFjZSB0byBkaWUgLSB3Z\\nSB3ZXJlbid0IGdvb2QgbWVuLCBidXQgd2UgYWxsIGRlc2VydmUgdGhlIGdyYWNlIHRvIGRpZSwgcmlnaHQ/IF\\nRoZSBmYWN0b3IsIHRoZXkgY2FsbGVkIGl0LiBSaWRpbmcgdGhlIGN1cnZlIGJhY2ssIGxpa2Ugd2F2ZXMgZm9\\nyY2luZyB5b3UgYmFjayB0byBzaG9yZS4gQ29iYWx0IGtpbGxlZCB0aGUgd29ybGQgYW55d2F5cy4gV2UnbGwg\\nc3RhcnQgb3ZlciwgaGVyZS4KCk9sZCBzdWJqZWN0cywgYmxhbmsgc2xhdGVzIG9uIHRoZSBiZWFjaGVzLCBqb\\n2luIHVzLiBJdCdzIGEgYmF0dGxlIGhhcmQgZm91Z2h0LCBidXQgd2UnbGwgdGVhY2ggdGhlc2UgYmFzdGFyZH\\nMgLSB0aGlzIGlzIG91ciBpc2xhbmQsIGZ1Y2sgb2ZmIQ==';document.getElementById('page1').children["+currentrow+"].style.display='block';return 5000"));
+		}
 		chainPages=true;
 	}
 	currentrow = 0
@@ -398,5 +429,6 @@ function showPanel(s){
 
 
 </div>
-<script></script>
+<script>
+startupSequence()</script>
 </body></html>
