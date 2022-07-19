@@ -154,6 +154,79 @@ function startupSequence(){
 	tasks.push(Function("console.log('Done Sequence');return 0"));
 	doTask();
 }
+var CellJSON
+var CellGrid
+function getMap(){
+
+	fetch('http://78.108.218.16:28017')
+	.then(function(response) {
+	  return (response.json());
+	}).then(function(r){
+		if(r["$values"]!=null){
+			CellJSON=r["$values"];
+		}
+		CellGrid = new Array();
+		for(i=0;i<CellJSON.length;i++){
+			CellRow = new Array();
+			for(j=0;j<CellJSON[i].length;j++){
+				let Cell = CellJSON[i][j];
+				Cell.flags = CellJSON[i][j][0];
+				Cell.sciCount = CellJSON[i][j][1];
+				Cell.banCount = CellJSON[i][j][2];
+				Cell.sciTarget = CellJSON[i][j][3];
+				Cell.banTarget = CellJSON[i][j][4];
+				Cell.sciTimeout = CellJSON[i][j][6];
+				Cell.banTimeout = CellJSON[i][j][8];
+				Cell.isWater = (Cell.flags & 128) == 128;
+				Cell.isMonument = (Cell.flags & 64) == 64;
+				Cell.isShop = (Cell.flags & 32) == 32;
+				Cell.isAirdrop = (Cell.flags & 16) == 16;
+				Cell.isScientist = (Cell.flags & 8) == 8;
+				Cell.isBandit = (Cell.flags & 4) == 4;
+				Cell.isSciAggro = (Cell.flags & 2) == 2;
+				Cell.isBanAggro = (Cell.flags & 1) == 1;
+				CellRow.push(Cell);
+			}
+			CellGrid.push(CellRow);
+		}
+	})
+}
+
+function drawMap(){
+	s=""
+	s += "\n";
+	if(CellGrid==null){
+		s+= "SATTELITE LINK LOST";
+	}else{
+		for(i = CellGrid.length-1; i> 0;i--){
+			s1 = "";
+			s2= "";
+			s3="";
+			for(j = 0; j< CellGrid[i].length;j++){
+				
+				if(CellGrid[j][i].isWater){
+				  s1+=(CellGrid[j][i].isMonument||CellGrid[j][i].isShop||CellGrid[j][i].isBanAggro?"╭"+(CellGrid[j][i].isMonument?"@":" ")+(CellGrid[j][i].isShop?"$":" ")+(CellGrid[j][i].isBanAggro?"#":" ")+"╮":"     ");
+				  s2+=(CellGrid[j][i].isMonument||CellGrid[j][i].isShop||CellGrid[j][i].isBanAggro?"│"+(CellGrid[j][i].banCount>0?CellGrid[j][i].banCount.toString().padStart(3,'0'):"   ")+"│":" "+(CellGrid[j][i].banCount>0?CellGrid[j][i].banCount.toString().padStart(3,'0'):"   ")+" ");
+				  s3+=(CellGrid[j][i].isMonument||CellGrid[j][i].isShop||CellGrid[j][i].isBanAggro?"╰"+(CellGrid[j][i].banTarget>0?CellGrid[j][i].banTarget.toString().padStart(3,'0'):"   ")+"╯":" "+(CellGrid[j][i].banTarget>0?CellGrid[j][i].banTarget.toString().padStart(3,'0'):"   ")+" ");
+					
+				}else{
+				  s1+="┏"+(CellGrid[j][i].isMonument?"@":" ")+(CellGrid[j][i].isShop?"$":" ")+(CellGrid[j][i].isBanAggro?"#":" ")+"┓";
+				  s2+="┣"+(CellGrid[j][i].banCount>0?CellGrid[j][i].banCount.toString().padStart(3,'0'):"   ")+"┨";
+				  s3+="┗"+(CellGrid[j][i].banTarget>0?CellGrid[j][i].banTarget.toString().padStart(3,'0'):"   ")+"┛";
+				}
+			}	
+			s+=s1+"\n"+s2+"\n"+s3+"\n";
+		} 
+		
+	}
+	
+	s= s.replaceAll("\n","<br>").replaceAll(" ","&nbsp;")
+	
+	
+	document.getElementById("mapField").innerHTML = s
+	tasks.push(Function("getMap();drawMap();return 1000"));
+}
+
 function getRandomInt(min, max) {
   min = Math.ceil(min);
   max = Math.floor(max);
@@ -161,10 +234,11 @@ function getRandomInt(min, max) {
 }
 function doTask(){
 	currentlen = tasks.length
-	nextWait = (tasks.shift())()
-	console.log(nextWait);
-	if(currentlen>1){
+	if(currentlen>0){
+		nextWait = (tasks.shift())()
 		currentTask = setTimeout(doTask,nextWait);
+	}else{
+		currentTask = setTimeout(doTask,1000);
 	}
 }
 
@@ -243,7 +317,7 @@ function showPanel(s){
 			ZONING RESTRICTIONS AND MUNICIPAL BYLAWS</p>
 			<p class="menuLink" onclick="showPanel('GOVERNANCE')">
 			LOCAL GOVERNANCE AND CRIMINAL CODE</p>
-			<p class="menuLink" onclick="showPanel('CANDC')">
+			<p class="menuLink" onclick="showPanel('CANDC');getMap();drawMap();">
 			COMMAND AND CONTROL</p>
 			<p class="menuLink"><br></p>
 			<p><a class="menuLink" href="steam://78.108.218.16:28015">&gt;[CLOCK IN]&lt;</a>&nbsp;&nbsp;&nbsp;<a class="menuLink" href="https://github.com/read-0nly/Rust-coop-survival#readme">[CLOCK OUT]</a>&nbsp;&nbsp;&nbsp;<a class="menuLink" href="https://discord.gg/DMBbNEUPs5">cIRC</a> </p>
@@ -394,28 +468,8 @@ function showPanel(s){
 		   -----------------------------------------<br><br></p>
 		
 		<p><br></p>
-		<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="menuLink">&nbsp;@&nbsp;</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<br></p>
-		<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="menuLink">[ ]</span><span class="menuLink">[ ]</span><span class="menuLink">[ ]</span><span class="menuLink">[ ]</span><span class="menuLink">[ ]</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<br></p>
-		<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="menuLink">[ ]</span><span class="menuLink">[ ]</span><span class="menuLink">[ ]</span><span class="menuLink">[ ]</span><span class="menuLink">[ ]</span><span class="menuLink">[ ]</span><span class="menuLink">[ ]</span><span class="menuLink">[ ]</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<br></p>
-		<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="menuLink">[ ]</span><span class="menuLink">[ ]</span><span class="menuLink">[ ]</span><span class="menuLink">[ ]</span><span class="menuLink">[ ]</span><span class="menuLink">[@]</span><span class="menuLink">[ ]</span><span class="menuLink">[ ]</span>&nbsp;&nbsp;<span class="menuLink">CALL&nbsp;TROOPS</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<br></p>
-		<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="menuLink">[ ]</span><span class="menuLink">[ ]</span><span class="menuLink">[ ]</span><span class="menuLink">[ ]</span><span class="menuLink">[ ]</span><span class="menuLink">[ ]</span><span class="menuLink">[ ]</span><span class="menuLink">[ ]</span><span class="menuLinkhover">[X]</span><span class="menuLinkhover">=</span>&nbsp;<span class="menuLink">RETREAT&nbsp;FROM</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<br></p>
-		<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="menuLink">[ ]</span><span class="menuLink">[ ]</span><span class="menuLink">[ ]</span><span class="menuLink">[ ]</span><span class="menuLink">[ ]</span><span class="menuLink">[ ]</span><span class="menuLink">[ ]</span><span class="menuLink">[ ]</span><span class="menuLink">[ ]</span>&nbsp;&nbsp;<span class="menuLink">RETREAT&nbsp;TO</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="menuLink">]</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<br></p>
-		<p>&nbsp;&nbsp;&nbsp;<span class="menuLink"> @ </span><span class="menuLink">[ ]</span><span class="menuLink">[ ]</span><span class="menuLink">[ ]</span><span class="menuLink">[ ]</span><span class="menuLink">[ ]</span><span class="menuLink">[ ]</span><span class="menuLink">[ ]</span><span class="menuLink">[3]</span><span class="menuLink">[ ]</span><span class="menuLink">[ ]</span>&nbsp;&nbsp;<span class="menuLink">PATROL</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="menuLink">]</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<br></p>
-		<p>&nbsp;&nbsp;&nbsp;<span class="menuLink">[ ]</span><span class="menuLink">[ ]</span><span class="menuLink">[ ]</span><span class="menuLink">[ ]</span><span class="menuLink">[ ]</span><span class="menuLink">[ ]</span><span class="menuLink">[ ]</span><span class="menuLink">[ ]</span><span class="menuLink">[ ]</span><span class="menuLink">[ ]</span><span class="menuLink">[ ]</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="menuLink">]</span><span class="menuLink">[ ]</span>&nbsp;&nbsp;&nbsp;<br></p>
-		<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="menuLink">[ ]</span><span class="menuLink">[ ]</span><span class="menuLink">[ ]</span><span class="menuLink">[ ]</span><span class="menuLink">[@]</span><span class="menuLink">[ ]</span><span class="menuLink">[ ]</span><span class="menuLink">[ ]</span><span class="menuLink">[ ]</span><span class="menuLink">[ ]</span><span class="menuLink">[3]</span><span class="menuLink">[ ]</span><span class="menuLink">[ ]</span><span class="menuLink">[ ]</span><span class="menuLink">[ ]</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<br></p>
-		<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="menuLink">[ ]</span><span class="menuLink">[ ]</span><span class="menuLink">[ ]</span><span class="menuLink">[ ]</span><span class="menuLink">[ ]</span><span class="menuLink">[ ]</span><span class="menuLink">[ ]</span><span class="menuLink">[ ]</span><span class="menuLink">[ ]</span><span class="menuLink">[ ]</span><span class="menuLink">[ ]</span><span class="menuLink">[ ]</span><span class="menuLink">[ ]</span><span class="menuLink">[@]</span><span class="menuLink">[ ]</span><span class="menuLink">[ ]</span><span class="menuLink">[ ]</span>&nbsp;&nbsp;&nbsp;<br></p>
-		<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="menuLink">[ ]</span><span class="menuLink">[ ]</span><span class="menuLink">[ ]</span><span class="menuLink">[ ]</span><span class="menuLink">[ ]</span><span class="menuLink">[ ]</span><span class="menuLink">[ ]</span><span class="menuLink">[ ]</span><span class="menuLink">[ ]</span><span class="menuLink">[4]</span><span class="menuLink">[ ]</span><span class="menuLink">[ ]</span><span class="menuLink">[ ]</span><span class="menuLink">[ ]</span><span class="menuLink">[ ]</span><span class="menuLink">[ ]</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<br></p>
-		<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="menuLink">[ ]</span><span class="menuLink">[ ]</span><span class="menuLink">[ ]</span><span class="menuLink">[ ]</span><span class="menuLink">[ ]</span><span class="menuLink">[ ]</span><span class="menuLink">[ ]</span><span class="menuLink">[ ]</span><span class="menuLink">[ ]</span><span class="menuLink">[ ]</span><span class="menuLink">[ ]</span><span class="menuLink">[ ]</span><span class="menuLink">[ ]</span><span class="menuLink">[ ]</span><span class="menuLink">[ ]</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<br></p>
-		<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="menuLink">[ ]</span><span class="menuLink">[ ]</span><span class="menuLink">[ ]</span><span class="menuLink">[ ]</span><span class="menuLink">[ ]</span><span class="menuLink">[ ]</span><span class="menuLink">[ ]</span><span class="menuLink">[ ]</span><span class="menuLink">[ ]</span><span class="menuLink">[ ]</span><span class="menuLink">[ ]</span><span class="menuLink">[ ]</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<br></p>
-		<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="menuLink">[ ]</span><span class="menuLink">[ ]</span><span class="menuLink">[ ]</span><span class="menuLink">[ ]</span><span class="menuLink">[ ]</span><span class="menuLink">[ ]</span><span class="menuLink">[ ]</span><span class="menuLink">[ ]</span><span class="menuLink">[ ]</span><span class="menuLink">[ ]</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<br></p>
-		<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="menuLink">[ ]</span><span class="menuLink">[ ]</span><span class="menuLink">[ ]</span><span class="menuLink">[ ]</span><span class="menuLink">[ ]</span><span class="menuLink">[@]</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<br></p>
-		<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="menuLink">[ ]</span><span class="menuLink">[ ]</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<br></p>
-		<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="menuLink">[ ]</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="menuLink">[ ]</span><span class="menuLink">[ ]</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<br></p>
-		<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="menuLink">[ ]</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="menuLink">[ ]</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<br></p>
-		<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="menuLink">[ ]</span><span class="menuLink">[ ]</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<br></p>
-		<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<br></p>
-		<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<br></p>
-		<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<br></p>
+		<p id = "mapField">
+		</p>
 		
 		
 		
