@@ -119,6 +119,10 @@
 			}
 		  }
 		}
+		Quagga.onDetected(function(result) {
+			var code = result.codeResult.code;
+			var codeEntry = new Code(code);
+		});
 		
 		
 	</script>
