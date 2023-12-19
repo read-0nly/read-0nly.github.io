@@ -163,6 +163,7 @@
 		Quagga.onDetected(function(result) {
 			var code = result.codeResult.code;
 			var codeEntry = new TrackedCode(code);
+			navigator.vibrate(200);
 		});
 		function setLabel(x){
 			y=document.getElementById("label-"+x)
