@@ -17,9 +17,9 @@
   </head>
 
   <body>
-	  <input type="checkbox" id="validateMode">Validate Mode</input>
-	  <table id="barcodes" style="border-color:black">
-	  <tr><td>Waiting for validation</td></tr>
+	  <input type="checkbox" id="validateMode" checked=false>Validate Mode</input>
+	  <table id="barcodes" style="border-color:black" style="width:90%">
+	  <tr><td style="width:90%">Waiting for validation</td><td>Note</td><td>Delete</td></tr>
 	  </table>
     <section id="container" class="container">
       <div id="result_strip" style="display:none">
@@ -36,13 +36,13 @@
                 <label>
                     <span>Barcode-Type</span>
                     <select name="decoder_readers">
-                        <option value="upc">UPC</option>
                         <option value="code_128" selected="selected">Code 128</option>
                         <option value="code_39">Code 39</option>
                         <option value="code_39_vin">Code 39 VIN</option>
                         <option value="ean">EAN</option>
                         <option value="ean_extended">EAN-extended</option>
                         <option value="ean_8">EAN-8</option>
+                        <option value="upc">UPC</option>
                         <option value="upc_e">UPC-E</option>
                         <option value="codabar">Codabar</option>
                         <option value="i2of5">Interleaved 2 of 5</option>
@@ -117,10 +117,11 @@
 			if(index > -1){
 				target=TrackedCodes[index]
 			}else{
+				index=TrackedCodes.length
 				TrackedCodes.push(this)
 			}
 			target.code = code
-			target.node = $("#barcodes td:contains('"+code+"')")
+			target.node = $("#barcodes tr:has(td:contains('"+code+"'))")
 			console.log(target.node)
 			if(document.getElementById("validateMode").checked==true){
 				console.log("validate")
@@ -131,16 +132,15 @@
 					target.node.css("background-color", "limegreen");
 					target.found = true;
 					console.log("Helol2")
-					target.node.remove();
-					var row = $('<tr></tr>');
-					row.append(target.node);		
-					$("#barcodes").prepend(row);		
+					target.node.remove();	
+					$("#barcodes").append(target.node);	
 					
 				}
 			}else{
 				console.log("add")
 				if(target.node.length==0){
-					target.node = $('<tr><td><a><h4 class="code"></h4></a></td></tr>');
+					
+					target.node = $('<tr><td style="width:90%"><a><h4 class="code"></h4></a><label style="color:black" id="label-'+target.code+'"/></td><td><input type="button" onclick="setLabel(\''+target.code+'\')" id="Note-'+target.code+'" value="Edit"/></td><td><input type="button" onclick="delUPC(\''+target.code+'\')" id="Delete-'+target.code+'" value="Delete"/></td></tr>');
 					target.node.find("h4.code").html(target.code);
 					target.node.find("a").attr("href", "https://www.barcodelookup.com/"+target.code);
 					target.node.find("a").attr("target", "_blank");
@@ -153,10 +153,8 @@
 					target.node.css("background-color", "gray");
 					target.found = false;
 					console.log("Helol2")
-					target.node.remove();
-					var row = $('<tr></tr>');
-					row.append(target.node);		
-					$("#barcodes").append(row);	
+					target.node.remove();	
+					$("#barcodes").append(target.node);	
 				}
 			
 			}
@@ -166,7 +164,26 @@
 			var code = result.codeResult.code;
 			var codeEntry = new TrackedCode(code);
 		});
-		
+		function setLabel(x){
+			y=document.getElementById("label-"+x)
+			y.innerText=prompt("Note?",y.innerText);
+		}
+		function delUPC(code){
+			var isLargeNumber = (element) => element.code == code;
+			var  index = TrackedCodes.findIndex(isLargeNumber)
+			var  target = null
+			if(index > -1){
+				target=TrackedCodes[index]
+				target.node.remove();	
+			}
+			
+		}
+		setTimeout(function(){
+			$('select[name="decoder_readers"]')
+				.val('upc')
+				.trigger('change');
+			
+			}, 500);
 		
 	</script>
   </body>
