@@ -135,8 +135,10 @@
 			}else{
 				console.log("add")
 				if(target.node.length==0){
-					target.node = $('<tr><td><h4 class="code"></h4></td></tr>');
+					target.node = $('<tr><td><a><h4 class="code"></h4></a></td></tr>');
 					target.node.find("h4.code").html(target.code);
+					target.node.find("a").attr("href", "https://www.barcodelookup.com/"+target.code);
+					target.node.find("a").attr("target", "_blank");
 					target.node.css("background-color", "tan");
 					$("#barcodes").append(target.node);		
 					target.found = false;
