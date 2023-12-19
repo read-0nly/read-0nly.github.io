@@ -19,7 +19,7 @@
   <body>
 	  <input type="checkbox" id="validateMode">Validate Mode</input>
 	  <table id="barcodes" style="border-color:black">
-	  <tr><td>test</td></tr>
+	  <tr><td>Waiting for validation</td></tr>
 	  </table>
     <section id="container" class="container">
       <div id="result_strip" style="display:none">
@@ -131,6 +131,11 @@
 					target.node.css("background-color", "limegreen");
 					target.found = true;
 					console.log("Helol2")
+					target.node.remove();
+					var row = $('<tr></tr>');
+					row.append(target.node);		
+					$("#barcodes").prepend(row);		
+					
 				}
 			}else{
 				console.log("add")
@@ -148,6 +153,10 @@
 					target.node.css("background-color", "gray");
 					target.found = false;
 					console.log("Helol2")
+					target.node.remove();
+					var row = $('<tr></tr>');
+					row.append(target.node);		
+					$("#barcodes").append(row);	
 				}
 			
 			}
