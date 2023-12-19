@@ -13,6 +13,7 @@
   </head>
 
   <body>
+	  <input type="checkbox" id="validateMode">Validate Mode</input>
 	  <table id="barcodes" style="border-color:black">
 	  <tr><td>test</td></tr>
 	  </table>
@@ -89,7 +90,7 @@
                 </label>
             </fieldset>
         </div>
-      <div id="result_strip">
+      <div id="result_strip" style="display:none">
         <ul class="thumbnails"></ul>
         <ul class="collector"></ul>
       </div>
@@ -104,18 +105,43 @@
 		const TrackedCodes = [];
 		class TrackedCode{		
 		  constructor(code) {
-			this.code = code
-			this.node = $("#table_headers td:contains('"+code+"')")
-			if(this.node==null){
-				this.node = $('<tr><td><h4 class="code"></h4></td></tr>');
-				this.node.find("h4.code").html(this.code);
-				this.node.css("background-color", "tan");
-				$("#barcodes").append($node);		
-				this.found = false;
+			var isLargeNumber = (element) => element.code == code;
+			var  index = TrackedCodes.findIndex(isLargeNumber)
+			var  target = this
+			if(index > -1){
+				target=TrackedCodes[index]
+			}else{
+				TrackedCodes.push(this)
 			}
-			else{			
-				this.node.css("background-color", "gray");
-				this.found = false;
+			target.code = code
+			target.node = $("#barcodes td:contains('"+code+"')")
+			console.log(target.node)
+			if(document.getElementById("validateMode").checked==true){
+				console.log("validate")
+			
+				if(target.node.length==0){
+				}
+				else{			
+					target.node.css("background-color", "green");
+					target.found = true;
+					console.log("Helol2")
+				}
+			}else{
+				console.log("add")
+				if(target.node.length==0){
+					target.node = $('<tr><td><h4 class="code"></h4></td></tr>');
+					target.node.find("h4.code").html(target.code);
+					target.node.css("background-color", "tan");
+					$("#barcodes").append(target.node);		
+					target.found = false;
+					console.log("Helol1")
+				}
+				else{			
+					target.node.css("background-color", "gray");
+					target.found = false;
+					console.log("Helol2")
+				}
+			
 			}
 		  }
 		}
