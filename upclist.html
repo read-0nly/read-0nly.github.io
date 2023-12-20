@@ -18,9 +18,14 @@
 
   <body>
 	  <input type="checkbox" id="validateMode" checked=false>Validate Mode</input>
-	  <table id="barcodes" style="border-color:black" style="width:90%">
+	  <br>
+	  <table id="barcodes" style="border-color:black;width:49%;display:inline-block">
 	  <tr><td style="width:90%">Waiting for validation</td><td>Note</td><td>Delete</td></tr>
 	  </table>
+	  <table id="validatedbarcodes" style="border-color:black;width:49%;display:inline-block">
+	  <tr><td style="width:90%">Waiting for validation</td><td>Note</td><td>Delete</td></tr>
+	  </table>
+	  
     <section id="container" class="container">
       <div id="result_strip" style="display:none">
         <ul class="thumbnails"></ul>
@@ -127,17 +132,22 @@
 				console.log("validate")
 			
 				if(target.node.length==0){
+					target.node = $("#validatedbarcodes tr:has(td:contains('"+code+"'))")
 				}
+				if(target.node.length==0){}
 				else{			
 					target.node.css("background-color", "limegreen");
 					target.found = true;
 					console.log("Helol2")
 					target.node.remove();	
-					$("#barcodes").append(target.node);	
+					$("#validatedbarcodes").append(target.node);	
 					
 				}
 			}else{
 				console.log("add")
+				if(target.node.length==0){
+					target.node = $("#validatedbarcodes tr:has(td:contains('"+code+"'))")
+				}
 				if(target.node.length==0){
 					
 					target.node = $('<tr><td style="width:90%"><a><h4 class="code"></h4></a><label style="color:black" id="label-'+target.code+'"/></td><td><input type="button" onclick="setLabel(\''+target.code+'\')" id="Note-'+target.code+'" value="Edit"/></td><td><input type="button" onclick="delUPC(\''+target.code+'\')" id="Delete-'+target.code+'" value="Delete"/></td></tr>');
@@ -185,7 +195,7 @@
 				.val('upc')
 				.trigger('change');
 			
-			}, 500);
+			}, 1000);
 		
 	</script>
   </body>
