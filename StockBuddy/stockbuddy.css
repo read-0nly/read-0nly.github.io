@@ -1,0 +1,89 @@
+
+:root {
+	--viewport-width:34%;
+	--validatebtn-width:240px;
+	--viewport-height:33%;
+}
+
+body{
+	background-color:#102015 !important
+}
+
+#sb-container
+{
+	width:100%;
+	margin-left:auto;
+	margin-right:auto;
+}
+#sb-interface
+{
+	width:100%;
+	height:var(--viewport-height);
+	left:0px;
+	right:0px;
+	
+}
+#sb-toolmenu{
+	width:100%;
+	height:100%;
+	background-color:red;
+}
+#sb-modemenu{
+	width:100%;
+	height:100%;
+	background-color:red;
+}
+ .sb-column{
+	width:var(--viewport-width);
+	 
+ }
+#sb-interactive{
+	width:var(--viewport-width);
+	background-color:red;
+}
+.sb-toolbutton, .sb-modebutton{
+	background-color:red;
+	border: 1px solid;
+    text-align: center;
+}
+.sb-toolbutton:hover, .sb-modebutton:hover{
+	background-color:blue;
+	border: 1px solid;
+    text-align: center;
+}
+#interactive{
+	width:var(--viewport-width);
+	background-color:#000000 !important
+}
+#interactive.viewport > canvas, #interactive.viewport > video {
+	width:var(--viewport-width);
+	margin-left:auto;
+	margin-right:auto;
+	float:right;
+}
+.waiting{
+	background-color:lightgray;
+}
+.validated{
+	background-color:lightgray;
+}
+#stockvalidator{
+	width:100%;
+	background-color:black
+}
+#stockvalidator tr{
+	width:100%;
+	margin-bottom:10px;
+	height:50px;
+	text-align:center;
+	color:white;
+}
+#stockvalidator tr:hover{
+	background-color:green;
+	
+}
+canvas.drawingBuffer {
+	position: absolute;
+	left: calc(0-var(--viewport-width));
+	top: calc(0-var(--viewport-height));
+}
