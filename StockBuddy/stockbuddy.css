@@ -61,7 +61,8 @@ body{
 	background-color:var(--color-10);
 	border: 1px solid;
     text-align: center;
-	font-size:24pt;
+	font-size:36pt;
+	font-weight:bold;
 }
 .controls{	
 	position:absolute;
@@ -135,16 +136,28 @@ body{
 	text-align:center;
 	line-height: 180px;
 }
+.info-sale{
+	width:200px;
+	float:right;
+	height:90px;
+	line-height: 70px;
+	text-align:right;
+	background-color:var(--color-05);
+}
+.info-sale[nosale] {
+	background-color:var(--color-06);
+}
 .info-upc{
 	width:70%;
-	height:50%;
+	height:110px;
 	background-color:var(--color-01);
 	font-family: monospace;
-	text-align:center;
+	text-align:left;
+	line-height: 90px;
 }
 .info-note{
 	width:70%;
-	height:50%;
+	height:110px;
 	background-color:var(--color-00);
 	overflow-x:scroll;
 	overflow-y:hidden;
