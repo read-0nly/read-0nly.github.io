@@ -1,12 +1,30 @@
 
 :root {
-	--viewport-width:34%;
+	--viewport-width:33vw;
 	--validatebtn-width:240px;
-	--viewport-height:33%;
+	--viewport-height:33vh;
+	--app-height:66vh;
+	/*https://lospec.com/palette-list/notepad*/
+	--color-00:#373545; /*black*/
+	--color-01:#616478; /*gray*/
+	--color-02:#e0e0e0; /*white*/
+	--color-03:#aed6f5; /*sky*/
+	--color-04:#4a8264; /*darkgreen*/
+	--color-05:#5db365; /*lightgreen*/
+	--color-06:#ad8c4b; /*darkgold*/
+	--color-07:#c4b152; /*lightgold*/
+	--color-08:#5a6ead; /*darkblue*/
+	--color-09:#7c9fd9; /*lightblue*/
+	--color-10:#c9597a; /*darkred*/
+	--color-11:#e8899e; /*lightred*/
+	--color-12:#695661; /*darkbrown*/
+	--color-13:#8f6f7a; /*lightBrown*/
+	--color-14:#c4a082; /*darksand*/
+	--color-15:#e5cea5; /*lightsand*/
 }
 
 body{
-	background-color:#102015 !important
+	background-color:#102015 !important;
 }
 
 #sb-container
@@ -20,36 +38,51 @@ body{
 	width:100%;
 	height:var(--viewport-height);
 	left:0px;
-	right:0px;
-	
+	right:0px;	
 }
 #sb-toolmenu{
 	width:100%;
 	height:100%;
-	background-color:red;
 }
 #sb-modemenu{
 	width:100%;
 	height:100%;
-	background-color:red;
 }
- .sb-column{
+.sb-column{
 	width:var(--viewport-width);
 	 
  }
 #sb-interactive{
 	width:var(--viewport-width);
-	background-color:red;
+	height:var(--viewport-height);
+	background-color:var(--color-01);
 }
 .sb-toolbutton, .sb-modebutton{
-	background-color:red;
+	background-color:var(--color-10);
 	border: 1px solid;
     text-align: center;
+	font-size:24pt;
+}
+.controls{	
+	position:absolute;
+	width:33vw;
+	height:calc(var(--viewport-height) - 60px);
+	top:60px;
+	background-color:var(--color-15);
+	z-index:97;
+	left: 0; 
+	right: 0; 
+	margin-left: auto; 
+	margin-right: auto; 
+	padding:10px;
+	font-size:24pt;
+	overflow-y:scroll;
 }
 .sb-toolbutton:hover, .sb-modebutton:hover{
-	background-color:blue;
-	border: 1px solid;
-    text-align: center;
+	background-color:var(--color-07);
+}
+.sb-toolbutton:active, .sb-modebutton:active{
+	background-color:var(--color-05);
 }
 #interactive{
 	width:var(--viewport-width);
@@ -57,26 +90,85 @@ body{
 }
 #interactive.viewport > canvas, #interactive.viewport > video {
 	width:var(--viewport-width);
+	height:var(--viewport-height);
 	margin-left:auto;
 	margin-right:auto;
 	float:right;
 }
 .waiting{
-	background-color:lightgray;
+	background-color:var(--color-01);
 }
 .validated{
-	background-color:lightgray;
+	background-color:var(--color-05);
 }
 #stockvalidator{
+	background-color:black;
+	width:100%;	
+	max-height:var(--app-height);
+	overflow-y: scroll;
+	overflow-x: hidden;
+}
+#stockvalidator table{
 	width:100%;
-	background-color:black
+	bottom:0px;
+}
+#stockvalidator td{
+	padding:15px;
 }
 #stockvalidator tr{
-	width:100%;
-	margin-bottom:10px;
-	height:50px;
-	text-align:center;
+	height:180px;
 	color:white;
+	font-size:32pt;
+}
+.info{
+	width:10vw;
+	float:left;
+	font-size:36pt;
+	padding:10px;
+	border:1px solid black;
+}
+.info-lookup{
+	width:7%;
+	height:100%;
+	background-color:var(--color-08);
+	font-family: monospace;
+	text-align:center;
+	line-height: 180px;
+}
+.info-upc{
+	width:70%;
+	height:50%;
+	background-color:var(--color-01);
+	font-family: monospace;
+	text-align:center;
+}
+.info-note{
+	width:70%;
+	height:50%;
+	background-color:var(--color-00);
+	overflow-x:scroll;
+	overflow-y:hidden;
+}
+.info-controls{
+	width:23%;
+	height:100%;
+	float:right;
+	background-color:var(--color-00);
+	text-align:center;
+	padding:0px;
+}
+.info-editNote{
+	width:100%;
+	height:50%;
+	background-color:var(--color-05);
+}
+.info-deleteUpc{	
+	width:100%;
+	height:50%;
+	background-color:var(--color-10);
+}
+#stockvalidator td{
+	width:100vw;
 }
 #stockvalidator tr:hover{
 	background-color:green;
