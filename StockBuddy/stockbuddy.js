@@ -267,12 +267,202 @@ Quagga.onDetected(function(result) {
 	}
 });
 
+class UPCValidation{
+	code="";
+	found=false;
+	volatileUPC = null
+	static jsonparser=["code","found"]
+	static DB = [];
+	constructor(code, found=false,note="",promo="",image=""){
+		this.volatileUPC=UPC.fetch(code,note,promo,image);
+		this.code=code;
+		UPCValidation.DB.push(this);
+		
+	}
+	static fetch(code, found=null,note="",promo="",image=""){
+		var target=UPCValidation.search(code);
+		if(target==null){			
+			target=new UPCValidation(code)
+				console.log("upcvalidfoundnew");
+		}
+		if(found!=null){
+			target.found=found;
+		}
+		if(note!=""){
+			console.log("Overwrite '"+target.volatileUPC.note+"' with  '"+note+"'")
+			target.volatileUPC.note=note;
+		}
+		if(promo!=""){
+			target.volatileUPC.promo=promo;
+		}
+		if(image!=""){
+			target.volatileUPC.image=image;
+		}
+		return target;		
+		
+	}
+	toNode(){
+		if(this.volatileUPC==null){
+			this.volatileUPC=UPC.search(code)
+		}
+		if(this.volatileUPC==null){
+			return null
+		}
+		this.node = this.volatileUPC.toNode();
+		if(this.found){
+			this.node.find(".info-upc").attr("validated","");
+		}
+		return this.node;
+	}
+	static search(code){
+		var found =  false;
+		var  result=null;
+		Array.from(UPCValidation.DB).forEach((upcvalid)=>{
+			if(upcvalid.code==code){
+				if(upcvalid.volatileUPC==null){
+					var index = UPCValidation.DB.indexOf(upcvalid);
+					var x = UPCValidation.DB.splice(index, upcvalid);
+				}
+				else{
+					found=true;
+					console.log("upcvalidfound");
+					result= upcvalid;
+					
+				}
+				
+			}
+			
+		});
+		return result;
+		
+	}
+}
+class UPC{
+	code=""
+	note=""
+	promo=""
+	image=""
+	static jsonparser=["code","note","promo","image"]
+	static DB = [];
+	scannedcount=-1;
+	/*
+	
+	<tr><td>
+		<div class="info info-lookup" onclick="UPCClick.call(this)">&#128269;</div>
+		<div class="info info-upc">000055554212<div class="info info-sale">2/2.50</div></div>
+		<div class="info info-controls"><div class="info info-deleteUpc">[Delete] </div><div class="info info-editNote">[Edit] </div> </div>
+		<div class="info info-note">jhdasfjhgasdf kjlhgdsf </div>
+	</td></tr>
+	*/
+	constructor(code){
+			this.code=code;
+			UPC.DB.push(this);
+	}
+	static fetch(code,note="",promo="",image=""){
+		var target = UPC.search(code);
+		if(target==null){
+			target=new UPC(code,note,promo,image);
+		}
+		if(note!=""){
+			console.log("Overwrite '"+target.note+"' with  '"+note+"'")
+			target.note=note;
+		}
+		if(promo!=""){
+			target.promo=promo;
+		}
+		if(image!=""){
+			target.image=image;
+		}
+		return target;
+	}
+	static click()
+	{
+	   var func = this.getAttribute('function');
+	   var upc = this.parentNode.getAttribute('upc');
+	}
+	toNode(){
+		this.node = $(`		
+		<tr><td upc="`+this.code+`">
+			<div class="info info-lookup" onclick="UPC.click.call(this)" function="lookup">&#128269;</div>
+			<div class="info info-upc">
+				`+this.code+`
+				<div class="info info-sale" onclick="UPC.click.call(this)" function="promo">`+this.promo+`</div>
+			</div>
+			<div class="info info-controls">
+				<div class="info info-deleteUpc" onclick="UPC.click.call(this)" function="delete">[Delete] </div>
+				<div class="info info-editNote" onclick="UPC.click.call(this)" function="edit">[Edit] </div> 
+			</div>
+			<div class="info info-note">`+this.note+`</div>
+		</td></tr>
+		`);		
+		return this.node;
+	}
+	
+	toString(){
+		return code;
+	}
+	static sortByCode(){
+		var bucket  = null;
+		var sorted = true;
+		DB.forEach((code) => {
+			
+		});
+	}
+	static sortByCount(){
+		var bucket  = null;
+		var sorted = true;
+		do{
+			for(i=0;i<DB.length-1;i++){
+				if(DB[i].scannedcount<DB[i+1].scannedcount){
+					sorted=false;
+					bucket =DB[i];
+					DB[i]=DB[i+1];
+					DB[i+1]=bucket;
+					bucket=null;
+				}
+			}
+		}while(!sorted)
+	}
+	static sort=UPC.sortByCount;
+	static search(code){
+		var found=false;
+		UPC.DB.forEach((upc)=>{
+			if(upc.code==code){
+				console.log("found");
+				found=true;
+				return upc;
+			}
+			
+		});
+		if(!found){
+			console.log("notfound");
+			return null;
+		}
+	}
+}
+
+class UPCDB  {
+	static codebank = []
+	static current  = []
+	
+}
+
+
+//debugging
+var upcval = UPCValidation.fetch("555444321",true,"Test note","2/6.66");
+upcval = UPCValidation.fetch("555444321",null,"t2");
+$("#stockvalidator-table").empty();
+$("#stockvalidator-table").append(upcval.toNode());
+
+//Bootstrap
+
 addEventListener("load", (event) => {
 	$('select[name="decoder_readers"]')
 	.val('upc')
 	.trigger('change');
 	App.stop=true;
 	});
+	
 $(window).blur(function(){
 	App.stop=true;
 });

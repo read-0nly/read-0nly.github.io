@@ -155,6 +155,9 @@ body{
 	text-align:left;
 	line-height: 90px;
 }
+.info-upc[validated]{
+	background-color:var(--color-04);	
+}
 .info-note{
 	width:70%;
 	height:110px;
