@@ -54,7 +54,7 @@
 		</table>
 		<div style="width:200px;margin-right:auto;margin-left:auto;padding:0px;height:100px;;">
 			<div class="list-group-item list-group-item-action list-group-item-info stockbuddybutton" onclick="addTask()">Add</div>
-			<div class="list-group-item list-group-item-action list-group-item-danger stockbuddybutton" onclick="document.getElementById('additiondiv').style.display='none'">Cancel</div>
+			<div class="list-group-item list-group-item-action list-group-item-danger stockbuddybutton" onclick="clear_addTask()">Cancel</div>
 		</div>
 		</div>
 	<style>
@@ -91,11 +91,14 @@
 	
 	class StockBuddyTask {
 		constructor(text,starttime,endtime,label,state) {
-			this.text = text;
-			this.starttime = starttime;
-			this.endtime = endtime;
-			this.label = new StockBuddyLabelStyle(label);
-			this.state=state ;
+			if(text!=""){
+				this.text = text;
+				this.starttime = starttime;
+				this.endtime = endtime;
+				this.label = new StockBuddyLabelStyle(label);
+				this.state=state ;
+				tasks.push(this);
+			}
 		}
 		serialize(){
 			this.state=this.checkbox.value
@@ -109,7 +112,23 @@
 	  constructor(label) {
 		if(typeof label === 'string'){
 			this.text = label;
-			this.style = "list-group-item-primary"
+			switch(label.toLowerCase()) {
+			case "high":
+				// code block
+				this.style = "list-group-item-danger"
+				break;
+			case "mid":
+				// code block
+				this.style = "list-group-item-warning"
+				break;
+			case "low":
+				// code block
+				this.style = "list-group-item-primary"
+				break;
+			default:
+				// code block
+				this.style = "list-group-item-success"
+			} 
 		}
 		else{
 			this.text = label.text;
@@ -168,14 +187,23 @@
 		});
 	}
 	
+	function clear_addTask(){
+		
+		document.getElementById("task").value=""
+		document.getElementById("starttime").value=""
+		document.getElementById("endtime").value=""
+		document.getElementById("category").value=""
+		document.getElementById('additiondiv').style.display='none'
+	}
+	
 	function addTask(){
-		tasks.push(new StockBuddyTask(
+		new StockBuddyTask(
 			document.getElementById("task").value,
 			document.getElementById("starttime").value,
 			document.getElementById("endtime").value,
 			document.getElementById("category").value
-		))
-		document.getElementById('additiondiv').style.display='none'
+		)
+		clear_addTask()
 		displayTasks()
 		saveTasks()
 	}
@@ -185,13 +213,13 @@
 		if(loadedCodes  != null){
 			loadedCodes.forEach((code) => {
 				//text,starttime,endtime,label,state
-				tasks.push(new StockBuddyTask(
+				new StockBuddyTask(
 					code.text,
 					code.starttime,
 					code.endtime,
 					code.label,
 					code.state
-				))
+				)
 			});
 		}
 		displayTasks()
