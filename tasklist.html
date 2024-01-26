@@ -7,32 +7,157 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
   </head>
   <body>
-    <h1>Hello, world!</h1>
 	<div class="bd-example m-0 border-0">
-	<table><tr class="alert alert-primary alert-dismissible fade show" role="alert"  style="height:32pt;"><td>
-          A simple primary alert with <a href="#" class="alert-link">an example link</a>. Give it a click if you like.
-        </td><td>
-		  Time to start
-		</td>
-		<td><p class="spacer" style="width:40px"></p></td>
-		<td>
-         <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close" style="top:-8px;right:-8px;"></button>
-		</td></tr></table>
-        <div class="list-group">
-          <a href="#" class="list-group-item list-group-item-action">A simple default list group item</a>
-          
-          <a href="#" class="list-group-item list-group-item-action list-group-item-primary">A simple primary list group item</a>
-          <a href="#" class="list-group-item list-group-item-action list-group-item-secondary">A simple secondary list group item</a>
-          <a href="#" class="list-group-item list-group-item-action list-group-item-success">A simple success list group item</a>
-          <a href="#" class="list-group-item list-group-item-action list-group-item-danger">A simple danger list group item</a>
-          <a href="#" class="list-group-item list-group-item-action list-group-item-warning">A simple warning list group item</a>
-          <a href="#" class="list-group-item list-group-item-action list-group-item-info">A simple info list group item</a>
-          <a href="#" class="list-group-item list-group-item-action list-group-item-light">A simple light list group item</a>
-          <a href="#" class="list-group-item list-group-item-action list-group-item-dark">A simple dark list group item</a>
-        </div>
-        </div>
+		<!----
+		<table><tr class="alert alert-primary alert-dismissible fade show" role="alert"  style="height:32pt;"><td>
+			  A simple primary alert with <a href="#" class="alert-link">an example link</a>. Give it a click if you like.
+			</td><td>
+			  Time to start
+			</td>
+			<td><p class="spacer" style="width:40px"></p></td>
+			<td>
+			 <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close" style="top:-8px;right:-8px;"></button>
+			</td></tr></table>
+			---->
+		<!----
+		<div class="list-group">
+			  <a class="list-group-item list-group-item-action list-group-item-primary">A simple primary list group item</a>
+			  <a class="list-group-item list-group-item-action list-group-item-info">A simple info list group item</a>
+			</div>
+		</div>
+			---->
+		<div class="list-group" id="checklist">          
+		</div>
+		<div style="width:200px;margin-right:auto;margin-left:auto;padding:0px;height:100px;;">
+		<div class="list-group-item list-group-item-action list-group-item-info stockbuddybutton" onclick="document.getElementById('additiondiv').style.display='block'">Add</div>
+		<div class="list-group-item list-group-item-action list-group-item-info stockbuddybutton" >Manage</div>
+		</div>
+    </div>
+	<div  id ="additiondiv"  class="addition">
+		<table id ="additiontable" class="addition">
+			<tr>
+				<td class="sbcol1">Task</td>
+				<td class="sbcol2"><input type="textbox" id="task" /></td>
+			</tr>
+			<tr>
+				<td class="sbcol1">Start Time</td>
+				<td class="sbcol2"><input type="time" id="starttime"/></td>
+			</tr>
+			<tr>
+				<td class="sbcol1">End Time</td>
+				<td class="sbcol2"><input type="time" id="endtime" /></td>
+			</tr>
+			<tr>
+				<td class="sbcol1">Label</td>
+				<td class="sbcol2"><input type="textbox" id="category" /></td>
+			</tr>
+		</table>
+		<div style="width:200px;margin-right:auto;margin-left:auto;padding:0px;height:100px;;">
+			<div class="list-group-item list-group-item-action list-group-item-info stockbuddybutton" onclick="addTask()">Add</div>
+			<div class="list-group-item list-group-item-action list-group-item-danger stockbuddybutton" onclick="document.getElementById('additiondiv').style.display='none'">Cancel</div>
+		</div>
+		</div>
+	<style>
+	.stockbuddybutton {
+		display:block;
+		width:100px;
+		margin:0px;
+		float:left;
+		text-align:center;
+		height:100px;
+		line-height:100px;
+		cursor: pointer;
+	}
+	.sbcol2 {
+		text-align:right;
+	}
+	.addition {
+		width:400px;
+		margin:auto;
+		padding-top:36px;
+	}
+	</style>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
 	<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
 	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.min.js" integrity="sha384-BBtl+eGJRgqQAUMxJ7pMwbEyER4l1g+O15P+16Ep7Q9Q+zqX6gSbd85u4mG4QzX+" crossorigin="anonymous"></script>
+	<script  type="text/javascript">	
+	
+	const checklistTemplate = '<div class="list-group-item list-group-item-action">A simple primary list group item</div>'
+	
+	const tasks = [];
+	
+	class StockBuddyTask {
+		constructor(text,starttime,endtime,label,state) {
+			this.text = text;
+			this.starttime = starttime;
+			this.endtime = endtime;
+			this.label = new StockBuddyLabelStyle(label);
+			this.state=state ;
+		}
+		serialize(){
+			this.state=this.checkbox.value
+			return JSON.stringify(this, ["text","starttime","endtime","label","state","style"])
+		}
+		static deserialize(string){
+			return JSON.parse(string);
+		}
+	}
+	class StockBuddyLabelStyle {
+	  constructor(label) {
+		this.text = label;
+		this.style = "list-group-item-primary"
+	  }
+	}
+	
+	function displayTasks(){	
+		document.getElementById("checklist").innerHTML=""
+		tasks.forEach((task) => {
+			 task.div = document.getElementById("checklist").appendChild(document.createElement("div"))
+			 task.div.className = "list-group-item list-group-item-action "+task.label.style;
+			 task.checkbox = task.div.appendChild(document.createElement("input"))
+			 task.checkbox.setAttribute("type",'checkbox')
+			 task.checkbox.style.margin="10px"
+			 task.checkbox.value=task.state
+			 task.tasktext=task.div.appendChild(document.createElement("span"))
+			 task.tasktext.style.display="inline-block"
+			 task.tasktext.style.width="400px"
+			 task.tasktext.innerText=task.text
+			 task.taskrighthand=task.div.appendChild(document.createElement("div"))
+			 task.taskstart=task.taskrighthand.appendChild(document.createElement("div"))
+			 task.taskstart.style.display="inline-block"
+			 task.taskstart.style.width="60px"
+			 task.taskstart.innerText=task.starttime
+			 task.taskend=task.taskrighthand.appendChild(document.createElement("div"))
+			 task.taskend.style.display="inline-block"
+			 task.taskend.style.width="60px"
+			 task.taskend.innerText=task.endtime
+			 task.tasklabel=task.taskrighthand.appendChild(document.createElement("div"))
+			 task.tasklabel.style.display="inline-block"
+			 task.tasklabel.style.width="100px"
+			 task.tasklabel.innerText=task.label.text
+			 task.taskrighthand.style.float="right"
+			 
+		});
+	}
+	
+	function addTask(){
+		tasks.push(new StockBuddyTask(
+			document.getElementById("task").value,
+			document.getElementById("starttime").value,
+			document.getElementById("endtime").value,
+			document.getElementById("category").value
+		))
+		document.getElementById('additiondiv').style.display='none'
+		displayTasks()
+	}
+	
+	function loadTasks(){
+	
+	}
+	function saveTasks(){
+	
+	}
+	
+	</script>
   </body>
 </html>
