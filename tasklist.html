@@ -29,12 +29,16 @@
 		<div class="list-group" id="checklist">          
 		</div>
 		<div style="width:200px;margin-right:auto;margin-left:auto;padding:0px;height:100px;;">
-		<div class="list-group-item list-group-item-action list-group-item-info stockbuddybutton" onclick="document.getElementById('additiondiv').style.display='block'">Add</div>
+		<div class="list-group-item list-group-item-action list-group-item-info stockbuddybutton" onclick="document.getElementById('additiondiv').style.display='block';document.getElementById('uid').value=new Date().getTime()">Add</div>
 		<div class="list-group-item list-group-item-action list-group-item-info stockbuddybutton" >Manage</div>
 		</div>
     </div>
 	<div  id ="additiondiv"  class="addition">
 		<table id ="additiontable" class="addition">
+			<tr style="display:none">
+				<td class="sbcol1">UID</td>
+				<td class="sbcol2"><input type="textbox" id="uid" /></td>
+			</tr>
 			<tr>
 				<td class="sbcol1">Task</td>
 				<td class="sbcol2"><input type="textbox" id="task" /></td>
@@ -90,7 +94,7 @@
 	const tasks = [];
 	
 	class StockBuddyTask {
-		constructor(text,starttime,endtime,label,state) {
+		constructor(text,starttime,endtime,label,state,creationstamp=new Date().getTime(),parent=null) {
 			if(text!=""){
 				this.text = text;
 				this.starttime = starttime;
@@ -98,11 +102,18 @@
 				this.label = new StockBuddyLabelStyle(label);
 				this.state=state ;
 				tasks.push(this);
+				this.subtasks=[];
+				this.parent=parent;
+				if(creationstamp!=0){
+					this.creationstamp=creationstamp
+				}else{
+					this.creationstamp=new Date().getTime()				
+				}
 			}
 		}
 		serialize(){
 			this.state=this.checkbox.value
-			return JSON.stringify(this, ["text","starttime","endtime","label","state","style"])
+			return JSON.stringify(this, ["text","starttime","endtime","label","state","style","creationstamp"])
 		}
 		static deserialize(string){
 			return JSON.parse(string);
@@ -143,10 +154,13 @@
 		tasks.forEach((task) => {
 			 task.div = document.getElementById("checklist").appendChild(document.createElement("div"))
 			 task.div.className = "list-group-item list-group-item-action "+task.label.style;
-			 task.div.id="task:"+i
+			 task.div.id="task:"+i+":"+task.creationstamp
+			 task.div.style.padding="5px"
 			 task.checkbox = task.div.appendChild(document.createElement("input"))
 			 task.checkbox.setAttribute("type",'checkbox')
-			 task.checkbox.style.margin="10px"
+			 task.checkbox.style.margin="5px"
+			 task.checkbox.style["margin-top"]="15px"
+			 task.checkbox.style["margin-bottom"]="15px"
 			 task.checkbox.checked=task.state
 			 task.checkbox.onclick = Function(`
 				tasks[parseInt(("`+task.div.id+`").split(':')[1])].state = document.getElementById("`+task.div.id+`").getElementsByTagName("input")[0].checked;
@@ -154,25 +168,20 @@
 			 `)
 			 task.tasktext=task.div.appendChild(document.createElement("span"))
 			 task.tasktext.style.display="inline-block"
-			 task.tasktext.style.width="400px"
+			 task.tasktext.style.width="auto"
 			 task.tasktext.innerText=task.text
 			 task.taskrighthand=task.div.appendChild(document.createElement("div"))
 			 task.taskstart=task.taskrighthand.appendChild(document.createElement("div"))
 			 task.taskstart.style.display="inline-block"
-			 task.taskstart.style.width="60px"
+			 task.taskstart.style.width="50px"
 			 task.taskstart.innerText=task.starttime
 			 task.taskend=task.taskrighthand.appendChild(document.createElement("div"))
 			 task.taskend.style.display="inline-block"
-			 task.taskend.style.width="60px"
+			 task.taskend.style.width="50px"
 			 task.taskend.innerText=task.endtime
 			 task.tasklabel=task.taskrighthand.appendChild(document.createElement("div"))
 			 task.tasklabel.style.display="inline-block"
-			 task.tasklabel.style.width="100px"
-			 task.tasklabel.innerText=task.label.text
-			 task.taskrighthand.style.float="right"
-			 task.tasklabel=task.taskrighthand.appendChild(document.createElement("div"))
-			 task.tasklabel.style.display="inline-block"
-			 task.tasklabel.style.width="100px"
+			 task.tasklabel.style.width="80px"
 			 task.tasklabel.innerText="Delete"
 			 task.tasklabel.className = "list-group-item list-group-item-action list-group-item-danger";
 			 task.tasklabel.setAttribute("state",false)
@@ -201,7 +210,9 @@
 			document.getElementById("task").value,
 			document.getElementById("starttime").value,
 			document.getElementById("endtime").value,
-			document.getElementById("category").value
+			document.getElementById("category").value,
+			false,
+			document.getElementById("uid").value
 		)
 		clear_addTask()
 		displayTasks()
@@ -218,7 +229,8 @@
 					code.starttime,
 					code.endtime,
 					code.label,
-					code.state
+					code.state,
+					code.creationstamp
 				)
 			});
 		}
