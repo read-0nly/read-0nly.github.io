@@ -6,7 +6,7 @@
     <title>Bootstrap demo</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
   </head>
-  <body>
+  <body  onload="loadTasks()">
 	<div class="bd-example m-0 border-0">
 		<!----
 		<table><tr class="alert alert-primary alert-dismissible fade show" role="alert"  style="height:32pt;"><td>
@@ -28,7 +28,7 @@
 			---->
 		<div class="list-group" id="checklist">          
 		</div>
-		<div style="width:200px;margin-right:auto;margin-left:auto;padding:0px;height:100px;;">
+		<div style="width:300px;margin-right:auto;margin-left:auto;padding:0px;height:100px;;">
 		<div class="list-group-item list-group-item-action list-group-item-info stockbuddybutton" onclick="document.getElementById('additiondiv').style.display='block'">Add</div>
 		<div class="list-group-item list-group-item-action list-group-item-info stockbuddybutton" >Manage</div>
 		</div>
@@ -71,6 +71,9 @@
 	.sbcol2 {
 		text-align:right;
 	}
+	#additiondiv{
+		display:none
+	}
 	.addition {
 		width:400px;
 		margin:auto;
@@ -104,20 +107,32 @@
 	}
 	class StockBuddyLabelStyle {
 	  constructor(label) {
-		this.text = label;
-		this.style = "list-group-item-primary"
+		if(typeof label === 'string'){
+			this.text = label;
+			this.style = "list-group-item-primary"
+		}
+		else{
+			this.text = label.text;
+			this.style = label.style;		
+		}
 	  }
 	}
 	
 	function displayTasks(){	
 		document.getElementById("checklist").innerHTML=""
+		var i = 0
 		tasks.forEach((task) => {
 			 task.div = document.getElementById("checklist").appendChild(document.createElement("div"))
 			 task.div.className = "list-group-item list-group-item-action "+task.label.style;
+			 task.div.id="task:"+i
 			 task.checkbox = task.div.appendChild(document.createElement("input"))
 			 task.checkbox.setAttribute("type",'checkbox')
 			 task.checkbox.style.margin="10px"
-			 task.checkbox.value=task.state
+			 task.checkbox.checked=task.state
+			 task.checkbox.onclick = Function(`
+				tasks[parseInt(("`+task.div.id+`").split(':')[1])].state = document.getElementById("`+task.div.id+`").getElementsByTagName("input")[0].checked;
+				saveTasks()
+			 `)
 			 task.tasktext=task.div.appendChild(document.createElement("span"))
 			 task.tasktext.style.display="inline-block"
 			 task.tasktext.style.width="400px"
@@ -136,6 +151,19 @@
 			 task.tasklabel.style.width="100px"
 			 task.tasklabel.innerText=task.label.text
 			 task.taskrighthand.style.float="right"
+			 task.tasklabel=task.taskrighthand.appendChild(document.createElement("div"))
+			 task.tasklabel.style.display="inline-block"
+			 task.tasklabel.style.width="100px"
+			 task.tasklabel.innerText="Delete"
+			 task.tasklabel.className = "list-group-item list-group-item-action list-group-item-danger";
+			 task.tasklabel.setAttribute("state",false)
+			 task.tasklabel.onclick = Function(`
+				tasks.splice(parseInt(("`+task.div.id+`").split(':')[1]), 1)
+				saveTasks()
+				displayTasks()
+			 `)
+			 task.taskrighthand.style.float="right"
+			 i++
 			 
 		});
 	}
@@ -149,13 +177,27 @@
 		))
 		document.getElementById('additiondiv').style.display='none'
 		displayTasks()
+		saveTasks()
 	}
 	
 	function loadTasks(){
-	
+		var loadedCodes = JSON.parse(localStorage.getItem("StockBuddy_Tasklist"));
+		if(loadedCodes  != null){
+			loadedCodes.forEach((code) => {
+				//text,starttime,endtime,label,state
+				tasks.push(new StockBuddyTask(
+					code.text,
+					code.starttime,
+					code.endtime,
+					code.label,
+					code.state
+				))
+			});
+		}
+		displayTasks()
 	}
 	function saveTasks(){
-	
+		localStorage.setItem("StockBuddy_Tasklist",JSON.stringify(tasks));
 	}
 	
 	</script>
