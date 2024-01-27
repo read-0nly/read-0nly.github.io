@@ -157,7 +157,6 @@
 		}
 	  }
 	}
-	
 	function displayTasks(){	
 		document.getElementById("checklist").innerHTML=""
 		var i = 0
@@ -256,6 +255,9 @@
 		localStorage.setItem("StockBuddy_Tasklist",JSON.stringify(tasks));
 	}
 	
+	setInterval(() => {
+		displayTasks();
+	  }, 1000);
 	</script>
   </body>
 </html>
