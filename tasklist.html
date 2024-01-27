@@ -118,28 +118,38 @@
 		static deserialize(string){
 			return JSON.parse(string);
 		}
+		updatePrio(){
+			var score  = 2;
+			var date = new Date()
+			var timestring  = date.getHours()+":"+date.getMinutes()
+				this.label.style=StockBuddyLabelStyle.styles[1]
+			if(this.state){
+				this.label.style=StockBuddyLabelStyle.styles[0]
+				return
+			}
+			if(this.starttime ==""){
+			}
+			else if(this.starttime >timestring){
+				score+=-1
+			}
+			if(this.endtime ==""){
+			}
+			else if(this.endtime < timestring){
+				score+=2
+			}
+			this.label.style=StockBuddyLabelStyle.styles[score]			
+		}
 	}
 	class StockBuddyLabelStyle {
+	  static styles = ["list-group-item-secondary","list-group-item-primary","list-group-item-success","list-group-item-warning","list-group-item-danger"]
 	  constructor(label) {
 		if(typeof label === 'string'){
 			this.text = label;
-			switch(label.toLowerCase()) {
-			case "high":
-				// code block
-				this.style = "list-group-item-danger"
-				break;
-			case "mid":
-				// code block
-				this.style = "list-group-item-warning"
-				break;
-			case "low":
-				// code block
-				this.style = "list-group-item-primary"
-				break;
-			default:
-				// code block
-				this.style = "list-group-item-success"
-			} 
+			this.style = "list-group-item-primary"
+			
+				//"list-group-item-danger"
+				//"list-group-item-warning"
+				//"list-group-item-success"
 		}
 		else{
 			this.text = label.text;
@@ -153,20 +163,24 @@
 		var i = 0
 		tasks.forEach((task) => {
 			 task.div = document.getElementById("checklist").appendChild(document.createElement("div"))
-			 task.div.className = "list-group-item list-group-item-action "+task.label.style;
 			 task.div.id="task:"+i+":"+task.creationstamp
 			 task.div.style.padding="5px"
-			 task.checkbox = task.div.appendChild(document.createElement("input"))
+			 task.checkdiv = task.div.appendChild(document.createElement("div"))
+			 task.checkdiv.className = "form-check form-switch";
+			 task.checkdiv.style.padding="5px"
+			 task.checkdiv.style.float="left"
+			 task.checkbox = task.checkdiv.appendChild(document.createElement("input"))
 			 task.checkbox.setAttribute("type",'checkbox')
+			 task.checkbox.setAttribute("role",'switch')
+			 task.checkbox.className = "form-check-input";
 			 task.checkbox.style.margin="5px"
-			 task.checkbox.style["margin-top"]="15px"
-			 task.checkbox.style["margin-bottom"]="15px"
 			 task.checkbox.checked=task.state
 			 task.checkbox.onclick = Function(`
 				tasks[parseInt(("`+task.div.id+`").split(':')[1])].state = document.getElementById("`+task.div.id+`").getElementsByTagName("input")[0].checked;
 				saveTasks()
+				displayTasks()
 			 `)
-			 task.tasktext=task.div.appendChild(document.createElement("span"))
+			 task.tasktext=task.checkdiv.appendChild(document.createElement("span"))
 			 task.tasktext.style.display="inline-block"
 			 task.tasktext.style.width="auto"
 			 task.tasktext.innerText=task.text
@@ -179,18 +193,20 @@
 			 task.taskend.style.display="inline-block"
 			 task.taskend.style.width="50px"
 			 task.taskend.innerText=task.endtime
-			 task.tasklabel=task.taskrighthand.appendChild(document.createElement("div"))
-			 task.tasklabel.style.display="inline-block"
-			 task.tasklabel.style.width="80px"
-			 task.tasklabel.innerText="Delete"
-			 task.tasklabel.className = "list-group-item list-group-item-action list-group-item-danger";
-			 task.tasklabel.setAttribute("state",false)
-			 task.tasklabel.onclick = Function(`
+			 task.taskdelete=task.taskrighthand.appendChild(document.createElement("div"))
+			 task.taskdelete.style.display="inline-block"
+			 task.taskdelete.style.width="80px"
+			 task.taskdelete.innerText="Delete"
+			 task.taskdelete.className = "list-group-item list-group-item-action list-group-item-danger";
+			 task.taskdelete.setAttribute("state",false)
+			 task.taskdelete.onclick = Function(`
 				tasks.splice(parseInt(("`+task.div.id+`").split(':')[1]), 1)
 				saveTasks()
 				displayTasks()
 			 `)
 			 task.taskrighthand.style.float="right"
+			 task.updatePrio()
+			 task.div.className = "list-group-item list-group-item-action "+task.label.style;
 			 i++
 			 
 		});
