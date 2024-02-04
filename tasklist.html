@@ -25,7 +25,7 @@
 		</tr>
 	</table>
 	
-	<div class="bd-example m-0 border-0">
+	<div id="checklistContainer" class="bd-example m-0 border-0">
 		<!----
 		<table><tr class="alert alert-primary alert-dismissible fade show" role="alert"  style="height:32pt;"><td>
 			  A simple primary alert with <a href="#" class="alert-link">an example link</a>. Give it a click if you like.
@@ -94,12 +94,17 @@
 		text-align:right;
 	}
 	.topbuttons{
-		width:100%
+		width:100%;
+		position:absolute;
+		top:0px;
+		z-index:4
 	}
 	.topbuttons .btn{
 		width:100%
 	}	
 	.topbuttons .secondrow{
+		display:table-row;
+		display:none;
 	}
 	#additiondiv{
 		display:none
@@ -204,6 +209,7 @@
 	  }
 	}
 	function displayTasks(){	
+		document.getElementById("checklistContainer").style.paddingTop=(document.getElementsByClassName("topbuttons")[0].getClientRects()[0].height+5).toString()+"px"
 		document.getElementById("checklist").innerHTML=""
 		var i = 0
 		tasks.forEach((task) => {
