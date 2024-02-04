@@ -145,22 +145,24 @@
 			this.score  = 2;
 			var date = new Date()
 			var timestring  = date.getHours().toString().padStart(2, '0')+":"+date.getMinutes().toString().padStart(2, '0')
-			if(this.state){
-				this.score=0
-				return
+			if(this.endtime ==""){
+				this.score=2
+			}
+			else if(this.endtime < timestring){
+				this.score=4
+			}		
+			else{
+				this.score=2
 			}
 			if(this.starttime ==""){
 			}
 			else if(this.starttime >timestring){
-				this.score+=-1
+				this.score=1
 			}
-			if(this.endtime ==""){
-			}
-			else if(this.endtime < timestring){
-				this.score+=2
-			}		
-			else{
-				this.score+=-1
+
+			
+			if(this.state){
+				this.score=0
 			}
 		}
 		setDisplay(){
