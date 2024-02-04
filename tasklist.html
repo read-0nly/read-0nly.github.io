@@ -6,22 +6,12 @@
     <title>Bootstrap demo</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
   </head>
-  <body  onload="loadTasks()">
+  <body  onload="bodyload()">
 	<table class="topbuttons">
 		<tr class="firstrow">
-			<td><button type="button" class="btn btn-secondary sb_switchbtn btn-sm" onclick="switchBtn()">Secondary</button></td>
-			<td><button type="button" class="btn btn-secondary sb_switchbtn btn-sm" onclick="switchBtn()">Secondary</button></td>
-			<td><button type="button" class="btn btn-secondary sb_switchbtn btn-sm" onclick="switchBtn()">Secondary</button></td>
-		</tr>
-		<tr class="secondrow">
-			<td><button type="button" class="btn btn-secondary sb_switchbtn btn-sm" onclick="switchBtn()">Secondary</button></td>
-			<td><button type="button" class="btn btn-secondary sb_switchbtn btn-sm" onclick="switchBtn()">Secondary</button></td>
-			<td><button type="button" class="btn btn-secondary sb_switchbtn btn-sm" onclick="switchBtn()">Secondary</button></td>
-		</tr>
-		<tr class="secondrow">
-			<td><button type="button" class="btn btn-secondary sb_switchbtn btn-sm" onclick="switchBtn()">Secondary</button></td>
-			<td><button type="button" class="btn btn-secondary sb_switchbtn btn-sm" onclick="switchBtn()">Secondary</button></td>
-			<td><button type="button" class="btn btn-secondary sb_switchbtn btn-sm" onclick="switchBtn()">Secondary</button></td>
+			<td><button type="button" id="filterBtn" class="btn btn-outline-light sb_switchbtn" switchclass="btn-info" unswitchclass="btn-outline-light" onclick="switchBtn()">Filter</button></td>
+			<td><button type="button" class="btn btn-outline-light sb_switchbtn" switchclass="btn-success" unswitchclass="btn-outline-light" onclick="switchBtn()">Secondary</button></td>
+			<td><button type="button" class="btn btn-outline-light sb_switchbtn" switchclass="btn-success" unswitchclass="btn-outline-light" onclick="switchBtn()">Secondary</button></td>
 		</tr>
 	</table>
 	
@@ -102,9 +92,11 @@
 	.topbuttons .btn{
 		width:100%
 	}	
+	.topbuttons td{
+		width:33%
+	}	
 	.topbuttons .secondrow{
 		display:table-row;
-		display:none;
 	}
 	#additiondiv{
 		display:none
@@ -150,25 +142,30 @@
 			return JSON.parse(string);
 		}
 		updatePrio(){
-			var score  = 2;
+			this.score  = 2;
 			var date = new Date()
-			var timestring  = date.getHours()+":"+date.getMinutes()
-				this.label.style=StockBuddyLabelStyle.styles[1]
+			var timestring  = date.getHours().toString().padStart(2, '0')+":"+date.getMinutes().toString().padStart(2, '0')
 			if(this.state){
-				this.label.style=StockBuddyLabelStyle.styles[0]
+				this.score=0
 				return
 			}
 			if(this.starttime ==""){
 			}
 			else if(this.starttime >timestring){
-				score+=-1
+				this.score+=-1
 			}
 			if(this.endtime ==""){
 			}
 			else if(this.endtime < timestring){
-				score+=2
+				this.score+=2
+			}		
+			else{
+				this.score+=-1
 			}
-			this.label.style=StockBuddyLabelStyle.styles[score]			
+		}
+		setDisplay(){
+			this.label.style=StockBuddyLabelStyle.styles[this.score]
+		
 		}
 	}
 	function switchBtn(event) {
@@ -182,17 +179,111 @@
 		var btn = (event.target || event.srcElement); // DOM uses 'target';
 													 // older versions of 
 													 // IE use 'srcElement'
-		var val=btn.className.includes("btn-success")
+		var val=btn.className.includes(btn.getAttribute("switchclass"))
+		
 		if(val){
-			btn.className = "btn btn-secondary sb_switchbtn btn-sm";
+			btn.className = "btn "+btn.getAttribute("unswitchclass")+" sb_switchbtn";
 		}else{
-			btn.className = "btn btn-success sb_switchbtn btn-sm";	
+			btn.className = "btn "+btn.getAttribute("switchclass")+" sb_switchbtn";	
 		}
 		btn.switched=!val
-		if(btn.switchHandler!=null){btn.switchHandler()}
+		if(btn.switchHandler==null){
+			showFilterGroup(btn)
+		}
+		else{
+			btn.switchHandler(btn)
+		}
+		var allBtns= btn.parentElement.parentElement.children[0].children
+		for(let i = allBtns.length-1; i >-1;i--){
+			if(allBtns[i]==btn) continue;
+			if(allBtns[i].loseFocus!=null){
+				allBtns[i].loseFocus(allBtns[i])
+			}
+		}
+	}
+	function showFilterGroup(btn){
+		if(btn.parentElement.parentElement.className!="firstrow"){
+			return;
+		}
+		var secondrows = document.getElementsByClassName("topbuttons")[0].getElementsByClassName("secondrow")
+		if(btn.innerText!="Filter"||btn.switched==null){
+			for(let i = secondrows.length-1; i  >-1; i--){
+				secondrows[i].remove()
+			}
+			return;
+		}
+		if(btn.switched){
+			var row1 = btn.parentElement.parentElement.parentElement.appendChild(document.createElement("tr"))	
+			var col1 = row1.appendChild(document.createElement("td"))	
+			var col2 = row1.appendChild(document.createElement("td"))	
+			var col3 = row1.appendChild(document.createElement("td"))	
+			
+			row1.className = "secondrow";
+			
+			var btn1 = col1.appendChild(document.createElement("button"))	
+			var btn2 = col2.appendChild(document.createElement("button"))	
+			var btn3 = col3.appendChild(document.createElement("button"))	
+			
+			btn1.setAttribute("type","button")
+			btn1.scorefilter=4
+			btn1.innerText="Late"
+			btn1.className="btn sb_switchbtn btn-smb btn-outline-light"
+			btn1.setAttribute("switchclass",StockBuddyLabelStyle.buttonstyles[btn1.scorefilter])
+			btn1.setAttribute("unswitchclass","btn-outline-light")
+			
+			btn2.setAttribute("type","button")
+			btn2.scorefilter=2
+			btn2.innerText="Ready"
+			btn2.className="btn sb_switchbtn btn-smb btn-outline-light"
+			btn2.setAttribute("switchclass",StockBuddyLabelStyle.buttonstyles[btn2.scorefilter])
+			btn2.setAttribute("unswitchclass","btn-outline-light")
+			
+			btn3.setAttribute("type","button")
+			btn3.scorefilter=1
+			btn3.innerText="Waiting"
+			btn3.className="btn sb_switchbtn btn-smb btn-outline-light"
+			btn3.setAttribute("switchclass",StockBuddyLabelStyle.buttonstyles[btn3.scorefilter])
+			btn3.setAttribute("unswitchclass","btn-outline-light")
+			
+			btn1.onclick=switchBtn
+			btn2.onclick=switchBtn
+			btn3.onclick=switchBtn
+			//
+			
+			row1 = btn.parentElement.parentElement.parentElement.appendChild(document.createElement("tr"))	
+			col1 = row1.appendChild(document.createElement("td"))	
+			col2 = row1.appendChild(document.createElement("td"))	
+			col3 = row1.appendChild(document.createElement("td"))	
+			
+			row1.className = "secondrow";
+			
+			btn2 = col2.appendChild(document.createElement("button"))	
+			btn2.setAttribute("type","button")
+			btn2.scorefilter=0
+			btn2.innerText="Done"
+			btn2.className="btn sb_switchbtn btn-smb btn-outline-light"
+			btn2.setAttribute("switchclass",StockBuddyLabelStyle.buttonstyles[btn2.scorefilter])
+			btn2.setAttribute("unswitchclass","btn-outline-light")
+			
+			btn2.onclick=switchBtn
+			
+			//btn3.setAttribute("type","button")
+			//btn3.innerText="TEST"
+			//btn3.className="btn btn-secondary sb_switchbtn btn-sm"
+			
+		}else{
+			for(let i = secondrows.length-1; i  >-1; i--){
+				secondrows[i].remove()
+			}
+		}
+		document.getElementById("checklistContainer").style.paddingTop=
+			(document.getElementsByClassName("topbuttons")[0].getClientRects()[0].height+5).toString()+"px"
+		
+		
 	}
 	class StockBuddyLabelStyle {
 	  static styles = ["list-group-item-secondary","list-group-item-light","list-group-item-success","list-group-item-warning","list-group-item-danger"]
+	  static buttonstyles = ["btn-secondary","btn-light","btn-success","btn-warning","btn-danger"]
 	  constructor(label) {
 		if(typeof label === 'string'){
 			this.text = label;
@@ -208,11 +299,7 @@
 		}
 	  }
 	}
-	function displayTasks(){	
-		document.getElementById("checklistContainer").style.paddingTop=(document.getElementsByClassName("topbuttons")[0].getClientRects()[0].height+5).toString()+"px"
-		document.getElementById("checklist").innerHTML=""
-		var i = 0
-		tasks.forEach((task) => {
+	function updateTask(task,i){
 			 task.div = document.getElementById("checklist").appendChild(document.createElement("div"))
 			 task.div.id="task:"+i+":"+task.creationstamp
 			 task.div.style.padding="5px"
@@ -256,11 +343,50 @@
 				displayTasks()
 			 `)
 			 task.taskrighthand.style.float="right"
-			 task.updatePrio()
+			 task.setDisplay()
 			 task.div.className = "list-group-item list-group-item-action "+task.label.style;
-			 i++
 			 
-		});
+		}
+	function displayTasks(){	
+		document.getElementById("checklistContainer").style.paddingTop=(document.getElementsByClassName("topbuttons")[0].getClientRects()[0].height+5).toString()+"px"
+		document.getElementById("checklist").innerHTML=""
+		var i = 0
+		var scores  = new Map();
+		scores.set(-1, []);
+		scores.set(0, []);
+		scores.set(1, []);
+		scores.set(2, []);
+		scores.set(3, []);
+		scores.set(4, []);
+		var filterSettingRows = document.getElementsByClassName("secondrow")
+		for(var  j  =  0;  j  < filterSettingRows.length;j++){
+			var filterbutton = filterSettingRows[j].getElementsByTagName("button")
+			for(var  k  =  0;  k  < filterbutton.length;k++){
+				if(filterbutton[k]!=null&& filterbutton[k].switched){
+					scores.delete(filterbutton[k].scorefilter);
+				}
+			}
+			
+		}
+		tasks.forEach((task) => {
+			task.updatePrio()
+			task.id=i;
+			if(task.score==null || !scores.has(task.score)){
+				scores.get(-1).push(task);			
+			}
+			else{
+				scores.get(task.score).push(task);
+			}
+			i++
+			});
+		for(var j=7;j>-1;j--){	
+			curScore = scores.get(j)
+			if(curScore!=null){
+				curScore.forEach((task) => {
+					updateTask(task,task.id);
+				});
+			}
+		}
 	}
 	
 	function clear_addTask(){
@@ -286,6 +412,13 @@
 		saveTasks()
 	}
 	
+	function  bodyload(){
+		document.getElementById("filterBtn").loseFocus=((btn)=>{
+			if(btn.switched){btn.click()}
+			console.log(this)
+		})
+		 loadTasks()
+	}
 	function loadTasks(){
 		var loadedCodes = JSON.parse(localStorage.getItem("StockBuddy_Tasklist"));
 		if(loadedCodes  != null){
