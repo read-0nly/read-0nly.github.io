@@ -9,77 +9,17 @@
 	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 	<link href="https://fonts.googleapis.com/css2?family=Ubuntu+Mono&display=swap" rel="stylesheet">
 
-  </head>
-  <body  onload="bodyload()">
-	<table class="topbuttons">
-		<tr class="firstrow">
-			<td><button type="button" class="btn btn-outline-dark sb_switchbtn" switchclass="btn-dark" unswitchclass="btn-outline-dark" onclick="switchBtn()"></button></td>
-			<td><button type="button" id="listselect" class="btn btn-outline-light" onclick="loadTasks(prompt('List name?'))">Load</button></td>
-			<td><button type="button" id="filterBtn" class="btn btn-outline-light sb_switchbtn" switchclass="btn-info" unswitchclass="btn-outline-light" onclick="switchBtn()">Filter</button></td>
-		</tr>
-	</table>
-	
-	<div id="checklistContainer" class="bd-example m-0 border-0">
-		<!----
-		<table><tr class="alert alert-primary alert-dismissible fade show" role="alert"  style="height:32pt;"><td>
-			  A simple primary alert with <a href="#" class="alert-link">an example link</a>. Give it a click if you like.
-			</td><td>
-			  Time to start
-			</td>
-			<td><p class="spacer" style="width:40px"></p></td>
-			<td>
-			 <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close" style="top:-8px;right:-8px;"></button>
-			</td></tr></table>
-			---->
-		<!----
-		<div class="list-group">
-			  <a class="list-group-item list-group-item-action list-group-item-primary">A simple primary list group item</a>
-			  <a class="list-group-item list-group-item-action list-group-item-info">A simple info list group item</a>
-			</div>
-		</div>
-			---->
-			
-	<h1 id="listname">default</h1>
-		<div class="list-group" id="checklist">          
-		</div>
-		<div style="width:200px;margin-right:auto;margin-left:auto;padding:0px;height:100px;;">
-		<div class="list-group-item list-group-item-action list-group-item-info stockbuddybutton" onclick="document.getElementById('additiondiv').style.display='block';document.getElementById('uid').value=new Date().getTime()">Add</div>
-		<div class="list-group-item list-group-item-action list-group-item-info stockbuddybutton" >Manage</div>
-		</div>
-    </div>
-	<div  id ="additiondiv"  class="addition">
-		<table id ="additiontable" class="addition">
-			<tr style="display:none">
-				<td class="sbcol1">UID</td>
-				<td class="sbcol2"><input type="textbox" id="uid" /></td>
-			</tr>
-			<tr>
-				<td class="sbcol1">Task</td>
-				<td class="sbcol2"><input type="textbox" id="task" /></td>
-			</tr>
-			<tr>
-				<td class="sbcol1">Start Time</td>
-				<td class="sbcol2"><input type="time" id="starttime"/></td>
-			</tr>
-			<tr>
-				<td class="sbcol1">End Time</td>
-				<td class="sbcol2"><input type="time" id="endtime" /></td>
-			</tr>
-			<tr>
-				<td class="sbcol1">Label</td>
-				<td class="sbcol2"><input type="textbox" id="category" /></td>
-			</tr>
-		</table>
-		<div style="width:200px;margin-right:auto;margin-left:auto;padding:0px;height:100px;;">
-			<div class="list-group-item list-group-item-action list-group-item-info stockbuddybutton" onclick="addTask()">Add</div>
-			<div class="list-group-item list-group-item-action list-group-item-danger stockbuddybutton" onclick="clear_addTask()">Cancel</div>
-		</div>
-		</div>
 	<style>
 	h1{
 		font-family:'Ubuntu Mono', monospace;
 		font-size: 24pt;
 		font-weight: bolder;
+		text-align: center;
+	}
+	h2{
+		font-family:'Ubuntu Mono', monospace;
+		font-size: 20pt;
+		font-weight: bold;
 		text-align: center;
 	}
 	.stockbuddybutton {
@@ -119,6 +59,73 @@
 		padding-top:36px;
 	}
 	</style>
+  </head>
+  <body  onload="bodyload()">
+	<table class="topbuttons">
+		<tr class="firstrow">
+			<td><button type="button" class="btn btn-outline-dark sb_switchbtn" switchclass="btn-dark" unswitchclass="btn-outline-dark" onclick="switchBtn()"></button></td>
+			<td><button type="button" id="listselect" class="btn btn-outline-light" onclick="loadTasks(prompt('List name?'))">Load</button></td>
+			<td><button type="button" id="filterBtn" class="btn btn-outline-light sb_switchbtn" switchclass="btn-info" unswitchclass="btn-outline-light" onclick="switchBtn()">Filter</button></td>
+		</tr>
+	</table>
+	
+	<div id="checklistContainer" class="bd-example m-0 border-0">
+		<!----
+		<table><tr class="alert alert-primary alert-dismissible fade show" role="alert"  style="height:32pt;"><td>
+			  A simple primary alert with <a href="#" class="alert-link">an example link</a>. Give it a click if you like.
+			</td><td>
+			  Time to start
+			</td>
+			<td><p class="spacer" style="width:40px"></p></td>
+			<td>
+			 <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close" style="top:-8px;right:-8px;"></button>
+			</td></tr></table>
+			---->
+		<!----
+		<div class="list-group">
+			  <a class="list-group-item list-group-item-action list-group-item-primary">A simple primary list group item</a>
+			  <a class="list-group-item list-group-item-action list-group-item-info">A simple info list group item</a>
+			</div>
+		</div>
+			---->
+			
+	<h1 id="listname">default</h1>
+		<div class="list-group" id="checklist">         
+			<h2>LOADING</h2>
+		</div>
+		<div style="width:200px;margin-right:auto;margin-left:auto;padding:0px;height:100px;;">
+		<div class="list-group-item list-group-item-action list-group-item-info stockbuddybutton" onclick="document.getElementById('additiondiv').style.display='block';document.getElementById('uid').value=new Date().getTime()">Add</div>
+		<div class="list-group-item list-group-item-action list-group-item-info stockbuddybutton" >Manage</div>
+		</div>
+    </div>
+	<div  id ="additiondiv"  class="addition">
+		<table id ="additiontable" class="addition">
+			<tr style="display:none">
+				<td class="sbcol1">UID</td>
+				<td class="sbcol2"><input type="textbox" id="uid" /></td>
+			</tr>
+			<tr>
+				<td class="sbcol1">Task</td>
+				<td class="sbcol2"><input type="textbox" id="task" /></td>
+			</tr>
+			<tr>
+				<td class="sbcol1">Start Time</td>
+				<td class="sbcol2"><input type="time" id="starttime"/></td>
+			</tr>
+			<tr>
+				<td class="sbcol1">End Time</td>
+				<td class="sbcol2"><input type="time" id="endtime" /></td>
+			</tr>
+			<tr>
+				<td class="sbcol1">Label</td>
+				<td class="sbcol2"><input type="textbox" id="category" /></td>
+			</tr>
+		</table>
+		<div style="width:200px;margin-right:auto;margin-left:auto;padding:0px;height:100px;;">
+			<div class="list-group-item list-group-item-action list-group-item-info stockbuddybutton" onclick="addTask()">Add</div>
+			<div class="list-group-item list-group-item-action list-group-item-danger stockbuddybutton" onclick="clear_addTask()">Cancel</div>
+		</div>
+		</div>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
 	<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
 	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.min.js" integrity="sha384-BBtl+eGJRgqQAUMxJ7pMwbEyER4l1g+O15P+16Ep7Q9Q+zqX6gSbd85u4mG4QzX+" crossorigin="anonymous"></script>
@@ -472,7 +479,6 @@
 				});
 			}
 
-			return
 		}
 		else{
 			var loadedCodes = JSON.parse(localStorage.getItem("StockBuddy_Tasklist"));
@@ -520,7 +526,6 @@
 		//localStorage.setItem("StockBuddy_Tasklist",JSON.stringify(tasks));
 		localStorage.setItem("StockBuddy_TasklistDB",JSON.stringify(lists,replacer));
 	}
-	
 	setInterval(() => {
 		displayTasks();
 	  }, 60000);
