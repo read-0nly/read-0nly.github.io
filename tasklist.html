@@ -451,10 +451,10 @@
 				lists=objfromjson
 			}
 		}
-		if(lists.get(targetlist)==null){
-			lists.set(targetlist, []);
-		}
-		if(lists!=null){
+		if(lists.size!=0){
+			if(lists.get(targetlist)==null){
+				lists.set(targetlist, []);
+			}
 			document.getElementById("listname").innerText = targetlist;
 			var loadedCodes = lists.get(targetlist)
 			tasks=[];
