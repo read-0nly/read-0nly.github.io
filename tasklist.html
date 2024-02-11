@@ -517,7 +517,7 @@
 	function saveTasks(){
 		var listjson = JSON.parse(JSON.stringify(tasks));
 		lists.set(document.getElementById("listname").innerText,listjson);
-		localStorage.setItem("StockBuddy_Tasklist",JSON.stringify(tasks));
+		//localStorage.setItem("StockBuddy_Tasklist",JSON.stringify(tasks));
 		localStorage.setItem("StockBuddy_TasklistDB",JSON.stringify(lists,replacer));
 	}
 	
