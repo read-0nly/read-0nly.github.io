@@ -228,6 +228,7 @@
 				allBtns[i].loseFocus(allBtns[i])
 			}
 		}
+		displayTasks();
 	}
 	function showFilterGroup(btn){
 		if(btn.parentElement.parentElement.className!="firstrow"){
@@ -306,7 +307,6 @@
 		}
 		document.getElementById("checklistContainer").style.paddingTop=
 			(document.getElementsByClassName("topbuttons")[0].getClientRects()[0].height+5).toString()+"px"
-		displayTasks();
 		
 		
 	}
