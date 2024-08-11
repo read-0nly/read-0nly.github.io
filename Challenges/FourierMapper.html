@@ -1,11 +1,16 @@
 
-
+<div  style="text-align:center;font-family:consolas">
 <canvas id="myCanvas" >
 		
 </canvas>
+</div>
+<br>
+<div id = "results" style="text-align:center;font-family:consolas">
+
+</div>
 <script>
 //Find Center Of Samples
-var Samples = [0,0,0,1,1,1,0,0,0,1,1,1,0,0,0,1,1,1,0,0,0,1,1,1,0,0,0,1,1,1,0,0,0,1,1,1]
+var Samples = [0,0,0,1,1,1,0,0,0,1,1,1,0,0,0,1,1,1,0,0,0,1,1,1,0,0,0,1,1,1,0,0,0,1,1,1,0,0,0,1,1,1,0,0,0,1,1,1,0,0,0,1,1,1,0,0,0,1,1,1,0,0,0,1,1,1,0,0,0,1,1,1]
 var TestFrequency = 1
 var hasRunInverse = false;
 const TAU = Math.PI*2;
@@ -13,7 +18,7 @@ var scale = 200;
 const canvas = document.getElementById("myCanvas")
 const ctx = canvas.getContext("2d");
 canvas.width = scale*6;
-canvas.height = scale*6;
+canvas.height = scale*4;
 const GoodFrequencies = [];
 function Fourier(samples, testFreq){
 	
@@ -48,6 +53,7 @@ function stepFrequency(){
 			for(var i = 0; i < Samples.length;i++){
 				Samples[i]=(Samples[i]-1)*-1;
 			}
+			document.getElementById("results").innerHTML+=""+Samples.toString()+"<br>"
 			TestFrequency = 1
 			hasRunInverse=true
 			setTimeout(stepFrequency,100);
@@ -59,8 +65,9 @@ function stepFrequency(){
 	ctx.fillRect(0, 0, canvas.width, canvas.height)
 	var distance = Fourier(Samples,TestFrequency)
 	var delay = 100;
-	if(distance[0]>0.1){
+	if(distance[0]>0.3){
 		GoodFrequencies.push([TestFrequency,distance]);
+		document.getElementById("results").innerHTML+=""+[TestFrequency,distance].toString()+"<br>"
 		delay=300;
 	}
 	if(TestFrequency<1){
@@ -75,12 +82,13 @@ function stepFrequency(){
 }
 function drawPoint(x,y,color){
 
-	var thisX = (x*scale)+(scale*2);
+	var thisX = (x*scale)+(scale*3);
 	var thisY = (y*scale)+(scale*2);
 	ctx.beginPath();
 	ctx.arc(thisX, thisY, 10, 0, 2 * Math.PI);
 	ctx.fillStyle = color;
 	ctx.fill();
 }
+document.getElementById("results").innerHTML+=""+Samples.toString()+"<br>"
 stepFrequency();
 </script>
