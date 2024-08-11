@@ -1,0 +1,86 @@
+
+
+<canvas id="myCanvas" >
+		
+</canvas>
+<script>
+//Find Center Of Samples
+var Samples = [0,0,0,1,1,1,0,0,0,1,1,1,0,0,0,1,1,1,0,0,0,1,1,1,0,0,0,1,1,1,0,0,0,1,1,1]
+var TestFrequency = 1
+var hasRunInverse = false;
+const TAU = Math.PI*2;
+var scale = 200;
+const canvas = document.getElementById("myCanvas")
+const ctx = canvas.getContext("2d");
+canvas.width = scale*6;
+canvas.height = scale*6;
+const GoodFrequencies = [];
+function Fourier(samples, testFreq){
+	
+	var sampleSumX=0;
+	var sampleSumY=0;
+	for(var i = 0; i < samples.length;i++){
+		var t = i/samples.length; 
+		var angle = t * TAU * testFreq;
+		var testX = Math.cos(angle);
+		var testY = Math.sin(angle);
+		var sampleX = testX*samples[i];
+		var sampleY = testY*samples[i];
+		sampleSumX+=sampleX;
+		sampleSumY+=sampleY;
+		drawPoint(sampleX,sampleY,"#00FF00")
+	}
+	var centerX=sampleSumX / samples.length;
+	var centerY=sampleSumY / samples.length;
+	var distance = 	Math.sqrt(Math.pow(centerX,2)+Math.pow(centerY,2))
+	drawPoint(0,0,"#0099FF")
+	drawPoint(centerX,centerY,"#FF0000")
+	var angle = Math.atan2(centerX, centerY); 
+	angle = angle * (180 / Math.PI);
+	console.log("["+testFreq+"] : ["+distance+" : "+angle+"]")
+	return [distance, angle]
+}
+
+function stepFrequency(){
+	if(TestFrequency>=Samples.length/2){
+		console.log(GoodFrequencies);
+		if(!hasRunInverse){
+			for(var i = 0; i < Samples.length;i++){
+				Samples[i]=(Samples[i]-1)*-1;
+			}
+			TestFrequency = 1
+			hasRunInverse=true
+			setTimeout(stepFrequency,100);
+		}
+		return
+	}
+	
+	ctx.fillStyle = "#000000";
+	ctx.fillRect(0, 0, canvas.width, canvas.height)
+	var distance = Fourier(Samples,TestFrequency)
+	var delay = 100;
+	if(distance[0]>0.1){
+		GoodFrequencies.push([TestFrequency,distance]);
+		delay=300;
+	}
+	if(TestFrequency<1){
+		TestFrequency=TestFrequency*1.2;
+	}else{
+		TestFrequency=Math.round(TestFrequency+1)
+	}
+	
+	setTimeout(stepFrequency,delay);
+	
+	
+}
+function drawPoint(x,y,color){
+
+	var thisX = (x*scale)+(scale*2);
+	var thisY = (y*scale)+(scale*2);
+	ctx.beginPath();
+	ctx.arc(thisX, thisY, 10, 0, 2 * Math.PI);
+	ctx.fillStyle = color;
+	ctx.fill();
+}
+stepFrequency();
+</script>
