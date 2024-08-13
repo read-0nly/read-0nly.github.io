@@ -652,7 +652,7 @@ const TAU = Math.PI*2;
 var scale = 200;
 const canvas = document.getElementById("myCanvas")
 const ctx = canvas.getContext("2d");
-canvas.width = scale*12;
+canvas.width = scale*64;
 canvas.height = scale*4;
 var average = 0;
 var GoodFrequencies = [];
@@ -688,7 +688,7 @@ function Fourier(samples, testFreq, color="#00FF00", centercolor="#FF0000", size
 	return [distance, angle]
 }
 var AllFrequencies=[]
-var numberOfWaves = 30
+var numberOfWaves = 5
 var lastHeight = 0;
 var lastFound =[]
 var lastHarmonicHeight=0;
@@ -791,10 +791,11 @@ function repaintFrequency(mode = 2, showPrediction = true){
 		if(i+1<Prediction.length && mode==2){
 			var predictedSign = Math.sign(Prediction[i]-Prediction[i+1])
 			var actualSign = Math.sign(Samples[i]-Samples[i+1])
-			var difference = Math.abs((Prediction[i]-Prediction[i+1])-(Samples[i]-Samples[i+1]))
+			var difference = Math.abs((Prediction[i])-(Samples[i]))
+			var sign = Math.sign((Prediction[i])-(Samples[i]))
 			ctx.fillStyle = "rgb("+Math.round(Math.min((difference*32)+32,255))+","+Math.round(255-Math.max(0,Math.min((difference*32),255)))+",00)";
-			if(predictedSign==actualSign){
-				ctx.fillStyle = "rgb(00,"+Math.round(255-Math.min((difference*32)+32,255))+","+Math.round(Math.min((difference*32),255))+")";
+			if(Prediction[i]>Samples[i]){
+				ctx.fillStyle = "rgb(00,"+Math.round(255-Math.min((difference*32),255))+","+Math.round(Math.min((difference*32)+32,255))+")";
 				
 			}
 		}
