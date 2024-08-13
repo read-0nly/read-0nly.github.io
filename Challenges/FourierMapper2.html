@@ -688,7 +688,7 @@ function Fourier(samples, testFreq, color="#00FF00", centercolor="#FF0000", size
 	return [distance, angle]
 }
 var AllFrequencies=[]
-var numberOfWaves = 5
+var numberOfWaves = 3
 var lastHeight = 0;
 var lastFound =[]
 var lastHarmonicHeight=0;
@@ -810,18 +810,83 @@ function repaintFrequency(mode = 2, showPrediction = true){
 		}
 		ctx.fillStyle="#F00"
 		ctx.fillRect((i*10),canvas.height-(Prediction[i]*20), 10, 5)
-		if(Prediction.length>i+1){
-			ctx.strokeStyle = "orange";
-						
-			ctx.beginPath(); // Start a new path
-			ctx.moveTo((i*10)+2, canvas.height-(Prediction[i]*20)); // Move the pen to (30, 50)
-			ctx.lineTo(((i+1)*10)+3, canvas.height-(Prediction[i+1]*20)); // Draw a line to (150, 100)
-			ctx.stroke(); // Render the path
-						
-			ctx.strokeStyle = "null";
-		}
 		ctx.fillStyle="#FFFFFF"
 		ctx.fillRect((i*10),canvas.height-(average*20), 10, 2)
+	}
+	drawPredictionLine()
+}
+
+function drawPredictionLine(){
+	
+	for(var i =0;i<Samples.length;i++){
+		if(Prediction.length>i+1){
+			ctx.strokeStyle = "#EEE";
+			
+			ctx.beginPath(); // Start a new path
+			ctx.moveTo((i*10)+5, canvas.height-(Prediction[i]*20)); // Move the pen to (30, 50)
+			ctx.lineTo(((i+1)*10)+5, canvas.height-(Prediction[i+1]*20)); // Draw a line to (150, 100)
+			ctx.stroke(); // Render the path
+			
+			ctx.beginPath(); // Start a new path
+			ctx.moveTo((i*10)+5, canvas.height-1-(Prediction[i]*20)); // Move the pen to (30, 50)
+			ctx.lineTo(((i+1)*10)+5, canvas.height-1-(Prediction[i+1]*20)); // Draw a line to (150, 100)
+			ctx.stroke(); // Render the path
+			
+			ctx.beginPath(); // Start a new path
+			ctx.moveTo((i*10)+5, canvas.height+1-(Prediction[i]*20)); // Move the pen to (30, 50)
+			ctx.lineTo(((i+1)*10)+5, canvas.height+1-(Prediction[i+1]*20)); // Draw a line to (150, 100)
+			ctx.stroke(); // Render the path
+			
+			ctx.beginPath(); // Start a new path
+			ctx.moveTo((i*10)+5, canvas.height-2-(Prediction[i]*20)); // Move the pen to (30, 50)
+			ctx.lineTo(((i+1)*10)+5, canvas.height-2-(Prediction[i+1]*20)); // Draw a line to (150, 100)
+			ctx.stroke(); // Render the path
+			
+			ctx.beginPath(); // Start a new path
+			ctx.moveTo((i*10)+5, canvas.height+2-(Prediction[i]*20)); // Move the pen to (30, 50)
+			ctx.lineTo(((i+1)*10)+5, canvas.height+2-(Prediction[i+1]*20)); // Draw a line to (150, 100)
+			ctx.stroke(); // Render the path
+			
+			ctx.beginPath(); // Start a new path
+			ctx.moveTo((i*10)+5, canvas.height-3-(Prediction[i]*20)); // Move the pen to (30, 50)
+			ctx.lineTo(((i+1)*10)+5, canvas.height-3-(Prediction[i+1]*20)); // Draw a line to (150, 100)
+			ctx.stroke(); // Render the path
+			
+			ctx.beginPath(); // Start a new path
+			ctx.moveTo((i*10)+5, canvas.height+3-(Prediction[i]*20)); // Move the pen to (30, 50)
+			ctx.lineTo(((i+1)*10)+5, canvas.height+3-(Prediction[i+1]*20)); // Draw a line to (150, 100)
+			ctx.stroke(); // Render the path
+			ctx.strokeStyle = "";
+			
+			ctx.strokeStyle = "#111";
+			
+			ctx.beginPath(); // Start a new path
+			ctx.moveTo((i*10)+5, canvas.height-4-(Prediction[i]*20)); // Move the pen to (30, 50)
+			ctx.lineTo(((i+1)*10)+5, canvas.height-4-(Prediction[i+1]*20)); // Draw a line to (150, 100)
+			ctx.stroke(); // Render the path
+			
+			ctx.beginPath(); // Start a new path
+			ctx.moveTo((i*10)+5, canvas.height+4-(Prediction[i]*20)); // Move the pen to (30, 50)
+			ctx.lineTo(((i+1)*10)+5, canvas.height+4-(Prediction[i+1]*20)); // Draw a line to (150, 100)
+			ctx.stroke(); // Render the path
+			ctx.beginPath(); // Start a new path
+			ctx.moveTo((i*10)+5, canvas.height-5-(Prediction[i]*20)); // Move the pen to (30, 50)
+			ctx.lineTo(((i+1)*10)+5, canvas.height-5-(Prediction[i+1]*20)); // Draw a line to (150, 100)
+			ctx.stroke(); // Render the path
+			
+			ctx.beginPath(); // Start a new path
+			ctx.moveTo((i*10)+5, canvas.height+5-(Prediction[i]*20)); // Move the pen to (30, 50)
+			ctx.lineTo(((i+1)*10)+5, canvas.height+5-(Prediction[i+1]*20)); // Draw a line to (150, 100)
+			ctx.stroke(); // Render the path
+			
+			ctx.strokeStyle = "#F2F";	
+			
+			ctx.beginPath(); // Start a new path
+			ctx.moveTo((i*10)+5, canvas.height-(Prediction[i]*20)); // Move the pen to (30, 50)
+			ctx.lineTo(((i+1)*10)+5, canvas.height-(Prediction[i+1]*20)); // Draw a line to (150, 100)
+			ctx.stroke(); // Render the path
+						
+		}
 	}
 }
 document.getElementById("results").innerHTML+=""+Samples.toString()+"<br>"
