@@ -820,7 +820,7 @@ function drawPredictionLine(){
 	
 	for(var i =0;i<Samples.length;i++){
 		if(Prediction.length>i+1){
-			ctx.strokeStyle = "#EEE";
+			ctx.strokeStyle = "#AA00bb";
 			
 			ctx.beginPath(); // Start a new path
 			ctx.moveTo((i*10)+5, canvas.height-(Prediction[i]*20)); // Move the pen to (30, 50)
@@ -879,7 +879,7 @@ function drawPredictionLine(){
 			ctx.lineTo(((i+1)*10)+5, canvas.height+5-(Prediction[i+1]*20)); // Draw a line to (150, 100)
 			ctx.stroke(); // Render the path
 			
-			ctx.strokeStyle = "#F2F";	
+			ctx.strokeStyle = "#b800cb";	
 			
 			ctx.beginPath(); // Start a new path
 			ctx.moveTo((i*10)+5, canvas.height-(Prediction[i]*20)); // Move the pen to (30, 50)
