@@ -98,9 +98,10 @@ function init(){
 	  recorder.start(300);
 	  recorder2.start(300);
 	  recorder3.start(300);
-	  setTimeout(() => delayed.play(), delay);
+	  //setTimeout(() => delayed.play(), delay);
 	  delayed2.play();
 	  delayed3.play();
+	  delayed.play()
 	}
 }
 
@@ -115,7 +116,7 @@ function getStream() {
 	</section>
   <section style="position:absolute;left:0px;top:0px;">
 	<video id="delayed3" autoplay muted controls style=""></video>
-	  <section style="mix-blend-mode: hard-light;">
+	  <section style="mix-blend-mode: multiply;">
 		<video id="delayed2" autoplay muted controls style="filter: grayscale();"></video>
 		<video id="delayed" autoplay muted controls style="filter: opacity(50%) invert() grayscale();"></video>
 	  </section>
