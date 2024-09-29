@@ -112,10 +112,9 @@ function init(){
 	  }, 1000+delay);
 	}
 }
-
 function getStream() {
 	return  navigator.mediaDevices.getUserMedia({ video: {
-		facingMode: "environment" },
+		facingMode: "environment", pan: true, tilt: true, zoom: true }
 	   });
 }
 </script>
