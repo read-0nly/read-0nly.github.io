@@ -28,11 +28,13 @@ function init(){
 	  
 	  if (navigator.mediaDevices.getSupportedConstraints().zoom) {
 		  stream.getVideoTracks();
-		  track = videoTracks[0];
-		  let capabilities = track.getCapabilities();
-		  let max = capabilities["zoom"]["max"];
-		  const constraints = {advanced: [{zoom: max}]};
-		  await track.applyConstraints(constraints);
+		  for(i = 0; i< videoTracks.length;i++){
+			  let track = videoTracks[i]
+			  let capabilities = track.getCapabilities();
+			  let max = capabilities["zoom"]["max"];
+			  let constraints = {advanced: [{zoom: max}]};
+			  await track.applyConstraints(constraints);
+		  }
 	  }
 	  document.getElementById("realtime").srcObject = stream;
 	  
@@ -100,11 +102,11 @@ function init(){
 	  recorder3.start(300);
 	  setTimeout(() => {
 	  delayed2.play();
-	  },0);
+	  },1000);
 	  setTimeout(() => {
 	  delayed3.play();
 	  delayed.play()
-	  }, delay);
+	  }, 1000+delay);
 	}
 }
 
@@ -118,7 +120,7 @@ function getStream() {
     <video id="realtime" autoplay muted controls></video>
 	</section>
   <section style="position:absolute;left:0px;top:0px;">
-	<video id="delayed3" autoplay muted controls style="filter: brightness(50%) "></video>
+	<video id="delayed3" autoplay muted controls style="filter: brightness(30%) "></video>
 	  <section style="mix-blend-mode: hard-light;">
 		<video id="delayed2" autoplay muted controls style="filter: grayscale();"></video>
 		<video id="delayed" autoplay muted controls style="filter: opacity(50%) invert() grayscale();"></video>
