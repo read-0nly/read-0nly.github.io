@@ -13,7 +13,7 @@ body.overlay::before {
 .container {
   display: flex;
 }
-video { width: calc(100vw - 8px);position:absolute;left:0px;top:0px;}
+video { width: calc(100vw - 8px);position:absolute;left:0px;top:30px;}
 </style>
 <body onload="init()">
 <div class="container">
@@ -26,16 +26,6 @@ function init(){
 	  const mimeType = `video/webm; codecs="vp8"`;
 	  const stream = await getStream();
 	  
-	  if (navigator.mediaDevices.getSupportedConstraints().zoom) {
-		  stream.getVideoTracks();
-		  for(i = 0; i< videoTracks.length;i++){
-			  let track = videoTracks[i]
-			  let capabilities = track.getCapabilities();
-			  let max = capabilities["zoom"]["max"];
-			  let constraints = {advanced: [{zoom: max}]};
-			  await track.applyConstraints(constraints);
-		  }
-	  }
 	  document.getElementById("realtime").srcObject = stream;
 	  
 	  const mediaSource = new MediaSource();
@@ -101,11 +91,25 @@ function init(){
 	  recorder2.start(300);
 	  recorder3.start(300);
 	  setTimeout(() => {
-	  delayed2.play();
+		delayed2.play();
 	  },1000);
 	  setTimeout(() => {
-	  delayed3.play();
-	  delayed.play()
+		  delayed3.play();
+		  delayed.play();
+		  
+		  if (navigator.mediaDevices.getSupportedConstraints().zoom) {
+			  stream.getVideoTracks();
+			  for(i = 0; i< videoTracks.length;i++){
+				  let track = videoTracks[i]
+				  let capabilities = track.getCapabilities();
+				  let max = capabilities["zoom"]["max"];
+				  let constraints = {advanced: [{zoom: max}]};
+				  track.applyConstraints(constraints);
+			  }
+		  }
+		  else{
+			document.getElementById("NoZoom").innerText="No Zoom!"
+		  }
 	  }, 1000+delay);
 	}
 }
@@ -127,4 +131,5 @@ function getStream() {
 	  </section>
   </section>
 </div>
+<p id="NoZoom" style="top:0px;padding:0px;margin:0px;z-index:99"></p>
 </body>
