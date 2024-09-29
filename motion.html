@@ -22,7 +22,7 @@ function init(){
 	document.body.classList.add("overlay");
 	onclick = async () => {
 		document.body.classList.remove("overlay");
-	  const delay = 3;
+	  const delay = 50;
 	  const mimeType = `video/webm; codecs="vp8"`;
 	  const stream = await getStream();
 	  document.getElementById("realtime").srcObject = stream;
@@ -67,22 +67,22 @@ function init(){
 	  recorder2.start(50);
 	  delayed2.play();
 	  ;
-	  setTimeout(() => delayed.play(), 300);
+	  setTimeout(() => delayed.play(), delay);
 	}
 }
 
 function getStream() {
-  return navigator.mediaDevices.getUserMedia({ video: {
-    facingMode: { exact: "environment" },
-  } });
+	return  navigator.mediaDevices.getUserMedia({ video: {
+		facingMode: "environment" },
+	   });
 }
 </script>
   <section style="position:absolute;left:0px;top:0px;display:none">
     <video id="realtime" autoplay muted controls></video>
   </section>
   <section style="">
-    <video id="delayed2" autoplay muted controls style=""></video>
-    <video id="delayed" autoplay muted controls style="filter: opacity(50%) invert();"></video>
+    <video id="delayed2" autoplay muted controls style="filter: grayscale();"></video>
+    <video id="delayed" autoplay muted controls style="filter: opacity(50%) invert() grayscale();"></video>
   </section>
 </div>
 </body>
