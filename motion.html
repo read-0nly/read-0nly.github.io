@@ -22,7 +22,7 @@ function init(){
 	document.body.classList.add("overlay");
 	onclick = async () => {
 		document.body.classList.remove("overlay");
-	  const delay = 50;
+	  const delay = 100;
 	  const mimeType = `video/webm; codecs="vp8"`;
 	  const stream = await getStream();
 	  
@@ -98,10 +98,13 @@ function init(){
 	  recorder.start(300);
 	  recorder2.start(300);
 	  recorder3.start(300);
-	  //setTimeout(() => delayed.play(), delay);
+	  setTimeout(() => {
 	  delayed2.play();
+	  },0);
+	  setTimeout(() => {
 	  delayed3.play();
 	  delayed.play()
+	  }, delay);
 	}
 }
 
@@ -115,8 +118,8 @@ function getStream() {
     <video id="realtime" autoplay muted controls></video>
 	</section>
   <section style="position:absolute;left:0px;top:0px;">
-	<video id="delayed3" autoplay muted controls style=""></video>
-	  <section style="mix-blend-mode: multiply;">
+	<video id="delayed3" autoplay muted controls style="filter: brightness(50%) "></video>
+	  <section style="mix-blend-mode: hard-light;">
 		<video id="delayed2" autoplay muted controls style="filter: grayscale();"></video>
 		<video id="delayed" autoplay muted controls style="filter: opacity(50%) invert() grayscale();"></video>
 	  </section>
