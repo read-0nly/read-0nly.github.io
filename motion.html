@@ -72,7 +72,9 @@ function init(){
 }
 
 function getStream() {
-  return navigator.mediaDevices.getUserMedia({ video: true });
+  return navigator.mediaDevices.getUserMedia({ video: {
+    facingMode: { exact: "environment" },
+  } });
 }
 </script>
   <section style="position:absolute;left:0px;top:0px;display:none">
