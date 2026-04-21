@@ -302,10 +302,15 @@
 		doc.setButtons();
 	}
 	if(doc!=document){
+		srcout = document.getElementById("srcout")
+		if(srcout!=null){
+			document.body.removeChild(srcout)
+		}
 		outputText = document.createElement("textarea")
 		outputText.rows=20
 		outputText.style.width="100%"
 		outputText.value=doc.all[0].outerHTML
+		outputText.id="srcout"
 		document.body.appendChild(document.createElement("hr"))
 		document.body.appendChild(outputText)
 	}
@@ -326,10 +331,15 @@
 		doc.setButtons();
 	}
 	if(doc!=document){
+		srcout = document.getElementById("srcout")
+		if(srcout!=null){
+			document.body.removeChild(srcout)
+		}
 		outputText = document.createElement("textarea")
 		outputText.rows=20
 		outputText.style.width="100%"
 		outputText.value=doc.all[0].outerHTML
+		outputText.id="srcout"
 		document.body.appendChild(document.createElement("hr"))
 		document.body.appendChild(outputText)
 	}
@@ -499,9 +509,6 @@
 				  </button>&nbsp;
 				 <button class="btn btn-primary d-inline-flex align-items-center add-link-button" type="button" onclick="generatePage(window.open('about:blank').document)">
 					<span>Generate Code</span>
-				  </button>&nbsp;
-				 <button class="btn btn-primary d-inline-flex align-items-center add-link-button" type="button" onclick="generateDemo(window.open('about:blank').document)">
-					<span>Generate Demo</span>
 				  </button>
 				  
 				  <br>
