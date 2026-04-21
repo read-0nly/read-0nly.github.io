@@ -162,9 +162,30 @@
 	styleelem = doc.createElement("style")
 	styleelem.innerHTML = `
 	
+		:root{
+			--linkpage-body-bg: `+document.getElementById("bodybg").value+`;
+			--linkpage-body-fg: `+document.getElementById("bodyfg").value+`;
+			
+			--linkpage-alert-bg:`+document.getElementById("alertbg").value+`;
+			--linkpage-alert-fg:`+document.getElementById("alertfg").value+`;
+			
+			--linkpage-btn-fg:`+document.getElementById("buttonfg").value+`;
+			--linkpage-btn-bg:`+document.getElementById("buttonbg").value+`;
+			--linkpage-btn-border:`+document.getElementById("buttonborder").value+`;
+			
+			--linkpage-btn-hover-fg:`+document.getElementById("buttonhoverfg").value+`;
+			--linkpage-btn-hover-bg:`+document.getElementById("buttonhoverbg").value+`;
+			--linkpage-btn-hover-border:`+document.getElementById("buttonhoverborder").value+`;
+			
+			--linkpage-infobtn-fg:`+document.getElementById("infobtnfg").value+`;
+			--linkpage-infobtn-bg:`+document.getElementById("infobtnbg").value+`;
+			
+			--linkpage-infobtn-hover-fg:`+document.getElementById("infobtnhoverfg").value+`;
+			--linkpage-infobtn-hover-bg:`+document.getElementById("infobtnhoverbg").value+`;
+		}
 	  body{
-	  background-color:#101010;
-	  color:#FFFFFF !important;
+	  background-color:var(--linkpage-body-bg);
+	  color:var(--linkpage-body-fg) !important;
 	  text-align:center;
 	  }
 	  #link-zone{text-align:center;width:75%;margin-left:auto;margin-right:auto}
@@ -172,9 +193,10 @@
 		width:70%;
 		margin-left:auto;
 		margin-right:auto;
-		background-color:#404040;
-		border-color:#ffffff;
-		color:#FFFFFF !important;
+		background-color:var(--linkpage-alert-bg) !important;
+		border-color:var(--linkpage-alert-border) !important;
+		color:var(--linkpage-alert-fg) !important;
+		margin-top:-24px !important;
 		margin-bottom:24px !important;
 	  }
 	  .alert a{
@@ -186,15 +208,18 @@
 	  .btn-primary{
 		margin-left:0px; 
 		margin-right:0px; 
-		background-color:#101010;
-		border-color:#ffffff;
+		background-color:var(--linkpage-btn-bg);
+		border-color:var(--linkpage-btn-border);
+		color:var(--linkpage-btn-fg);
 	  }
 	  .btn-primary:hover{
 		margin-left:0px; 
 		margin-right:0px;
-		background-color:#800;
-		border-color:#f00;
+		background-color:var(--linkpage-btn-hover-bg);
+		border-color:var(--linkpage-btn-hover-border);
+		color:var(--linkpage-btn-hover-fg);
 	  }
+	  
 	  .button-with-info{
 		margin-right:-20px; 
 		margin-left:20px; 
@@ -204,21 +229,20 @@
 		margin-left:20px; 
 	  
 	  }
-	  .bg-info-subtle{
-		background-color:#080 !important;
-		color:#FFFFFF !important;
+	 
+	 .rounded-pill{
+		background-color:var(--linkpage-infobtn-bg) !important;
+		color:var(--linkpage-infobtn-fg) !important;
 		
-	  }
-	  .rounded-pill{
-		margin-right:0px; 
-		padding-top:4px;
 	  }
 	  .rounded-pill:hover{
-		background-color:#0f0 !important;
-		margin-right:0px; 
+		background-color:var(--linkpage-infobtn-hover-bg) !important;
+		color:var(--linkpage-infobtn-hover-fg) !important;
 		
+		margin-right:0px; 		
 		padding-top:4px;
 	  }
+	  
 	  .accordion .badge{
 		text-align:left;
 	  }
@@ -419,15 +443,40 @@
               </button>
             </h4>
             <div id="collapseOne" class="accordion-collapse collapse" data-bs-parent="#accordionExample" style="">
-              <div class="accordion-body">
-					<label for="exampleInputEmail1" class="form-label">ButtonBack:</label>
-					 <input id="exampleInputEmail1"><br>
-					<label for="exampleInputEmail1" class="form-label">ButtonFore:</label>
-					 <input id="exampleInputEmail1"><br>
-					<label for="exampleInputEmail1" class="form-label">ButtonHoverBack:</label>
-					 <input id="exampleInputEmail1"><br>
-					<label for="exampleInputEmail1" class="form-label">ButtonHoverFore:</label>
-					 <input id="exampleInputEmail1"><br>
+              <div class="accordion-body">			  
+					<label for="exampleInputEmail1" class="form-label">Body Background:</label>
+					 <input id="bodybg" value="#000"><br>
+					<label for="exampleInputEmail1" class="form-label">Body Foreground:</label>
+					 <input id="bodyfg" value="#FFF"><br>
+					 
+					<label for="exampleInputEmail1" class="form-label">Alert Background:</label>
+					 <input id="alertbg" value="#999"><br>
+					<label for="exampleInputEmail1" class="form-label">Alert Foreground:</label>
+					 <input id="alertfg" value="#000"><br>
+					 
+					<label for="exampleInputEmail1" class="form-label">Button Background:</label>
+					 <input id="buttonbg" value="#333"><br>
+					<label for="exampleInputEmail1" class="form-label">Button Foreground:</label>
+					 <input id="buttonfg" value="#FFF"><br>
+					<label for="exampleInputEmail1" class="form-label">Button Border Color:</label>
+					 <input id="buttonborder" value="#FFF"><br>
+					 
+					<label for="exampleInputEmail1" class="form-label">Button Hover Background:</label>
+					 <input id="buttonhoverbg" value="#FFF"><br>
+					<label for="exampleInputEmail1" class="form-label">Button Hover Foreground:</label>
+					 <input id="buttonhoverfg" value="#000"><br>
+					<label for="exampleInputEmail1" class="form-label">Button Hover Border Color:</label>
+					 <input id="buttonhoverborder" value="#333"><br>
+					 
+					<label for="exampleInputEmail1" class="form-label">Info Button Background:</label>
+					 <input id="infobtnbg" value="#181"><br>
+					<label for="exampleInputEmail1" class="form-label">Info Button Foreground:</label>
+					 <input id="infobtnfg" value="#333"><br>
+					 
+					<label for="exampleInputEmail1" class="form-label">Info Button Hover Background:</label>
+					 <input id="infobtnhoverbg" value="#8F8"><br>
+					<label for="exampleInputEmail1" class="form-label">Info Button Hover Foreground:</label>
+					 <input id="infobtnhoverfg" value="#FFF"><br>
               </div>
             </div>
           </div>
