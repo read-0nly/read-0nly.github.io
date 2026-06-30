@@ -39,7 +39,11 @@
 
   navigator.mediaSession.setActionHandler("play", () => {
     navigator.mediaSession.playbackState = "playing";
-    /* Code excerpted. */
+    navigator.mediaSession.setPositionState({
+       duration: 10,
+       playbackRate: 1,
+       position: 1,
+     });
   });
   navigator.mediaSession.setActionHandler("pause", () => {
     /* Code excerpted. */
@@ -66,16 +70,11 @@
     /* Code excerpted. */
   });
 
- navigator.mediaSession.setPositionState({
-    duration: 10,
-    playbackRate: 1,
-    position: 1,
-  });
 }
 </script>
 
 <video id="videoplayer"></video>
+<button onclick="document.getElementById('videoplayer').play();">play</button>
 
 <script>
-  document.getElementById("videoplayer").play();
 </script>
