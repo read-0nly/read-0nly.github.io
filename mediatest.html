@@ -64,6 +64,7 @@
 			navigator.mediaSession.
 			setActionHandler('play', function () {
 				actions.innerText = "Clicked on Play button";
+				updatePositionState();
 			});
 
 			navigator.mediaSession.
@@ -90,11 +91,18 @@
 			setActionHandler("seekbackward", () => {
 				actions.innerText = "Clicked on Backward button";
 			});
-
+			
 		} else {
 			// Alert if MediaSession is not supported
 			alert('MediaSession is not supported in this browser.');
 		}
+		function updatePositionState() {
+			  navigator.mediaSession.setPositionState({
+			    duration: 300,
+			    playbackRate: 1,
+			    position: 30,
+			  });
+			}
 	</script>
 </body>
 
