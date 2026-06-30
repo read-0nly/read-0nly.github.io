@@ -1,80 +1,104 @@
-<script>if ("mediaSession" in navigator) {
-  navigator.mediaSession.metadata = new MediaMetadata({
-    title: "Unforgettable",
-    artist: "Nat King Cole",
-    album: "The Ultimate Collection (Remastered)",
-    artwork: [
-      {
-        src: "https://dummyimage.com/96x96",
-        sizes: "96x96",
-        type: "image/png",
-      },
-      {
-        src: "https://dummyimage.com/128x128",
-        sizes: "128x128",
-        type: "image/png",
-      },
-      {
-        src: "https://dummyimage.com/192x192",
-        sizes: "192x192",
-        type: "image/png",
-      },
-      {
-        src: "https://dummyimage.com/256x256",
-        sizes: "256x256",
-        type: "image/png",
-      },
-      {
-        src: "https://dummyimage.com/384x384",
-        sizes: "384x384",
-        type: "image/png",
-      },
-      {
-        src: "https://dummyimage.com/512x512",
-        sizes: "512x512",
-        type: "image/png",
-      },
-    ],
-  });
+<!DOCTYPE html>
+<html lang="en">
 
-  navigator.mediaSession.setActionHandler("play", () => {
-    navigator.mediaSession.playbackState = "playing";
-    navigator.mediaSession.setPositionState({
-       duration: 10,
-       playbackRate: 1,
-       position: 1,
-     });
-  });
-  navigator.mediaSession.setActionHandler("pause", () => {
-    /* Code excerpted. */
-  });
-  navigator.mediaSession.setActionHandler("stop", () => {
-    /* Code excerpted. */
-  });
-  navigator.mediaSession.setActionHandler("seekbackward", () => {
-    /* Code excerpted. */
-  });
-  navigator.mediaSession.setActionHandler("seekforward", () => {
-    /* Code excerpted. */
-  });
-  navigator.mediaSession.setActionHandler("seekto", () => {
-    /* Code excerpted. */
-  });
-  navigator.mediaSession.setActionHandler("previoustrack", () => {
-    /* Code excerpted. */
-  });
-  navigator.mediaSession.setActionHandler("nexttrack", () => {
-    /* Code excerpted. */
-  });
-  navigator.mediaSession.setActionHandler("skipad", () => {
-    /* Code excerpted. */
-  });
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport"
+		content="width=device-width, initial-scale=1.0">
+	<title>Media Session Example</title>
+	<style>
+		section {
+			display: flex;
+			justify-content: center;
+			align-items: center;
+			flex-direction: column;
+		}
 
-}
-</script>
+		h1 {
+			color: green;
+		}
 
-<video id="videoplayer"></video>
-<button onclick="document.getElementById('videoplayer').play();">play</button>
+		h2 {
+			color: crimson;
+		}
+	</style>
+</head>
 
-<script>
-</script>
+<body>
+	<section>
+		<h1>
+		GeeksForGeeks | Media Session Example
+		</h1>
+
+		<!-- Audio Tag for Media Playback -->
+		<audio id="myAudio" controls>
+			<source
+			src=
+"https://media.geeksforgeeks.org/wp-content/uploads/20231004192519/SoundHelix-Song-3-(1).mp3"
+			type="audio/mp3">
+			Your browser does not support the audio Tag.
+		</audio>
+
+		<!-- Section for Displaying Actions -->
+		<h2>Actions:</h2>
+		<h3 id="actions"></h3>
+	</section>
+
+	<script>
+		// Get the element where actions will be displayed
+		let actions = document.getElementById('actions');
+
+		// Check if MediaSession is supported
+		if ('mediaSession' in navigator) {
+			// Associate MediaSession with the audio element
+			navigator.mediaSession.metadata = new MediaMetadata({
+				title: 'Geeks For Geeks',
+				artist: 'Geeks For Geeks',
+				album: 'Geeks For Geeks',
+				artwork: [
+					{ src: 'https://media.geeksforgeeks.org/gfg-gg-logo.svg', 
+					sizes: '192x192', type: 'image/jpg' },
+					{ src: 'https://media.geeksforgeeks.org/gfg-gg-logo.svg', 
+					sizes: '384x384', type: 'image/jpg' },
+				],
+			});
+
+			// Define action handlers for play, pause etc..
+			navigator.mediaSession.
+			setActionHandler('play', function () {
+				actions.innerText = "Clicked on Play button";
+			});
+
+			navigator.mediaSession.
+			setActionHandler('pause', function () {
+				actions.innerText = "Clicked on Pause button";
+			});
+
+			navigator.mediaSession.
+			setActionHandler('nexttrack', function () {
+				actions.innerText = "Clicked on Next Track button";
+			});
+
+			navigator.mediaSession.
+			setActionHandler("previoustrack", () => {
+				actions.innerText = "Clicked on Previous Track button";
+			});
+
+			navigator.mediaSession.
+			setActionHandler("seekforward", () => {
+				actions.innerText = "Clicked on Forward button";
+			});
+
+			navigator.mediaSession.
+			setActionHandler("seekbackward", () => {
+				actions.innerText = "Clicked on Backward button";
+			});
+
+		} else {
+			// Alert if MediaSession is not supported
+			alert('MediaSession is not supported in this browser.');
+		}
+	</script>
+</body>
+
+</html>
